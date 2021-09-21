@@ -1,0 +1,21 @@
+name: CI
+
+
+on:
+  - pull_request
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js v14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: fixing JS file with eslint
+        run: |
+          npx eslint src/ --ext js,jsx
