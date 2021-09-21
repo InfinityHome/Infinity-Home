@@ -19,4 +19,4 @@ jobs:
           npm install
       - name: fixing TS file with eslint
         run: |
-          npx eslint src/ --ext ts,tsx
+          npx eslint --ext ts,tsx
