@@ -18,4 +18,4 @@ jobs:
           npm install
       - name: fixing JS file with eslint
         run: |
-          npx eslint src/ --ext js,jsx
+          npx eslint src/ --ext ts,tsx
