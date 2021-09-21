@@ -2,7 +2,8 @@ name: CI
 
 
 on:
-  - pull_request
+  pull_request:
+  push:
 
 jobs:
   eslint:
@@ -16,6 +17,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-      - name: fixing JS file with eslint
+      - name: fixing TS file with eslint
         run: |
           npx eslint src/ --ext ts,tsx
