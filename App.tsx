@@ -3,7 +3,7 @@ import Home from "./screens/Home";
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 
-export default function App(): JSX.Element {
+const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -23,10 +23,12 @@ export default function App(): JSX.Element {
 			{fontLoaded ? (
 				<Home />
 			) : (
-				<View style={{flex:1, justifyContent:"center"}}>
+				<View style={{ flex: 1, justifyContent: "center" }}>
 					<ActivityIndicator size="large" color="gray" />
 				</View>
 			)}
 		</>
 	);
-}
+};
+
+export default App;
