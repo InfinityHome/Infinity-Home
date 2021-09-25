@@ -4,15 +4,14 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import Input from './Input';
 import Title from './Title';
 
-export default function RegistrationScreen() {
+export default function SignInScreen() {
   return (
     <View style={styles.container}>
-    <Text style={styles.text}>Glad to see you</Text>
-    <Text style={styles.text1}>Sign Up</Text>
+    <Text style={styles.text}>Welcome Back</Text>
+    <Text style={styles.text1}>Sign In</Text>
       <Input style={styles.input} placeholder={'Username'}/>
-      <Input style={styles.input} placeholder={'Password'}/>
-      <Input style={styles.input} placeholder={'Confirm Password'} secureTextEntry />
-      <Button title="Sign Up"/>
+      <Input style={styles.input} placeholder={'Password'} secureTextEntry />
+      <Button title="Sign In" />
       <StatusBar style="auto" />
     </View>
   );

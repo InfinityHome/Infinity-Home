@@ -13,9 +13,14 @@ export default function LoginScreen({navigation}) {
     <Image source={{uri: 'https://www.freepnglogos.com/uploads/logo-home-png/photo-icon-home-logo-23.png'}}
        style={{width: 70, height: 70}} />
       <Title>Infinity Home</Title>
+      <Text> Moto </Text>
       <Button
-        title="Login"
-        onPress={() => navigation.navigate('RegistrationScreen')}
+        title="Sign Up"
+        onPress={() => navigation.navigate('Registration Screen')}
+      />
+      <Button
+        title="Sign In"
+        onPress={() => navigation.navigate('Sign In')}
       />
       <StatusBar style="auto" />
     </View>
@@ -31,7 +36,7 @@ LoginScreen.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 90,
+    paddingTop: 30,
     padding: 20,
     backgroundColor: '#6BD3FF',
     alignItems: 'center',
