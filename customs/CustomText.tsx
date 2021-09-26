@@ -13,7 +13,7 @@ const CustomText: React.FC<TextProp> = (props) => {
 			case "Italic":
 				return "Radley-Italic";
 				break;
-			case "Quin-Regular":
+			case "Quin":
 				return "Quintessential-Regular";
 				break;
 			default:
