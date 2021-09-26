@@ -1,85 +1,72 @@
 import React from "react";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import Text from "../customs/CustomText";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-const ServiceList = [
-	{
-		Service: "Plumbing",
-		Img: "https://clowdarling.com/wp-content/uploads/2019/09/plumbing_kv5pgw.jpg",
-	},
-	{
-		Service: "Electrical",
-		Img: "https://www.maricopaelectric.com/wp-content/uploads/2015/09/wires2.jpg",
-	},
-	{
-		Service: "Lawn",
-		Img: "https://verycozyhome.com/wp-content/uploads/2020/07/importance-of-lawn-care.jpg",
-	},
-	{
-		Service: "Painting",
-		Img: "https://www.2dodone.com/wp-content/uploads/2018/09/painting-services.jpg",
-	},
-	{
-		Service: "Hvac",
-		Img: "https://verycozyhome.com/wp-content/uploads/2020/07/importance-of-lawn-care.jpg",
-	},
-	{
-		Service: "Roofing & Guttur",
-		Img: "https://verycozyhome.com/wp-content/uploads/2020/07/importance-of-lawn-care.jpg",
-	},
-	{
-		Service: "Moving",
-		Img: "https://verycozyhome.com/wp-content/uploads/2020/07/importance-of-lawn-care.jpg",
-	},
-    {
-		Service: "Moving",
-		Img: "https://verycozyhome.com/wp-content/uploads/2020/07/importance-of-lawn-care.jpg",
-	},
-    {
-		Service: "Moving",
-		Img: "https://verycozyhome.com/wp-content/uploads/2020/07/importance-of-lawn-care.jpg",
-	},
-];
-const Services: React.FC = () => {
+interface ServicesProps {
+	finalFilteredList: { Service: string; Icon: string; Color: string }[][];
+}
+const Services: React.FC<ServicesProps> = (props) => {
 	return (
 		<View>
 			<Text
-				style={{ paddingHorizontal: 37, paddingVertical: 10, fontSize: 24 }}>
-				Service
+				style={{
+					paddingHorizontal: 32,
+					paddingVertical: 10,
+					fontSize: 19,
+					marginBottom: 30,
+				}}>
+				Categories
 			</Text>
-				{ServiceList.map((serv, index) => (
-					<View
-						key={index}
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							alignItems: "center",
-							backgroundColor: "#c4c4c4",
-							paddingVertical: 10,
-							borderRadius: 50,
-							marginVertical: 10,
-						}}>
-						<Icon service={serv.Service} image={serv.Img} />
-						<Service service={serv.Service} image={serv.Img} />
-					</View>
-				))}
+			{props.finalFilteredList.map((rowServices, index) => (
+				<View
+					key={index}
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+						marginBottom: 30,
+					}}>
+					{rowServices.map((singleService, i) => (
+						<View
+							key={i}
+							style={{
+								alignItems: "center",
+								paddingVertical: 10,
+								justifyContent: "space-around",
+								paddingHorizontal: 10,
+								backgroundColor: "#519EE7",
+								borderRadius: 15,
+								width: 90,
+								height: 100,
+							}}>
+							<Icon icon={singleService.Icon} color={singleService.Color} />
+							<Service
+								service={singleService.Service}
+							/>
+						</View>
+					))}
+				</View>
+			))}
 		</View>
 	);
 };
 
-const Icon: React.FC<{ service: string; image: string }> = (props) => (
-	<Image
-		source={{
-			uri: props.image,
-			width: 70,
-			height: 70,
-		}}
-		style={{ borderRadius: 100, marginHorizontal: 40 }}
-	/>
+const Icon: React.FC<{ icon: string;  color: string }> = (props) => (
+	<MaterialIcons name={props.icon} color={props.color} size={32} />
 );
 
-const Service: React.FC<{ service: string; image: string }> = (props) => (
-	<Text style={{ fontSize: 35 }}>{props.service}</Text>
+const Service: React.FC<{ service: string }> = (props) => (
+	<Text
+		type="Quin-Regular"
+		style={{
+			fontSize: 12,
+			textAlign: "center",
+			fontWeight: "600",
+			letterSpacing: 1,
+		}}>
+		{props.service}
+	</Text>
 );
 
 export default Services;
