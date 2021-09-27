@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { TextInput, View } from "react-native";
-
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 interface SearchProps {
 	ServiceList: { Service: string; Icon: string; Color: string }[][];
 	setFinalFilteredList: Dispatch<
@@ -43,20 +43,27 @@ const Search: React.FC<SearchProps> = (props) => {
 	};
 	return (
 		<View style={{ alignItems: "center" }}>
-			<TextInput
+			<View
 				style={{
-					width: "90%",
+					flexDirection: "row",
+					alignItems: "center",
+					borderWidth: 0.5,
 					height: 40,
-					margin: 12,
-					borderWidth: 1,
-					padding: 10,
 					borderRadius: 19,
-					fontWeight: "600",
-				}}
-				onChangeText={onSearch}
-				value={search}
-				placeholder="Search"
-			/>
+					margin: 12,
+					width: "90%",
+				}}>
+				<MaterialIcons style={{ padding: 10 }} name="find-in-page" size={32} />
+				<TextInput
+					style={{
+						flex: 1,
+						fontWeight: "600",
+					}}
+					onChangeText={onSearch}
+					value={search}
+					placeholder="Search"
+				/>
+			</View>
 		</View>
 	);
 };
