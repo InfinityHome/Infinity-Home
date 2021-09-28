@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 const Address: React.FC = () => {  return (
     <View style={styles.container}>
@@ -17,6 +17,11 @@ const Address: React.FC = () => {  return (
                     <TextInput style={styles.input} placeholder={'Zip'}/>
                 </View>
             </View>
+
+            <Button
+                title="Confirm Address"
+                onPress={() => ('')}
+            />
     </View>
   );
 }
@@ -25,10 +30,6 @@ const styles = StyleSheet.create({
   text:{
     fontSize: 30,
     paddingBottom: 20,
-  },
-  text1:{
-    fontSize: 30,
-    paddingLeft: 170,
   },
   container: {
     flex: 1,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 10,
     padding: 20,
-    borderRadius: 10
+    borderRadius: 10,
   },
   inputState: {
     backgroundColor: 'white',
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   column: {
     flex: 1,

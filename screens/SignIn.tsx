@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-const SignIn: React.FC = () => {  return (
+const SignIn: React.FC = ({navigation}) => {  return (
     <View style={styles.container}>
         <Text style={styles.text}>Welcome Back</Text>
         <Text style={styles.text1}>Sign In</Text>
             <TextInput style={styles.input} placeholder={'Username'}/>
             <TextInput style={styles.input} placeholder={'Password'} secureTextEntry />
+              <Button
+                title="Sign In"
+                onPress={() => navigation.navigate('Home')}
+              />
     </View>
   );
 }

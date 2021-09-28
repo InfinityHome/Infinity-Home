@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC = ({navigation}) => {
   return (
     <View style={styles.container}>
     <Text style={styles.text}>Glad to see you</Text>
@@ -9,6 +9,11 @@ const SignUp: React.FC = () => {
         <TextInput style={styles.input} placeholder={'Username'}/>
         <TextInput style={styles.input} placeholder={'Password'}/>
         <TextInput style={styles.input} placeholder={'Confirm Password'} secureTextEntry />
+            <Button
+                title="Sign Up"
+                onPress={() => navigation.navigate('Login')}
+                color="red"
+            />
     </View>
   );
 }
