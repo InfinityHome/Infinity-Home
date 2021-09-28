@@ -4,6 +4,8 @@ import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 import Login from "./screens/Login";
 import SignIn from "./screens/SignIn";
+import SignUp from "./screens/SignUp";
+import Address from "./screens/Address";
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
@@ -24,7 +26,9 @@ const App: React.FC = () => {
 	return (
 		<>
 			{fontLoaded ? (
-				<SignIn />
+				<Address />
+				//<SignUp/>
+				//<SignIn />
 				//<Login />
 				//<Home />
 			) : (
