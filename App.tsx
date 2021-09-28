@@ -1,21 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import Home from "./screens/Home";
+import * as Font from "expo-font";
+import { ActivityIndicator, View } from "react-native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello, World!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App: React.FC = () => {
+	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	useEffect(() => {
+		const fetchFont = async () =>
+			await Font.loadAsync({
+				"Radley-Italic": require("./assets/fonts/Radley-Italic.ttf"),
+				"Radley-Regular": require("./assets/fonts/Radley-Regular.ttf"),
+				"Quintessential-Regular": require("./assets/fonts/Quintessential-Regular.ttf")
+			});
+
+		fetchFont().then(() => {
+			setFontLoaded(true);
+		});
+	}, []);
+
+	return (
+		<>
+			{fontLoaded ? (
+				<Home />
+			) : (
+				<View style={{ flex: 1, justifyContent: "center" }}>
+					<ActivityIndicator size="large" color="gray" />
+				</View>
+			)}
+		</>
+	);
+};
+
+export default App;
