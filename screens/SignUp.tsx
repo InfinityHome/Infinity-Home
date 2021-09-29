@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { nav } from '../components/Navigation';
 
-const SignUp: React.FC = ({navigation}) => {
+interface SignUpProp {
+  navigation: NativeStackNavigationProp<nav, 'SignUp'>
+}
+
+const SignUp: React.FC<SignUpProp> = ({navigation}) => {
   return (
     <View style={styles.container}>
     <Text style={styles.text}>Glad to see you</Text>

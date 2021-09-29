@@ -1,8 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
-import PropTypes from 'prop-types';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { nav } from '../components/Navigation';
 
-const Login: React.FC = ({navigation}) => {
+interface LoginProp {
+  navigation: NativeStackNavigationProp<nav, 'Login'>
+}
+
+const Login: React.FC<LoginProp> = ({navigation}) => {
     return (
         <View style={styles.container}>
         <Image source={{uri: 'https://www.freepnglogos.com/uploads/logo-home-png/photo-icon-home-logo-23.png'}}
@@ -12,22 +17,16 @@ const Login: React.FC = ({navigation}) => {
           </Text>
           <Button
             title="Sign Up"
-            onPress={() => navigation.navigate('Sign Up')}
+            onPress={() => navigation.navigate('SignUp')}
             color="red"
           />
           <Button
             title="Sign In"
-            onPress={() => navigation.navigate('Sign In')}
+            onPress={() => navigation.navigate('SignIn')}
           />
         </View>
       );
 }
-
-Login.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 const styles = StyleSheet.create({
   container: {

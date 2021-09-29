@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { nav } from '../components/Navigation';
+interface SignInProp {
+  navigation: NativeStackNavigationProp<nav, 'SignIn'>
+}
 
-const SignIn: React.FC = ({navigation}) => {  return (
+const SignIn: React.FC<SignInProp> = ({navigation}) => {  return (
     <View style={styles.container}>
         <Text style={styles.text}>Welcome Back</Text>
         <Text style={styles.text1}>Sign In</Text>
