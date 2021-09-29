@@ -1,7 +1,7 @@
-import firebase from "firebase";
+//import firebase from "firebase";
 
 // Contains Global Configurations
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: process.env.FIREBASE_KEY,
     authDomain: process.env.FIREBASE_DOMAIN,
     databaseURL: process.env.FIREBASE_DATABASE,
@@ -12,4 +12,4 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-firebase.initializeApp(firebaseConfig);
+//firebase.initializeApp(firebaseConfig);
