@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Button } from 'react-native';
+import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { nav } from '../components/Navigation';
 interface SignInProp {
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 90,
     padding: 20,
-    backgroundColor: '#6BD3FF',
+    backgroundColor: '#9BBCFD',
   },
   input: {
     backgroundColor: 'white',

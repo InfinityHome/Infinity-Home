@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Button } from 'react-native';
+import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { nav } from '../components/Navigation';
 
@@ -13,7 +14,7 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
     <Text style={styles.text}>Glad to see you</Text>
     <Text style={styles.text1}>Sign Up</Text>
         <TextInput style={styles.input} placeholder={'Username'}/>
-        <TextInput style={styles.input} placeholder={'Password'}/>
+        <TextInput style={styles.input} placeholder={'Password'} secureTextEntry/>
         <TextInput style={styles.input} placeholder={'Confirm Password'} secureTextEntry />
             <Button
                 title="Sign Up"
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 90,
       padding: 20,
-      backgroundColor: '#6BD3FF',
+      backgroundColor: '#9BBCFD',
     },
     input: {
         backgroundColor: 'white',
