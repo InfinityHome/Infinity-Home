@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput, Button } from 'react-native';
 import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { nav } from '../components/Navigation';
+import { StackActions } from "@react-navigation/native";
 interface SignInProp {
   navigation: NativeStackNavigationProp<nav, 'SignIn'>
 }
@@ -15,7 +16,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {  return (
             <TextInput style={styles.input} placeholder={'Password'} secureTextEntry />
               <Button
                 title="Sign In"
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => navigation.dispatch(StackActions.replace("Home"))}
               />
     </View>
   );
