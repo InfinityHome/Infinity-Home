@@ -9,29 +9,6 @@ interface LoginProp {
 }
 
 const Login: React.FC<LoginProp> = ({navigation}) => {
-    // return (
-    //     <View style={styles.container}>
-    //       <Image source={{uri: 'https://www.freepnglogos.com/uploads/logo-home-png/photo-icon-home-logo-23.png'}}
-    //         style={{width: 70, height: 70}} />
-    //       <Text style={styles.text}>
-    //           Infinity Home
-    //       </Text>
-    //       <Text style={styles.motto}>
-    //         We aim to deliver a mobile application which can provide a list of home services according to
-    //         the needs of the customer.The motivation comes from making sure that finding home services
-    //         is not tedious and stressful for the customer.
-    //       </Text>
-    //       <Button
-    //         title="Sign Up"
-    //         onPress={() => navigation.navigate('SignUp')}
-    //         color="red"
-    //       />
-    //       <Button
-    //         title="Sign In"
-    //         onPress={() => navigation.navigate('SignIn')}
-    //       />
-    //     </View>
-    //   );
     return (
       <View style={styles.container}>
         <View style={styles.top}> 
