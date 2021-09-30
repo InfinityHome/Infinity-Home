@@ -1,4 +1,5 @@
-//import firebase from "firebase";
+import firebase from "firebase";
+import 'firebase/auth';
 
 // Contains Global Configurations
 export const firebaseConfig = {
@@ -12,4 +13,10 @@ export const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-//firebase.initializeApp(firebaseConfig);
+let Firebase;
+
+if (firebase.apps.length === 0) {
+  Firebase = firebase.initializeApp(firebaseConfig);
+}
+
+export default Firebase;

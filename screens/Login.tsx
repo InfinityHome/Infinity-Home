@@ -4,9 +4,7 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { nav } from '../components/Navigation';
 
-import firebase from 'firebase'
-import { firebaseConfig } from "../src/constants/firebase";
-firebase.initializeApp(firebaseConfig)
+import '../src/constants/firebase';
 
 interface LoginProp {
   navigation: NativeStackNavigationProp<nav, 'Login'>
@@ -17,7 +15,6 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
 		try {
 			const result = await Google.logInAsync({
 			androidClientId: '777031348415-3a41qnqofe71k54e99io3v3fba2pi118.apps.googleusercontent.com',
-			behavior: 'web',
 			iosClientId: '777031348415-u1edi1ut86tovag4ovakckmspkqf2epe.apps.googleusercontent.com',
 			scopes: ['profile', 'email'],
 		});
