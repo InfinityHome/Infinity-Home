@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Home from "./screens/Home";
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
+import Navigation from "./components/Navigation";
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 	return (
 		<>
 			{fontLoaded ? (
-				<Home />
+				<Navigation />
 			) : (
 				<View style={{ flex: 1, justifyContent: "center" }}>
 					<ActivityIndicator size="large" color="gray" />
