@@ -1,8 +1,9 @@
 import firebase from "firebase";
 import 'firebase/auth';
 
+
 // Contains Global Configurations
-export const firebaseConfig = {
+const firebaseConfig = {
     apiKey: process.env.FIREBASE_KEY,
     authDomain: process.env.FIREBASE_DOMAIN,
     databaseURL: process.env.FIREBASE_DATABASE,

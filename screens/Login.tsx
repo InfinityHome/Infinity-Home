@@ -1,16 +1,80 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import '../src/constants/firebase';
+import firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { nav } from '../components/Navigation';
 
-import '../src/constants/firebase';
-
 interface LoginProp {
   navigation: NativeStackNavigationProp<nav, 'Login'>
 }
 
+
+// import firebase from 'firebase'
+//  import { firebaseConfig } from "../src/constants/firebase";
+//  firebase.initializeApp(firebaseConfig)
+
 const Login: React.FC<LoginProp> = ({navigation}) => {
+  // const [loggedIn, setloggedIn] = useState(false);
+  // const [userInfo, setuserInfo] = useState([]);
+
+  const [user, setUser] = useState<any>(null);
+
+  const bootstrap = () => {
+    firebase.auth().onAuthStateChanged(_user => {
+      if(_user) {
+        setUser(_user)
+      }
+    })
+  }
+
+  useEffect(() => {
+    bootstrap()
+  }, [])
+
+  const onSignIn = (googleUser) => {
+    console.log('Google Auth Response', googleUser);
+    // We need to register an Observer on Firebase Auth to make sure auth is initialized.
+    const unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
+      unsubscribe();
+      // Check if we are already signed-in Firebase with the correct user.
+      if (!isUserEqual(googleUser, firebaseUser)) {
+        // Build Firebase credential with the Google ID token.
+        const credential = firebase.auth.GoogleAuthProvider.credential(
+            googleUser.getAuthResponse().id_token);
+  
+        // Sign in with credential from the Google user.
+        firebase.auth().signInWithCredential(credential).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.email;
+          // The credential that was used.
+          const credential = error.credential;
+          // ...
+        });
+      } else {
+        console.log('User already signed-in Firebase.');
+      }
+    });
+
+
+    function isUserEqual(googleUser, firebaseUser) {
+      if (firebaseUser) {
+        const providerData = firebaseUser.providerData;
+        for (let i = 0; i < providerData.length; i++) {
+          if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+              providerData[i].uid === googleUser.getBasicProfile().getId()) {
+            // We don't need to reauth the Firebase connection.
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
   const signInWithGoogleAsync = async () => {
 		try {
 			const result = await Google.logInAsync({
@@ -20,7 +84,9 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
 		});
 		
 			if (result.type === 'success') {
-        navigation.navigate('Home')
+        onSignIn(result);
+        navigation.navigate('Home');
+        console.log(result)
 				return result.accessToken;
 			} else {
 				return { cancelled: true };
@@ -29,7 +95,6 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
 			return { error: true };
 		}
 	};
-
     return (
         <View style={styles.container}>
         <Image source={{uri: 'https://www.freepnglogos.com/uploads/logo-home-png/photo-icon-home-logo-23.png'}}
