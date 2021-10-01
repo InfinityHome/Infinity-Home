@@ -4,7 +4,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { nav } from '../components/Navigation';
 
 import auth from '../src/constants/firebase';
-//const auth = Firebase.auth();
 
 interface SignUpProp {
   navigation: NativeStackNavigationProp<nav, 'SignUp'>
@@ -21,7 +20,7 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
       try {
         const user = await auth.createUserWithEmailAndPassword(email, password);
         if(user) {
-          Alert.alert(JSON.stringify(user));
+          console.log(JSON.stringify(user));
           navigation.navigate('Home');
         }
 
