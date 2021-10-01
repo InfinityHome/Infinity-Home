@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import Text from "../customs/CustomText";
+import Button from '../components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
 import { StackActions } from "@react-navigation/native";
-import Button from '../components/Button';
 import firebase from '../src/constants/firebase';
 
 const auth = firebase.auth();
@@ -16,8 +16,6 @@ interface SignInProp {
 const SignIn: React.FC<SignInProp> = ({navigation}) => {  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState<any>();
-
 
   const onLogin = async () => {
     try {
@@ -26,7 +24,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
         navigation.dispatch(StackActions.replace("Home"))
       }
     } catch (error) {
-      setLoginError(error);
+      console.log(error);
       }
   };
   
