@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { nav } from '../components/Navigation';
 
-// import Firebase from '../src/constants/firebase';
-// const auth = Firebase.auth();
+import auth from '../src/constants/firebase';
 
 interface SignInProp {
   navigation: NativeStackNavigationProp<nav, 'SignIn'>
@@ -14,15 +13,16 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  // const onLogin = async () => {
-  //   try {
-  //     if (email !== '' && password !== '') {
-  //       await auth.signInWithEmailAndPassword(email, password);
-  //     }
-  //   } catch (error) {
-  //       console.log(error);
-  //     }
-  // };
+  const onLogin = async () => {
+    try {
+      if (email !== '' && password !== '') {
+        await auth.signInWithEmailAndPassword(email, password);
+        navigation.navigate('Home')
+      }
+    } catch (error) {
+        console.log(error);
+      }
+  };
   
   return (
     <View style={styles.container}>
@@ -32,7 +32,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
             <TextInput style={styles.input} placeholder={'Password'} secureTextEntry onChangeText={text => setPassword(text)}/>
               <Button
                 title="Sign In"
-                onPress={() => navigation.navigate('Home')}
+                onPress={onLogin}
               />
     </View>
   );
