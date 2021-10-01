@@ -1,23 +1,22 @@
 import firebase from "firebase";
-import 'firebase/auth';
-
+import { FIREBASE_KEY, FIREBASE_DOMAIN, FIREBASE_DATABASE, 
+  FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, FIREBASE_SENDER_ID, FIREBASE_APP_ID, FIREBASE_MEASUREMENT_ID} from "@env";
 
 // Contains Global Configurations
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_KEY,
-    authDomain: process.env.FIREBASE_DOMAIN,
-    databaseURL: process.env.FIREBASE_DATABASE,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID
+    apiKey: FIREBASE_KEY,
+    authDomain: FIREBASE_DOMAIN,
+    databaseURL: FIREBASE_DATABASE,
+    projectId: FIREBASE_PROJECT_ID,
+    storageBucket: FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: FIREBASE_SENDER_ID,
+    appId: FIREBASE_APP_ID,
+    measurementId: FIREBASE_MEASUREMENT_ID
 };
 
-let Firebase;
-
 if (firebase.apps.length === 0) {
-  Firebase = firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
 
-export default Firebase;
+const auth = firebase.auth();
+export default auth;
