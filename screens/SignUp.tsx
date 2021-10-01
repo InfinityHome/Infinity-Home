@@ -3,20 +3,19 @@ import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { nav } from '../components/Navigation';
 
-import auth from '../src/constants/firebase';
+import firebase from '../src/constants/firebase';
+const auth = firebase.auth();
 
 interface SignUpProp {
   navigation: NativeStackNavigationProp<nav, 'SignUp'>
 }
 
 const SignUp: React.FC<SignUpProp> = ({navigation}) => {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSignUp = async () => {
-    console.log("sign up i am here");
-    if(name && email && password) {
+    if(email && password) {
       try {
         const user = await auth.createUserWithEmailAndPassword(email, password);
         if(user) {
@@ -39,7 +38,6 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
     <View style={styles.container}>
     <Text style={styles.text}>Glad to see you</Text>
     <Text style={styles.text1}>Sign Up</Text>
-        <TextInput style={styles.input} placeholder={'Username'} onChangeText={(text) => setName(text)}/>
         <TextInput style={styles.input} placeholder={'Email'} onChangeText={(text) => setEmail(text)}/>
         <TextInput style={styles.input} placeholder={'Password'} onChangeText={(text) => setPassword(text)}/>
         <Button title="Sign Up" onPress={onSignUp} color="red"/>

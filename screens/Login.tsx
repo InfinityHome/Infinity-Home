@@ -10,10 +10,6 @@ interface LoginProp {
   navigation: NativeStackNavigationProp<nav, 'Login'>
 }
 
-// import firebase from 'firebase'
-//  import { firebaseConfig } from "../src/constants/firebase";
-//  firebase.initializeApp(firebaseConfig)
-
 const Login: React.FC<LoginProp> = ({navigation}) => {
   // const [loggedIn, setloggedIn] = useState(false);
   // const [userInfo, setuserInfo] = useState([]);

@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { nav } from '../components/Navigation';
 
-import auth from '../src/constants/firebase';
+import firebase from '../src/constants/firebase';
+const auth = firebase.auth();
 
 interface SignInProp {
   navigation: NativeStackNavigationProp<nav, 'SignIn'>
@@ -12,7 +13,9 @@ interface SignInProp {
 const SignIn: React.FC<SignInProp> = ({navigation}) => {  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [loginError, setLoginError] = useState<any>();
+
+
   const onLogin = async () => {
     try {
       if (email !== '' && password !== '') {
@@ -20,7 +23,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
         navigation.navigate('Home')
       }
     } catch (error) {
-        console.log(error);
+      setLoginError(error);
       }
   };
   
@@ -28,7 +31,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
     <View style={styles.container}>
         <Text style={styles.text}>Welcome Back</Text>
         <Text style={styles.text1}>Sign In</Text>
-            <TextInput style={styles.input} placeholder={'Username'} onChangeText={text => setEmail(text)} />
+            <TextInput style={styles.input} placeholder={'Email'} onChangeText={text => setEmail(text)} />
             <TextInput style={styles.input} placeholder={'Password'} secureTextEntry onChangeText={text => setPassword(text)}/>
               <Button
                 title="Sign In"
