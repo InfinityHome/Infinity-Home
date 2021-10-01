@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { nav } from '../components/Navigation';
-
+import { loginStackParams } from '../components/Navigation';
+import { StackActions } from "@react-navigation/native";
+import Button from '../components/Button';
 import firebase from '../src/constants/firebase';
-const auth = firebase.auth();
 
+const auth = firebase.auth();
+     
 interface SignInProp {
-  navigation: NativeStackNavigationProp<nav, 'SignIn'>
+  navigation: NativeStackNavigationProp<loginStackParams, 'SignIn'>
 }
 
 const SignIn: React.FC<SignInProp> = ({navigation}) => {  
@@ -20,7 +23,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
     try {
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
-        navigation.navigate('Home')
+        navigation.dispatch(StackActions.replace("Home"))
       }
     } catch (error) {
       setLoginError(error);
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 90,
     padding: 20,
-    backgroundColor: '#6BD3FF',
+    backgroundColor: '#9BBCFD',
   },
   input: {
     backgroundColor: 'white',

@@ -2,11 +2,10 @@ import React from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import Text from "../customs/CustomText";
 
-const Address: React.FC = () => {  return (
+const Account: React.FC = () => {  return (
     <View style={styles.container}>
         <Text style={styles.text}>Hello, How are you?</Text>
-            <TextInput style={styles.input} placeholder={'First Name'}/>
-            <TextInput style={styles.input} placeholder={'Last Name'}/>
+            <TextInput style={styles.input} placeholder={'Email'}/>
             <TextInput style={styles.input} placeholder={'Address'}/>
             <TextInput style={styles.input} placeholder={'Country'}/>
             
@@ -20,7 +19,11 @@ const Address: React.FC = () => {  return (
             </View>
 
             <Button
-                title="Confirm Address"
+                title="Change Details"
+                onPress={() => ('')}
+            />
+            <Button
+                title="Change Address"
                 onPress={() => ('')}
             />
     </View>
@@ -61,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Address;
+export default Account;

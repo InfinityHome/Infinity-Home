@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { nav } from '../components/Navigation';
-
+import { loginStackParams } from '../components/Navigation';
+import Text from "../customs/CustomText";
+import Button from '../components/Button';
 import firebase from '../src/constants/firebase';
+        
 const auth = firebase.auth();
-
 interface SignUpProp {
-  navigation: NativeStackNavigationProp<nav, 'SignUp'>
+  navigation: NativeStackNavigationProp<loginStackParams, 'SignUp'>
 }
 
 const SignUp: React.FC<SignUpProp> = ({navigation}) => {
@@ -39,8 +40,9 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
     <Text style={styles.text}>Glad to see you</Text>
     <Text style={styles.text1}>Sign Up</Text>
         <TextInput style={styles.input} placeholder={'Email'} onChangeText={(text) => setEmail(text)}/>
-        <TextInput style={styles.input} placeholder={'Password'} onChangeText={(text) => setPassword(text)}/>
-        <Button title="Sign Up" onPress={onSignUp} color="red"/>
+        <TextInput style={styles.input} placeholder={'Password'} onChangeText={(text) => setPassword(text)} secureTextEntry/>
+        <TextInput style={styles.input} placeholder={'Confirm Password'} secureTextEntry />
+        <Button title="Sign Up" onPress={onSignUp} />
     </View>
   );
 }
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 90,
       padding: 20,
-      backgroundColor: '#6BD3FF',
+      backgroundColor: '#9BBCFD',
     },
     input: {
         backgroundColor: 'white',
