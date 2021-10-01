@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { nav } from '../components/Navigation';
-
+import { loginStackParams } from '../components/Navigation';
+import Button from '../components/Button';
 interface SignUpProp {
-  navigation: NativeStackNavigationProp<nav, 'SignUp'>
+  navigation: NativeStackNavigationProp<loginStackParams, 'SignUp'>
 }
 
 const SignUp: React.FC<SignUpProp> = ({navigation}) => {
@@ -19,7 +19,6 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
             <Button
                 title="Sign Up"
                 onPress={() => navigation.navigate('Login')}
-                color="red"
             />
     </View>
   );

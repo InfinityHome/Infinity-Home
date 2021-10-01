@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { nav } from '../components/Navigation';
+import { loginStackParams } from '../components/Navigation';
 import { StackActions } from "@react-navigation/native";
+import Button from '../components/Button';
 interface SignInProp {
-  navigation: NativeStackNavigationProp<nav, 'SignIn'>
+  navigation: NativeStackNavigationProp<loginStackParams, 'SignIn'>
 }
 
 const SignIn: React.FC<SignInProp> = ({navigation}) => {  return (

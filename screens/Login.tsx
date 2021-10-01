@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Image, Button } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import Text from "../customs/CustomText";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { nav } from '../components/Navigation';
+import { loginStackParams } from '../components/Navigation';
+import Button from '../components/Button';
 
 interface LoginProp {
-  navigation: NativeStackNavigationProp<nav, 'Login'>
+  navigation: NativeStackNavigationProp<loginStackParams, 'Login'>
 }
 
 const Login: React.FC<LoginProp> = ({navigation}) => {
@@ -25,22 +26,28 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
               is not tedious and stressful for the customer.
           </Text>
         </View>
-        <View style={styles.bottom}> 
-          <Button
-            title="Continue with Google"
-            onPress={() => ('')}
-            color="green"
-          />
-          <Text style={{fontSize: 19, paddingLeft: 150}}> OR </Text>
-          <Button
-            title="Sign Up"
-            onPress={() => navigation.navigate('SignUp')}
-            color="red"
-          />
-          <Button
-            title="Sign In"
-            onPress={() => navigation.navigate('SignIn')}
-          />
+        <View style={styles.bottom}>
+          <View style={{flex: 0.32}}>
+            <Button
+              title="Continue with Google"
+              onPress={() => ('')}
+            />
+          </View>
+          <View style={{flex: 0.14, paddingBottom: 10}}>
+            <Text style={{fontSize: 20, textAlign: 'center'}}> OR </Text>
+          </View>
+          <View style={{flex: 0.32}}>
+            <Button
+              title="Sign Up"
+              onPress={() => navigation.navigate('SignUp')}
+            />
+          </View>
+          <View style={{flex: 0.32}}>
+            <Button
+              title="Sign In"
+              onPress={() => navigation.navigate('SignIn')}
+            />
+          </View>
         </View>
       </View>
     );
@@ -62,27 +69,19 @@ const styles = StyleSheet.create({
     color: 'black',
     paddingLeft: 30,
     paddingRight: 20,
-    // borderColor: 'black',
-    // borderWidth: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   top: {
     flex: 0.25,
-    // backgroundColor: "grey",
-    // borderWidth: 5,
     alignItems: 'center',
   },
   middle: {
     flex: 0.45,
-    // backgroundColor: "beige",
-    // borderWidth: 5,
     justifyContent: 'center',
   },
   bottom: {
     flex: 0.3,
-    // backgroundColor: "pink",
-    // borderWidth: 5,
     justifyContent: 'center',
   },
 });

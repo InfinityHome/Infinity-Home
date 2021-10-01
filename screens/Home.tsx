@@ -4,10 +4,10 @@ import Header from "../components/Header";
 import Services from "../components/Services";
 import Search from "../components/Search";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { nav } from '../components/Navigation';
+import { loginStackParams } from '../components/Navigation';
 
 interface HomeProp {
-	navigation: NativeStackNavigationProp<nav, 'Home'>
+	navigation: NativeStackNavigationProp<loginStackParams, 'Home'>
   }
 
 const ServiceList: { Service: string; Icon: string; Color: string }[][] = [
