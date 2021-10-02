@@ -5,9 +5,9 @@ import SignUp from '../screens/SignUp';
 import Login from '../screens/Login';
 import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
-export type nav = {SignUp : undefined, Login : undefined, SignIn : undefined, Home : undefined}
+export type loginStackParams = {SignUp : undefined, Login : undefined, SignIn : undefined, Home : undefined}
 
-const Stack = createNativeStackNavigator<nav>();
+const Stack = createNativeStackNavigator<loginStackParams>();
 
 const Navigation: React.FC = () => {
     return (
