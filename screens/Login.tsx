@@ -1,15 +1,35 @@
 import React from 'react';
+import * as Google from 'expo-google-app-auth';
 import { StyleSheet, View, Image } from 'react-native';
 import Text from "../customs/CustomText";
+import Button from '../components/Button';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
-import Button from '../components/Button';
 
 interface LoginProp {
   navigation: NativeStackNavigationProp<loginStackParams, 'Login'>
 }
 
 const Login: React.FC<LoginProp> = ({navigation}) => {
+  const signInWithGoogleAsync = async () => {
+		try {
+			const result = await Google.logInAsync({
+			androidClientId: '777031348415-3a41qnqofe71k54e99io3v3fba2pi118.apps.googleusercontent.com',
+			iosClientId: '777031348415-u1edi1ut86tovag4ovakckmspkqf2epe.apps.googleusercontent.com',
+			scopes: ['profile', 'email'],
+		});
+		
+			if (result.type === 'success') {
+        console.log(result)
+        navigation.navigate('Home');
+				return result.accessToken;
+			} else {
+				return { cancelled: true };
+			}
+		} catch (e) {
+			return { error: true };
+		}
+	};
     return (
       <View style={styles.container}>
         <View style={styles.top}> 
@@ -30,7 +50,7 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
           <View style={{flex: 0.32}}>
             <Button
               title="Continue with Google"
-              onPress={() => ('')}
+              onPress={signInWithGoogleAsync}
             />
           </View>
           <View style={{flex: 0.14, paddingBottom: 10}}>
