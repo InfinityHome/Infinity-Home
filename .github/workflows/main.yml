@@ -2,9 +2,10 @@ name: CI
 
 
 on:
-  pull_request:
   push:
-
+    
+  pull_request:
+    
 jobs:
   eslint:
     runs-on: ubuntu-latest
@@ -17,6 +18,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-      - name: fixing TS file with eslint
+      - name: fixing Tsx file with airbnb eslint
         run: |
-          npx eslint --ext ts,tsx
+          npx eslint screens/ --ext ts,tsx
+          npx eslint customs/ --ext ts,tsx
+          npx eslint components/ --ext ts,tsx
