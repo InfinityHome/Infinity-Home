@@ -1,10 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { TextInput, View } from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { Icon, SearchBar } from "react-native-elements";
 interface SearchProps {
-	ServiceList: { Service: string; Icon: string; Color: string }[][];
+	ServiceList: { Service: string; ServiceIcon: string; IconColor: string }[][];
 	setFinalFilteredList: Dispatch<
-		SetStateAction<{ Service: string; Icon: string; Color: string }[][]>
+		SetStateAction<
+			{ Service: string; ServiceIcon: string; IconColor: string }[][]
+		>
 	>;
 }
 
@@ -15,14 +16,17 @@ const Search: React.FC<SearchProps> = (props) => {
 		//Get a new list if service name includes user input
 		const filteredArrayOnInput: {
 			Service: string;
-			Icon: string;
-			Color: string;
+			ServiceIcon: string;
+			IconColor: string;
 		}[] = props.ServiceList.flat().filter((sl) =>
 			sl.Service.toLowerCase().includes(desiredService.toLowerCase())
 		);
 		//Go through the list and make it a 2D array of 3 by N
-		const setFinalList: { Service: string; Icon: string; Color: string }[][] =
-			[];
+		const setFinalList: {
+			Service: string;
+			ServiceIcon: string;
+			IconColor: string;
+		}[][] = [];
 		for (let i = 0; i < filteredArrayOnInput.length; i += 3) {
 			if (filteredArrayOnInput[i]) {
 				setFinalList.push([filteredArrayOnInput[i]]);
@@ -42,29 +46,31 @@ const Search: React.FC<SearchProps> = (props) => {
 		setSearch(desiredService);
 	};
 	return (
-		<View style={{ alignItems: "center" }}>
-			<View
-				style={{
-					flexDirection: "row",
-					alignItems: "center",
-					borderWidth: 0.5,
-					height: 40,
-					borderRadius: 19,
-					margin: 12,
-					width: "90%",
-				}}>
-				<MaterialIcons style={{ padding: 10 }} name="find-in-page" size={32} />
-				<TextInput
-					style={{
-						flex: 1,
-						fontWeight: "600",
-					}}
-					onChangeText={onSearch}
-					value={search}
-					placeholder="Search"
+		<SearchBar
+			lightTheme
+			containerStyle={{
+				backgroundColor: "#fff",
+				borderTopWidth: 0,
+				borderBottomWidth: 0,
+			}}
+			inputStyle={{ fontWeight: "600", color: "#000" }}
+			inputContainerStyle={{
+				borderRadius: 19,
+				height: 40,
+				marginHorizontal: 20,
+			}}
+			searchIcon={
+				<Icon
+					type="material"
+					style={{ paddingLeft: 10 }}
+					name="find-in-page"
+					size={30}
 				/>
-			</View>
-		</View>
+			}
+			placeholder="Search"
+			onChangeText={onSearch}
+			value={search}
+		/>
 	);
 };
 
