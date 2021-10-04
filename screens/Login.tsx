@@ -5,6 +5,7 @@ import Text from "../customs/CustomText";
 import Button from '../components/Button';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
+import { onSignIn } from '../src/firebaseMethods';
 
 interface LoginProp {
   navigation: NativeStackNavigationProp<loginStackParams, 'Login'>
@@ -20,7 +21,8 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
 		});
 		
 			if (result.type === 'success') {
-        console.log(result)
+        // console.log(result)
+        onSignIn(result);
         navigation.navigate('Home');
 				return result.accessToken;
 			} else {
