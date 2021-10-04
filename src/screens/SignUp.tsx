@@ -29,7 +29,6 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
         try {
           const {user} = await auth.createUserWithEmailAndPassword(email, password);
           if(user) {
-            console.log("before user update");
             console.log(JSON.stringify(user));
             firebase.database().ref('/users/' + user?.uid)
                 .set({
@@ -38,13 +37,19 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
                     userPhone: phone,
                     userAddress: address,
                 })
-            console.log("after");
-            console.log(JSON.stringify(user));
             navigation.navigate('Home');
           }
         } 
-        catch (error) {
-          console.log(error)
+        catch ({ message }) {
+          Alert.alert(
+            "Sign UP Failed",
+            JSON.stringify(message, Object.getOwnPropertyNames(message)),
+            [
+              {
+                text: "Try Again",
+              }
+            ]
+          );
         }
       }
     }

@@ -29,7 +29,7 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
         JSON.stringify(message, Object.getOwnPropertyNames(message)),
         [
           {
-            text: "Cancel",
+            text: "Try Again",
           }
         ]
       );

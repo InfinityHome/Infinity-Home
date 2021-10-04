@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Platform, SafeAreaView, StatusBar, ScrollView, Button } from "react-native";
-import Header from "../../components/Header";
-import Services from "../../components/Services";
-import Search from "../../components/Search";
+import Header from "../components/Header";
+import Services from "../components/Services";
+import Search from "../components/Search";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { loginStackParams } from '../../components/Navigation';
+import { loginStackParams } from '../components/Navigation';
 
 import firebase from '../firebase/config';
 const auth = firebase.auth();
