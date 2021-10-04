@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Platform, SafeAreaView, StatusBar, ScrollView } from "react-native";
+import { Platform, SafeAreaView, StatusBar, ScrollView, Button } from "react-native";
 import Header from "../components/Header";
 import Services from "../components/Services";
 import Search from "../components/Search";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
+
+import firebase from '../src/firebase/config';
+const auth = firebase.auth();
 
 interface HomeProp {
 	navigation: NativeStackNavigationProp<loginStackParams, 'Home'>
@@ -49,6 +52,14 @@ const ServiceList: { Service: string; Icon: string; Color: string }[][] = [
 ];
 
 const Home: React.FC<HomeProp> = ({navigation}) => {
+	const handleSignOut = async () => {
+		try {
+			await auth.signOut();
+			navigation.navigate("Login");
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	const [finalFilteredList, setFinalFilteredList] =
 		useState<{ Service: string; Icon: string; Color: string }[][]>(ServiceList);
 
@@ -69,6 +80,10 @@ const Home: React.FC<HomeProp> = ({navigation}) => {
 				setFinalFilteredList={setFinalFilteredList}
 				ServiceList={ServiceList}
 			/>
+			<Button
+                 title="Log Out"
+                 onPress={handleSignOut}
+             />
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<Services finalFilteredList={finalFilteredList} />
 			</ScrollView>
