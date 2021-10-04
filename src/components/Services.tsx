@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import Text from "../customs/CustomText";
+import Text from "../customText/CustomText";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 interface ServicesProps {

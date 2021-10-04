@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Home from "./src/screens/Home";
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 import Navigation from "./components/Navigation";
