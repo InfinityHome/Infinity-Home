@@ -28,17 +28,20 @@ import firebase from './config';
             firebase.auth().signInWithCredential(credential)
             .then(function(result) {
                 console.log('user siggned in');
-                // console.log(result);
-                firebase
-                .database()
-                .ref('/users/' + result.user?.uid)
-                .set({
-                    userEmail: result.user?.email,
-                    userName: result.user?.displayName,
-                    userPhone: result.user?.phoneNumber,
-                }).then(function (snapshot) {
-                    console.log("snapshot: ",snapshot)
-                });
+                if(result.additionalUserInfo?.isNewUser)
+                {                
+                    // console.log(result);
+                    firebase
+                    .database()
+                    .ref('/users/' + result.user?.uid)
+                    .set({
+                        userEmail: result.user?.email,
+                        userName: result.user?.displayName,
+                        userPhone: result.user?.phoneNumber,
+                    }).then(function (snapshot) {
+                        console.log("snapshot: ",snapshot)
+                    });
+                }
             })
             .catch((error) => {
             // error.code, error.message, error.email, error.credential
