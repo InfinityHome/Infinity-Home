@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import Text from "../customs/CustomText";
 import Button from '../components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -23,8 +23,16 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
         await auth.signInWithEmailAndPassword(email, password);
         navigation.dispatch(StackActions.replace("Home"))
       }
-    } catch (error) {
-      console.log(error);
+    } catch ({ message }) {
+      Alert.alert(
+        "Sign In Failed",
+        JSON.stringify(message, Object.getOwnPropertyNames(message)),
+        [
+          {
+            text: "Cancel",
+          }
+        ]
+      );
       }
   };
   

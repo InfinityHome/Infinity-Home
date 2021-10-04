@@ -25,8 +25,16 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
         }
 
       } 
-      catch (error) {
-        console.log(error);
+      catch ({ message }) {
+        Alert.alert(
+          "Sign Up Failed",
+          JSON.stringify(message, Object.getOwnPropertyNames(message)),
+          [
+            {
+              text: "Cancel",
+            }
+          ]
+        );
       }
 
     }
