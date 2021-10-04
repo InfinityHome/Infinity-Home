@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
-import Text from "../customs/CustomText";
+import Text from "../customText/CustomText";
 import Button from '../components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
 import { StackActions } from "@react-navigation/native";
-import firebase from '../src/constants/firebase';
+import firebase from '../constants/firebase';
 
 const auth = firebase.auth();
      
