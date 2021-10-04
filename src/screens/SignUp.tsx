@@ -5,6 +5,7 @@ import { loginStackParams } from '../components/Navigation';
 import Text from "../customs/CustomText";
 import Button from '../components/Button';
 import firebase from '../firebase/config';
+
         
 const auth = firebase.auth();
 interface SignUpProp {

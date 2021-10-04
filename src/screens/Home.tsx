@@ -60,6 +60,7 @@ const Home: React.FC<HomeProp> = ({navigation}) => {
 			console.log(error);
 		}
 	};
+
 	const [finalFilteredList, setFinalFilteredList] =
 		useState<{ Service: string; Icon: string; Color: string }[][]>(ServiceList);
 
