@@ -5,9 +5,9 @@ import Text from "../customs/CustomText";
 import Button from '../components/Button';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
-import { onSignIn } from '../src/firebase/firebaseMethods';
+import { onSignIn } from '../firebase/firebaseMethods';
 
-import firebase, { googleConfig } from '../src/firebase/config';
+import firebase, { googleConfig } from '../firebase/config';
 const auth = firebase.auth();
 
 interface LoginProp {
