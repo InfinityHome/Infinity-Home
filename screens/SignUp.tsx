@@ -26,10 +26,15 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
         try {
           const user = await auth.createUserWithEmailAndPassword(email, password);
           if(user) {
-            console.log(JSON.stringify(user));
+            firebase.database().ref('/userTest/' + user.user?.uid)
+                .set({
+                    userEmail: user.user?.email,
+                    userName: user.user?.displayName,
+                    userPhone: user.user?.phoneNumber,
+                })
+            // console.log(JSON.stringify(user));
             navigation.navigate('Home');
           }
-
         } 
         catch ({ message }) {
           Alert.alert(
