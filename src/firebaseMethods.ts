@@ -1,4 +1,5 @@
 import * as Google from 'expo-google-app-auth';
+import { Alert } from 'react-native';
 import firebase from '../src/constants/firebase';
 
  interface Result {
@@ -10,8 +11,8 @@ import firebase from '../src/constants/firebase';
 }
 
  // store google signed in user information into database
- export const onSignIn = (googleUser:Result) => { 
-    console.log('Google Auth Response', googleUser);
+ export const onSignIn = (googleUser:Result): any => { 
+    // console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     const unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
         unsubscribe();
@@ -27,7 +28,7 @@ import firebase from '../src/constants/firebase';
             firebase.auth().signInWithCredential(credential)
             .then(function(result) {
                 console.log('user siggned in');
-                console.log(result);
+                // console.log(result);
                 firebase
                 .database()
                 .ref('/users/' + result.user?.providerData[0]?.uid)
@@ -36,18 +37,12 @@ import firebase from '../src/constants/firebase';
                     userName: result.user?.displayName,
                     phone: result.user?.phoneNumber,
                 }).then(function (snapshot) {
-                    console.log("hmm")
+                    console.log("snapshot: ",snapshot)
                 });
             })
             .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The credential that was used.
-            const credential = error.credential;
-            // ...
+            // error.code, error.message, error.email, error.credential
+            Alert.alert("Sonething Went Wrong", error.code)
         });
         } else {
             console.log('User already signed-in Firebase.');

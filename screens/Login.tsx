@@ -7,7 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
 import { onSignIn } from '../src/firebaseMethods';
 
-import firebase from '../src/constants/firebase';
+import firebase, { googleConfig } from '../src/constants/firebase';
 const auth = firebase.auth();
 
 interface LoginProp {
@@ -29,14 +29,24 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
   
   const signInWithGoogleAsync = async () => {
 		try {
-			const result = await Google.logInAsync({
-			androidClientId: '777031348415-3a41qnqofe71k54e99io3v3fba2pi118.apps.googleusercontent.com',
-			iosClientId: '777031348415-u1edi1ut86tovag4ovakckmspkqf2epe.apps.googleusercontent.com',
-			scopes: ['profile', 'email'],
-		});
+		// 	const result = await Google.logInAsync({
+		// 	androidClientId: '777031348415-3a41qnqofe71k54e99io3v3fba2pi118.apps.googleusercontent.com',
+		// 	iosClientId: '777031348415-u1edi1ut86tovag4ovakckmspkqf2epe.apps.googleusercontent.com',
+		// 	scopes: ['profile', 'email'],
+		// });
+
+    const result = await Google.logInAsync(googleConfig);
 		
 			if (result.type === 'success') {
-        // console.log(result)
+        console.log("her we go")
+        console.log(result)
+        console.log("her we go")
+        // validate Id token by calling Google REST API
+        const userInfoResponse = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token', {
+          headers: { Authorization: `Bearer ${result.accessToken}` },
+        });
+        console.log(JSON.stringify(userInfoResponse, Object.getOwnPropertyNames(userInfoResponse)))
+
         onSignIn(result);
         navigation.navigate('Home');
 				return result.accessToken;

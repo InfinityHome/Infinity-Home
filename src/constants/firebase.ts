@@ -1,6 +1,22 @@
 import firebase from "firebase";
-import { FIREBASE_KEY, FIREBASE_DOMAIN, FIREBASE_DATABASE, 
-  FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, FIREBASE_SENDER_ID, FIREBASE_APP_ID, FIREBASE_MEASUREMENT_ID} from "@env";
+import { 
+  FIREBASE_KEY, 
+  FIREBASE_DOMAIN, 
+  FIREBASE_DATABASE, 
+  FIREBASE_PROJECT_ID, 
+  FIREBASE_STORAGE_BUCKET, 
+  FIREBASE_SENDER_ID, 
+  FIREBASE_APP_ID, 
+  FIREBASE_MEASUREMENT_ID,
+  GOOGLE_ANDROID_CLINET_ID,
+  GOOGLE_IOS_CLIENT_ID
+} from "@env";
+
+// gogole login config
+export const googleConfig = {
+  androidClientId: GOOGLE_ANDROID_CLINET_ID,
+  iosClientId: GOOGLE_IOS_CLIENT_ID,
+};
 
 // Contains Global Configurations
 const firebaseConfig = {
@@ -19,5 +35,3 @@ if (firebase.apps.length === 0) {
 }
 
 export default firebase;
-// const auth = firebase.auth();
-// export default auth;
