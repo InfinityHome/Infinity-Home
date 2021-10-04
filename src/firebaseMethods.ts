@@ -9,7 +9,7 @@ import firebase from '../src/constants/firebase';
      user: Google.GoogleUser;
 }
 
- // store google signedin user information into database
+ // store google signed in user information into database
  export const onSignIn = (googleUser:Result) => { 
     console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Google from 'expo-google-app-auth';
 import { StyleSheet, View, Image } from 'react-native';
 import Text from "../customs/CustomText";
@@ -7,11 +7,26 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
 import { onSignIn } from '../src/firebaseMethods';
 
+import firebase from '../src/constants/firebase';
+const auth = firebase.auth();
+
 interface LoginProp {
   navigation: NativeStackNavigationProp<loginStackParams, 'Login'>
 }
 
 const Login: React.FC<LoginProp> = ({navigation}) => {
+  const isLoggedIn = () => {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        navigation.navigate('Home');
+      }
+    })
+  }
+
+  useEffect(() => {
+    isLoggedIn()
+  }, [])
+  
   const signInWithGoogleAsync = async () => {
 		try {
 			const result = await Google.logInAsync({
