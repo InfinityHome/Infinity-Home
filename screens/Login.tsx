@@ -5,9 +5,9 @@ import Text from "../customs/CustomText";
 import Button from '../components/Button';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
-import { onSignIn } from '../src/firebaseMethods';
+import { onSignIn } from '../src/firebase/firebaseMethods';
 
-import firebase, { googleConfig } from '../src/constants/firebase';
+import firebase, { googleConfig } from '../src/firebase/config';
 const auth = firebase.auth();
 
 interface LoginProp {
@@ -38,15 +38,12 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
     const result = await Google.logInAsync(googleConfig);
 		
 			if (result.type === 'success') {
-        console.log("her we go")
         console.log(result)
-        console.log("her we go")
         // validate Id token by calling Google REST API
         const userInfoResponse = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token', {
           headers: { Authorization: `Bearer ${result.accessToken}` },
         });
         console.log(JSON.stringify(userInfoResponse, Object.getOwnPropertyNames(userInfoResponse)))
-
         onSignIn(result);
         navigation.navigate('Home');
 				return result.accessToken;

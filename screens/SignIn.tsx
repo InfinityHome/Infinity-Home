@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
 import { StackActions } from "@react-navigation/native";
-import firebase from '../src/constants/firebase';
+import firebase from '../src/firebase/config';
 
 const auth = firebase.auth();
      

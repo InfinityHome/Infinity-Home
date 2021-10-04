@@ -1,6 +1,6 @@
 import * as Google from 'expo-google-app-auth';
 import { Alert } from 'react-native';
-import firebase from '../src/constants/firebase';
+import firebase from './config';
 
  interface Result {
      type: "success";
@@ -31,11 +31,11 @@ import firebase from '../src/constants/firebase';
                 // console.log(result);
                 firebase
                 .database()
-                .ref('/users/' + result.user?.providerData[0]?.uid)
+                .ref('/users/' + result.user?.uid)
                 .set({
                     userEmail: result.user?.email,
                     userName: result.user?.displayName,
-                    phone: result.user?.phoneNumber,
+                    userPhone: result.user?.phoneNumber,
                 }).then(function (snapshot) {
                     console.log("snapshot: ",snapshot)
                 });
