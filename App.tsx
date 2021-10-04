@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 import Navigation from "./components/Navigation";
+import { database } from './backend/database';
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
 
 	useEffect(() => {
+		database.readDatabase('/users');
 		const fetchFont = async () =>
 			await Font.loadAsync({
 				"Radley-Italic": require("./assets/fonts/Radley-Italic.ttf"),
