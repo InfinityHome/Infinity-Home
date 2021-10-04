@@ -14,29 +14,35 @@ interface SignUpProp {
 const SignUp: React.FC<SignUpProp> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [conformPassword, setConformPassword] = useState('');
 
   const onSignUp = async () => {
-    if(email && password) {
-      try {
-        const user = await auth.createUserWithEmailAndPassword(email, password);
-        if(user) {
-          console.log(JSON.stringify(user));
-          navigation.navigate('Home');
-        }
-
-      } 
-      catch ({ message }) {
-        Alert.alert(
-          "Sign Up Failed",
-          JSON.stringify(message, Object.getOwnPropertyNames(message)),
-          [
-            {
-              text: "Cancel",
-            }
-          ]
-        );
+    if(email && password && conformPassword) {
+      if(password != conformPassword)
+      {
+        Alert.alert(`Error`, `Passwork Mismatch`);
       }
+      else{
+        try {
+          const user = await auth.createUserWithEmailAndPassword(email, password);
+          if(user) {
+            console.log(JSON.stringify(user));
+            navigation.navigate('Home');
+          }
 
+        } 
+        catch ({ message }) {
+          Alert.alert(
+            "Sign Up Failed",
+            JSON.stringify(message, Object.getOwnPropertyNames(message)),
+            [
+              {
+                text: "Cancel",
+              }
+            ]
+          );
+        }
+      }
     }
     else {
       Alert.alert(`Error`, `Missing Fields`);
@@ -49,7 +55,7 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
     <Text style={styles.text1}>Sign Up</Text>
         <TextInput style={styles.input} placeholder={'Email'} onChangeText={(text) => setEmail(text)}/>
         <TextInput style={styles.input} placeholder={'Password'} onChangeText={(text) => setPassword(text)} secureTextEntry/>
-        <TextInput style={styles.input} placeholder={'Confirm Password'} secureTextEntry />
+        <TextInput style={styles.input} placeholder={'Confirm Password'} onChangeText={(text) => setConformPassword(text)} secureTextEntry />
         <Button title="Sign Up" onPress={onSignUp} />
     </View>
   );
