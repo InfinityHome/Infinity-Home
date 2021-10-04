@@ -30,10 +30,10 @@ import firebase from '../src/constants/firebase';
                 console.log(result);
                 firebase
                 .database()
-                .ref('/user/' + result.user?.uid)
+                .ref('/users/' + result.user?.providerData[0]?.uid)
                 .set({
-                    name: result.user?.displayName,
-                    email: result.user?.email,
+                    userEmail: result.user?.email,
+                    userName: result.user?.displayName,
                     phone: result.user?.phoneNumber,
                 }).then(function (snapshot) {
                     console.log("hmm")
