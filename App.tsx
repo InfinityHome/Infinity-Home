@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 import Navigation from "./components/Navigation";
-import { database } from './backend/database';
+import { database } from './src/firebase/firebaseDB';
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);

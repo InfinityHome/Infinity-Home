@@ -1,4 +1,4 @@
-import firebase from "../src/constants/firebase";
+import firebase from "./firebaseInit";
 
 class DataBase {
     database: firebase.database.Database;
@@ -13,7 +13,7 @@ class DataBase {
             console.log(snapshot.val());
         }, (errorObject: { name: string; }) => {
             console.log('The read failed: ' + errorObject.name);
-        }); 
+        });
     }
 
 }
