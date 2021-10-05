@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
-import Text from "../customs/CustomText";
-import Button from '../components/Button';
 import firebase from '../firebase/config';
-
+import Text from "../customText/CustomText";
+import Button from '../components/Button';
         
 const auth = firebase.auth();
 interface SignUpProp {

@@ -29,12 +29,6 @@ const Login: React.FC<LoginProp> = ({navigation}) => {
   
   const signInWithGoogleAsync = async () => {
 		try {
-		// 	const result = await Google.logInAsync({
-		// 	androidClientId: '777031348415-3a41qnqofe71k54e99io3v3fba2pi118.apps.googleusercontent.com',
-		// 	iosClientId: '777031348415-u1edi1ut86tovag4ovakckmspkqf2epe.apps.googleusercontent.com',
-		// 	scopes: ['profile', 'email'],
-		// });
-
     const result = await Google.logInAsync(googleConfig);
 		
 			if (result.type === 'success') {

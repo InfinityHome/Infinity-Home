@@ -5,7 +5,6 @@ import Navigation from "./src/components/Navigation";
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
-
 	useEffect(() => {
 		const fetchFont = async () =>
 			await Font.loadAsync({

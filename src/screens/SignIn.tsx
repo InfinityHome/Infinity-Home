@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import Text from "../customs/CustomText";
+import Text from "../customText/CustomText";
 import Button from '../components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
