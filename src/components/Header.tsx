@@ -2,11 +2,17 @@ import React from "react";
 import { View } from "react-native";
 import Text from "../customs/CustomText";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+	name: string;
+	font?: string;
+	size: number;
+}
+
+const Header: React.FC<HeaderProps> = (props) => {
 	return (
 		<View style={{ paddingHorizontal:32, paddingVertical:10 }}>
-			<Text type="Italic" style={{ fontSize: 31 }}>
-				Infinity Home
+			<Text type={props.font || ""} style={{ fontSize: props.size }}>
+				{props.name}
 			</Text>
 		</View>
 	);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 import Navigation from "./src/components/Navigation";
+import Orders from "./src/screens/Orders";
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
