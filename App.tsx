@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navigation from "./src/components/Navigation"
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
+import Navigation from "./src/components/Navigation";
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
-import Text from "../customText/CustomText";
-import Button from '../components/Button';
-import firebase from '../constants/firebase';
+import firebase from '../firebase/config';
+import Text from "../customs/CustomText";
+import Button from '../customs/CustomButton';
         
 const auth = firebase.auth();
 interface SignUpProp {
@@ -12,23 +12,46 @@ interface SignUpProp {
 }
 
 const SignUp: React.FC<SignUpProp> = ({navigation}) => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [conformPassword, setConformPassword] = useState('');
 
   const onSignUp = async () => {
-    if(email && password) {
-      try {
-        const user = await auth.createUserWithEmailAndPassword(email, password);
-        if(user) {
-          console.log(JSON.stringify(user));
-          navigation.navigate('Home');
-        }
-
-      } 
-      catch (error) {
-        console.log(error);
+    if(name && phone && address && email && password && conformPassword) {
+      if(password != conformPassword)
+      {
+        Alert.alert(`Error`, `Passwork Mismatch`);
       }
-
+      else{
+        try {
+          const {user} = await auth.createUserWithEmailAndPassword(email, password);
+          if(user) {
+            console.log(JSON.stringify(user));
+            firebase.database().ref('/users/' + user?.uid)
+                .set({
+                    userName: name,
+                    userEmail: user.email,
+                    userPhone: phone,
+                    userAddress: address,
+                })
+            navigation.navigate('Home');
+          }
+        } 
+        catch ({ message }) {
+          Alert.alert(
+            "Sign UP Failed",
+            JSON.stringify(message, Object.getOwnPropertyNames(message)),
+            [
+              {
+                text: "Try Again",
+              }
+            ]
+          );
+        }
+      }
     }
     else {
       Alert.alert(`Error`, `Missing Fields`);
@@ -39,10 +62,13 @@ const SignUp: React.FC<SignUpProp> = ({navigation}) => {
     <View style={styles.container}>
     <Text style={styles.text}>Glad to see you</Text>
     <Text style={styles.text1}>Sign Up</Text>
-        <TextInput style={styles.input} placeholder={'Email'} onChangeText={(text) => setEmail(text)}/>
-        <TextInput style={styles.input} placeholder={'Password'} onChangeText={(text) => setPassword(text)} secureTextEntry/>
-        <TextInput style={styles.input} placeholder={'Confirm Password'} secureTextEntry />
-        <Button title="Sign Up" onPress={onSignUp} />
+    <TextInput style={styles.input} placeholder={'Name'} onChangeText={(text) => setName(text)}/>
+    <TextInput style={styles.input} placeholder={'Email'} onChangeText={(text) => setEmail(text)}/>
+    <TextInput style={styles.input} placeholder={'Phone Number'} onChangeText={(text) => setPhone(text)}/>
+    <TextInput style={styles.input} placeholder={'Address'} onChangeText={(text) => setAddress(text)}/>
+    <TextInput style={styles.input} placeholder={'Password'} onChangeText={(text) => setPassword(text)} secureTextEntry/>
+    <TextInput style={styles.input} placeholder={'Confirm Password'} onChangeText={(text) => setConformPassword(text)} secureTextEntry />
+    <Button title="Sign Up" onPress={onSignUp} />
     </View>
   );
 }

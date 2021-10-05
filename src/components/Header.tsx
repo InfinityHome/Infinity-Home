@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import Text from "../customText/CustomText";
+import Text from "../customs/CustomText";
 
 const Header: React.FC = () => {
 	return (

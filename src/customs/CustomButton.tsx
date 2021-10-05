@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Pressable } from 'react-native';
-import Text from "../customText/CustomText";
+import Text from "./CustomText";
 
 interface ButtonProp {
     title: string; onPress: () => void;

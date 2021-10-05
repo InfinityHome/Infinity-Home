@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
-import Text from "../customText/CustomText";
-import Button from '../components/Button';
+import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import Text from "../customs/CustomText";
+import Button from '../customs/CustomButton';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
 import { StackActions } from "@react-navigation/native";
-import firebase from '../constants/firebase';
+import firebase from '../firebase/config';
 
 const auth = firebase.auth();
      
@@ -23,8 +23,16 @@ const SignIn: React.FC<SignInProp> = ({navigation}) => {
         await auth.signInWithEmailAndPassword(email, password);
         navigation.dispatch(StackActions.replace("Home"))
       }
-    } catch (error) {
-      console.log(error);
+    } catch ({ message }) {
+      Alert.alert(
+        "Sign In Failed",
+        JSON.stringify(message, Object.getOwnPropertyNames(message)),
+        [
+          {
+            text: "Try Again",
+          }
+        ]
+      );
       }
   };
   

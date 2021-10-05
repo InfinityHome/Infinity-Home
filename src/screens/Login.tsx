@@ -1,26 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Google from 'expo-google-app-auth';
 import { StyleSheet, View, Image } from 'react-native';
-import Text from "../customText/CustomText";
-import Button from '../components/Button';
+import Text from "../customs/CustomText";
+import Button from '../customs/CustomButton';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { loginStackParams } from '../components/Navigation';
+import { onSignIn } from '../firebase/firebaseMethods';
+
+import firebase, { googleConfig } from '../firebase/config';
+const auth = firebase.auth();
 
 interface LoginProp {
   navigation: NativeStackNavigationProp<loginStackParams, 'Login'>
 }
 
 const Login: React.FC<LoginProp> = ({navigation}) => {
+  const isLoggedIn = () => {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        navigation.navigate('Home');
+      }
+    })
+  }
+
+  useEffect(() => {
+    isLoggedIn()
+  }, [])
+  
   const signInWithGoogleAsync = async () => {
 		try {
-			const result = await Google.logInAsync({
-			androidClientId: '777031348415-3a41qnqofe71k54e99io3v3fba2pi118.apps.googleusercontent.com',
-			iosClientId: '777031348415-u1edi1ut86tovag4ovakckmspkqf2epe.apps.googleusercontent.com',
-			scopes: ['profile', 'email'],
-		});
+    const result = await Google.logInAsync(googleConfig);
 		
 			if (result.type === 'success') {
         console.log(result)
+        // validate Id token by calling Google REST API
+        const userInfoResponse = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token', {
+          headers: { Authorization: `Bearer ${result.accessToken}` },
+        });
+        console.log(JSON.stringify(userInfoResponse, Object.getOwnPropertyNames(userInfoResponse)))
+        onSignIn(result);
         navigation.navigate('Home');
 				return result.accessToken;
 			} else {
