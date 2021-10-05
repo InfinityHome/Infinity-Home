@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import Text from "../customText/CustomText";
-import Button from '../components/Button';
+import Text from "../customs/CustomText";
+import Button from '../customs/CustomButton';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginStackParams } from '../components/Navigation';
 import { StackActions } from "@react-navigation/native";

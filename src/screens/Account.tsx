@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
-import Text from "../customText/CustomText";
+import Text from "../customs/CustomText";
 
 const Account: React.FC = () => {  return (
     <View style={styles.container}>
