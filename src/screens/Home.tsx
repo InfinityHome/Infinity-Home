@@ -1,67 +1,73 @@
-import React, { useState } from "react";
-import { Platform, SafeAreaView, StatusBar, ScrollView } from "react-native";
-import Header from "../components/Header";
-import Services from "../components/Services";
-import Search from "../components/Search";
+import React, { useState } from 'react';
+import { SafeAreaView, StatusBar, ScrollView } from 'react-native';
+import Header from '../components/Header';
+import Services from '../components/Services';
+import Search from '../components/Search';
 
-const ServiceList: { Service: string; Icon: string; Color: string }[][] = [
-	[
-		{
-			Service: "Plumbing",
-			Icon: "plumbing",
-			Color: "gray",
-		},
-		{
-			Service: "Electrical",
-			Icon: "electrical-services",
-			Color: "blue",
-		},
-		{
-			Service: "Lawn",
-			Icon: "grass",
-			Color: "green",
-		},
-	],
-	[
-		{
-			Service: "Painting",
-			Icon: "format-paint",
-			Color: "red",
-		},
-		{
-			Service: "Hvac",
-			Icon: "hvac",
-			Color: "gray",
-		},
-		{
-			Service: "Roofing",
-			Icon: "roofing",
-			Color: "brown",
-		},
-	],
-	[{ Service: "Gutter", Icon: "filter-alt", Color: "white" }],
+const ServiceList: {
+  Service: string;
+  ServiceIcon: string;
+  IconColor: string;
+}[][] = [
+  [
+    {
+      Service: 'Plumbing',
+      ServiceIcon: 'plumbing',
+      IconColor: 'gray',
+    },
+    {
+      Service: 'Electrical',
+      ServiceIcon: 'electrical-services',
+      IconColor: 'blue',
+    },
+    {
+      Service: 'Lawn',
+      ServiceIcon: 'grass',
+      IconColor: 'green',
+    },
+  ],
+  [
+    {
+      Service: 'Painting',
+      ServiceIcon: 'format-paint',
+      IconColor: 'red',
+    },
+    {
+      Service: 'Hvac',
+      ServiceIcon: 'hvac',
+      IconColor: 'gray',
+    },
+    {
+      Service: 'Roofing',
+      ServiceIcon: 'roofing',
+      IconColor: 'brown',
+    },
+  ],
+  [{ Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'white' }],
 ];
 
 const Home: React.FC = () => {
-	const [finalFilteredList, setFinalFilteredList] =
-		useState<{ Service: string; Icon: string; Color: string }[][]>(ServiceList);
+  const [finalFilteredList, setFinalFilteredList] =
+    useState<{ Service: string; ServiceIcon: string; IconColor: string }[][]>(
+      ServiceList
+    );
 
-	return (
-		<SafeAreaView
-			style={{
-				paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-				flex: 1,
-			}}>
-			<Header />
-			<Search
-				setFinalFilteredList={setFinalFilteredList}
-				ServiceList={ServiceList}
-			/>
-			<ScrollView showsVerticalScrollIndicator={false}>
-				<Services finalFilteredList={finalFilteredList} />
-			</ScrollView>
-		</SafeAreaView>
-	);
+  return (
+    <SafeAreaView
+      style={{
+        paddingTop: StatusBar.currentHeight,
+        flex: 1,
+      }}>
+      <Header name="Infinity Home" font="Italic" size={42} />
+      <Search
+        setFinalFilteredList={setFinalFilteredList}
+        ServiceList={ServiceList}
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Services finalFilteredList={finalFilteredList} />
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 export default Home;
