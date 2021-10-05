@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Home from "./src/screens/Home";
+import Navigation from "./src/components/Navigation"
 import * as Font from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 
 const App: React.FC = () => {
 	const [fontLoaded, setFontLoaded] = useState<boolean>(false);
-
 	useEffect(() => {
 		const fetchFont = async () =>
 			await Font.loadAsync({
@@ -22,7 +21,7 @@ const App: React.FC = () => {
 	return (
 		<>
 			{fontLoaded ? (
-				<Home />
+				<Navigation />
 			) : (
 				<View style={{ flex: 1, justifyContent: "center" }}>
 					<ActivityIndicator size="large" color="gray" />

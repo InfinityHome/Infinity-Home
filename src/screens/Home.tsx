@@ -52,11 +52,11 @@ const Home: React.FC<HomeProp> = ({navigation}) => {
 	const [finalFilteredList, setFinalFilteredList] =
 		useState<{ Service: string; Icon: string; Color: string }[][]>(ServiceList);
 
-	// useEffect(() => {
-	// 	navigation.setOptions({
-	// 		headerBackVisible: false,
-	// 	});
-	//}, []);
+	useEffect(() => {
+		navigation.setOptions({
+			headerBackVisible: false,
+		});
+	}, []);
 
 	return (
 		<SafeAreaView
