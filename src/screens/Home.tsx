@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Platform, SafeAreaView, StatusBar, ScrollView } from "react-native";
 import Header from "../components/Header";
 import Services from "../components/Services";
 import Search from "../components/Search";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { loginStackParams } from '../components/Navigation';
+
+interface HomeProp {
+	navigation: NativeStackNavigationProp<loginStackParams, 'Home'>
+  }
 
 const ServiceList: { Service: string; Icon: string; Color: string }[][] = [
 	[
@@ -42,9 +48,15 @@ const ServiceList: { Service: string; Icon: string; Color: string }[][] = [
 	[{ Service: "Gutter", Icon: "filter-alt", Color: "white" }],
 ];
 
-const Home: React.FC = () => {
+const Home: React.FC<HomeProp> = ({navigation}) => {
 	const [finalFilteredList, setFinalFilteredList] =
 		useState<{ Service: string; Icon: string; Color: string }[][]>(ServiceList);
+
+	// useEffect(() => {
+	// 	navigation.setOptions({
+	// 		headerBackVisible: false,
+	// 	});
+	//}, []);
 
 	return (
 		<SafeAreaView
