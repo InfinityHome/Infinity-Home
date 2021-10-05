@@ -2,4 +2,4 @@
 
 ## Requirements
 
-1. `expo install firebase`
+npm install
