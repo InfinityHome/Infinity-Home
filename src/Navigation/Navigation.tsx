@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,15 +8,12 @@ import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
 import Orders from '../screens/Orders';
 import Account from '../screens/Account';
+import { LoginParamList, BottomNavParamList } from './Params';
 
-export type StackParams = {
-  SignUp: undefined;
-  Login: undefined;
-  SignIn: undefined;
-  Home: undefined;
-};
+import firebase from '../firebase/config';
+const auth = firebase.auth();
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
   return (
     <Stack.Navigator>
@@ -27,7 +24,7 @@ const LoginNavigation: React.FC = () => {
   );
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomNavParamList>();
 const BottomNavigation: React.FC = () => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -39,18 +36,15 @@ const BottomNavigation: React.FC = () => {
 };
 
 const Navigation: React.FC = () => {
+  const [userLoggin, setUserLoggin] = useState<firebase.User | null>(null);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUserLoggin(user);
+    });
+  }, []);
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen
-          name="Home"
-          component={BottomNavigation}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
     </NavigationContainer>
   );
 };
