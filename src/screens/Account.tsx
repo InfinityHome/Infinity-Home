@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import Text from '../customs/CustomText';
+import Button from '../customs/CustomButton';
 
 const Account: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Account: React.FC = () => {
       </View>
 
       <Button title="Change Details" onPress={() => ''} />
-      <Button title="Change Address" onPress={() => ''} />
+      <Button title="Change Password" onPress={() => ''} />
     </View>
   );
 };
