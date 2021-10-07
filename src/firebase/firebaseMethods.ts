@@ -14,7 +14,7 @@ import {authMethod, firebase} from './config';
  export const onSignIn = (googleUser:Result): void => {
     // console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
-    const unsubscribe = authMethod.onAuthStateChanged(function(firebaseUser) {
+    const unsubscribe = authMethod.onAuthStateChanged((firebaseUser) => {
         unsubscribe();
         // Check if we are already signed-in Firebase with the correct user.
         if (!isUserEqual(googleUser, firebaseUser)) {
@@ -26,7 +26,7 @@ import {authMethod, firebase} from './config';
 
             // Sign in with credential from the Google user.
             authMethod.signInWithCredential(credential)
-            .then(function(result) {
+            .then((result) => {
                 console.log('user siggned in');
                 if(result.additionalUserInfo?.isNewUser)
                 {
@@ -38,7 +38,7 @@ import {authMethod, firebase} from './config';
                         userEmail: result.user?.email,
                         userName: result.user?.displayName,
                         userPhone: result.user?.phoneNumber,
-                    }).then(function (snapshot) {
+                    }).then((snapshot) => {
                         console.log("snapshot: ",snapshot)
                     });
                 }
