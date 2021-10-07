@@ -34,8 +34,16 @@ const Data = [
       { Service: 'Hvac', ServiceIcon: 'hvac', Status: 'Completed' },
       { Service: 'Gutter', ServiceIcon: 'filter-alt', Status: 'Completed' },
       { Service: 'Home Cleaning', ServiceIcon: 'home', Status: 'Completed' },
-      { Service: 'Locks Installation', ServiceIcon: 'lock', Status: 'Completed' },
-      { Service: 'Window Treatments', ServiceIcon: 'branding-watermark', Status: 'Completed' },
+      {
+        Service: 'Locks Installation',
+        ServiceIcon: 'lock',
+        Status: 'Completed',
+      },
+      {
+        Service: 'Window Treatments',
+        ServiceIcon: 'branding-watermark',
+        Status: 'Completed',
+      },
     ],
   },
 ];
@@ -52,7 +60,7 @@ const Orders: React.FC = () => {
         sections={Data}
         stickySectionHeadersEnabled
         keyExtractor={(item, index) => item.Service + index}
-        renderItem={({ item }) => <Order item={item}/>}
+        renderItem={({ item }) => <Order item={item} />}
         renderSectionHeader={({ section: { title } }) => (
           <Title title={title} />
         )}

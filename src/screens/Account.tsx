@@ -1,37 +1,32 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
-import Text from "../customs/CustomText";
+import Text from '../customs/CustomText';
 
-const Account: React.FC = () => {  return (
+const Account: React.FC = () => {
+  return (
     <View style={styles.container}>
-        <Text style={styles.text}>Hello, How are you?</Text>
-            <TextInput style={styles.input} placeholder={'Email'}/>
-            <TextInput style={styles.input} placeholder={'Address'}/>
-            <TextInput style={styles.input} placeholder={'Country'}/>
-            
-            <View style={styles.row}>
-                <View style={styles.column}>
-                    <TextInput style={styles.inputState} placeholder={'State'}/>
-                </View>
-                <View style={styles.column}>
-                    <TextInput style={styles.input} placeholder={'Zip'}/>
-                </View>
-            </View>
+      <Text style={styles.text}>Hello, How are you?</Text>
+      <TextInput style={styles.input} placeholder={'Email'} />
+      <TextInput style={styles.input} placeholder={'Address'} />
+      <TextInput style={styles.input} placeholder={'Country'} />
 
-            <Button
-                title="Change Details"
-                onPress={() => ('')}
-            />
-            <Button
-                title="Change Address"
-                onPress={() => ('')}
-            />
+      <View style={styles.row}>
+        <View style={styles.column}>
+          <TextInput style={styles.inputState} placeholder={'State'} />
+        </View>
+        <View style={styles.column}>
+          <TextInput style={styles.input} placeholder={'Zip'} />
+        </View>
+      </View>
+
+      <Button title="Change Details" onPress={() => ''} />
+      <Button title="Change Address" onPress={() => ''} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  text:{
+  text: {
     fontSize: 30,
     paddingBottom: 20,
   },
@@ -57,7 +52,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   column: {
     flex: 1,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import {authMethod} from '../firebase/config';
+import { authMethod } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 

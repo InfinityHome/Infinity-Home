@@ -2,7 +2,7 @@ import {firebase} from "./config";
 
 class DataBase {
     database: firebase.database.Database;
-    
+
     constructor() {
         this.database = firebase.database();
     }

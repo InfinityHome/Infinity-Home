@@ -11,7 +11,7 @@ import {authMethod, firebase} from './config';
 }
 
  // store google signed in user information into database
- export const onSignIn = (googleUser:Result): any => {
+ export const onSignIn = (googleUser:Result): void => {
     // console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     const unsubscribe = authMethod.onAuthStateChanged(function(firebaseUser) {
@@ -54,7 +54,7 @@ import {authMethod, firebase} from './config';
 }
 
    // helper method
-function isUserEqual(googleUser:Result, firebaseUser:firebase.User | null) {
+const isUserEqual = (googleUser:Result, firebaseUser:firebase.User | null):boolean => {
     if (firebaseUser) {
         const providerData = firebaseUser.providerData;
         for (let i = 0; i < providerData.length; i++) {

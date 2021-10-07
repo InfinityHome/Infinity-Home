@@ -1,34 +1,31 @@
-import React from "react";
-import { Text } from "react-native";
+import React from 'react';
+import { Text } from 'react-native';
 
 interface TextProp {
-	children?: any;
-	type?: string;
-	style?: Record<string, unknown>;
+  children?: any;
+  type?: string;
+  style?: Record<string, unknown>;
 }
 const CustomText: React.FC<TextProp> = (props) => {
-	//For default font used through the app
-	const setFontType = (type: string) => {
-		switch (type) {
-			case "Italic":
-				return "Radley-Italic";
-				break;
-			case "Quin":
-				return "Quintessential-Regular";
-				break;
-			default:
-				return "Radley-Regular";
-				break;
-		}
-	};
-	//Set font to want to use
-	const font = setFontType(props.type ? props.type : "normal");
-	//Add all the styles in one variable
-	const style = [{ fontFamily: font }, props.style || {}];
-	//Add all the props including the styles in one variable
-	const allProps = Object.assign({}, props, { style: style });
+  //For default font used through the app
+  const setFontType = (type: string) => {
+    switch (type) {
+      case 'Italic':
+        return 'Radley-Italic';
+      case 'Quin':
+        return 'Quintessential-Regular';
+      default:
+        return 'Radley-Regular';
+    }
+  };
+  //Set font to want to use
+  const font = setFontType(props.type ? props.type : 'normal');
+  //Add all the styles in one variable
+  const style = [{ fontFamily: font }, props.style || {}];
+  //Add all the props including the styles in one variable
+  const allProps = Object.assign({}, props, { style: style });
 
-	return <Text {...allProps}>{props.children}</Text>;
+  return <Text {...allProps}>{props.children}</Text>;
 };
 
 export default CustomText;

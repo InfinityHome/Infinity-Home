@@ -1,17 +1,17 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type LoginParamList = {
-    SignUp: undefined;
-    Login: undefined;
-    SignIn: undefined;
-  };
+  SignUp: undefined;
+  Login: undefined;
+  SignIn: undefined;
+};
 
 export type LoginNavProps<T extends keyof LoginParamList> = {
-    navigation: NativeStackNavigationProp<LoginParamList, T>;
-}
+  navigation: NativeStackNavigationProp<LoginParamList, T>;
+};
 
 export type BottomNavParamList = {
-    Home: undefined;
-    Orders: undefined;
-    Account: undefined;
-  };
+  Home: undefined;
+  Orders: undefined;
+  Account: undefined;
+};

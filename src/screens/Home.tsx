@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StatusBar, ScrollView, Button } from 'react-native';
-import {authMethod} from '../firebase/config';
+import { authMethod } from '../firebase/config';
 import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
