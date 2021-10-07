@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
-import Text from '../customText/CustomText';
+import Text from '../customs/CustomText';
 import * as Progress from 'react-native-progress';
 
 interface OrderProps {
