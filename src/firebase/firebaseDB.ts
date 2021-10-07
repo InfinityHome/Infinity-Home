@@ -1,8 +1,8 @@
-import firebase from "./config";
+import {firebase} from "./config";
 
 class DataBase {
     database: firebase.database.Database;
-
+    
     constructor() {
         this.database = firebase.database();
     }
@@ -18,4 +18,4 @@ class DataBase {
 
 }
 
-export const database = new DataBase(); 
+export const database = new DataBase();

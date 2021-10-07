@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { LoginParamList, BottomNavParamList } from './Params';
+import {authMethod, firebase} from '../firebase/config';
 import SignUp from '../screens/SignUp';
 import Login from '../screens/Login';
 import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
 import Orders from '../screens/Orders';
 import Account from '../screens/Account';
-import { LoginParamList, BottomNavParamList } from './Params';
 
-import firebase from '../firebase/config';
-const auth = firebase.auth();
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
@@ -38,7 +37,7 @@ const BottomNavigation: React.FC = () => {
 const Navigation: React.FC = () => {
   const [userLoggin, setUserLoggin] = useState<firebase.User | null>(null);
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    authMethod.onAuthStateChanged((user) => {
       setUserLoggin(user);
     });
   }, []);

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import {authMethod} from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
-import firebase from '../firebase/config';
-
-const auth = firebase.auth();
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,8 +11,7 @@ const SignIn: React.FC = () => {
   const onLogin = async () => {
     try {
       if (email !== '' && password !== '') {
-        await auth.signInWithEmailAndPassword(email, password);
-        // navigation.dispatch(StackActions.replace('Home'));
+        await authMethod.signInWithEmailAndPassword(email, password);
       }
     } catch ({ message }) {
       Alert.alert(

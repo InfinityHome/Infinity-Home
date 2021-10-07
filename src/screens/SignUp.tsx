@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import firebase from '../firebase/config';
+import {authMethod, firebase} from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
-
-const auth = firebase.auth();
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
@@ -20,7 +18,7 @@ const SignUp: React.FC = () => {
         Alert.alert(`Error`, `Passwork Mismatch`);
       } else {
         try {
-          const { user } = await auth.createUserWithEmailAndPassword(
+          const { user } = await authMethod.createUserWithEmailAndPassword(
             email,
             password
           );

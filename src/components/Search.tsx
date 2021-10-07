@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Icon, SearchBar } from "react-native-elements";
+
 interface SearchProps {
 	ServiceList: { Service: string; ServiceIcon: string; IconColor: string }[][];
 	setFinalFilteredList: Dispatch<

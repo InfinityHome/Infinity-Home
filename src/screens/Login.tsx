@@ -1,12 +1,12 @@
 import React from 'react';
-import * as Google from 'expo-google-app-auth';
 import { StyleSheet, View, Image } from 'react-native';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
 import { LoginNavProps } from '../Navigation/Params';
 import { onSignIn } from '../firebase/firebaseMethods';
-
 import { googleConfig } from '../firebase/config';
+import * as Google from 'expo-google-app-auth';
+import Text from '../customs/CustomText';
+import Button from '../customs/CustomButton';
+
 
 const Login: React.FC = ({ navigation }: LoginNavProps<'Login'>) => {
   const signInWithGoogleAsync = async () => {

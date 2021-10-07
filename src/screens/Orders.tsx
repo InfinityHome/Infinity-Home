@@ -1,9 +1,9 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, SectionList, View } from 'react-native';
+import { Divider } from 'react-native-elements';
 import Order from '../components/Order';
 import Header from '../components/Header';
-import Text from '../customText/CustomText';
-import { Divider } from 'react-native-elements';
+import Text from '../customs/CustomText';
 
 const Data = [
   {
