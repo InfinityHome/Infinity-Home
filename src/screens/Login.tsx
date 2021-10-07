@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { LoginNavProps } from '../navigation/Params';
+import { LoginNavProps } from '../Navigation/Params';
 import { onSignIn } from '../firebase/firebaseMethods';
 import { googleConfig } from '../firebase/config';
 import * as Google from 'expo-google-app-auth';
