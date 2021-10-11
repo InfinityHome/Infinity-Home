@@ -12,11 +12,10 @@ const SignIn: React.FC = () => {
   // const dispatch = useDispatch();
 
   const onLogin = () => {
-    const t = database.readDatabase('/users')
-    console.log("here ", t)
     try {
       if (email !== '' && password !== '') {
         authMethod.signInWithEmailAndPassword(email, password);
+        database.readDatabase('/users');
         // dispatch({
         //   type: 'LOGIN_USER',
         //   payload: {

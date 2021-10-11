@@ -9,6 +9,7 @@ class DataBase {
 
     readDatabase(table: string) {
         const tableRef = this.database.ref(table);
+        console.log("Here");
         tableRef.on('value', (snapshot) => {
             console.log(snapshot.val());
         }, (errorObject: { name: string; }) => {
