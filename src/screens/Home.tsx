@@ -4,6 +4,7 @@ import { authMethod } from '../firebase/config';
 import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
+import { useDispatch } from 'react-redux';
 
 const ServiceList: {
   Service: string;
@@ -48,9 +49,14 @@ const ServiceList: {
 ];
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
+
   const handleSignOut = async () => {
     try {
-      await authMethod.signOut();
+      authMethod.signOut();
+      dispatch({
+        type: 'SIGNOUT_USER',
+      });
     } catch (error) {
       console.log(error);
     }

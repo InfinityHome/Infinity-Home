@@ -10,6 +10,9 @@ import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
 import Orders from '../screens/Orders';
 import Account from '../screens/Account';
+import { Provider as ReduxProvider } from 'react-redux';
+import store from '../redux/store';
+
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
@@ -41,9 +44,11 @@ const Navigation: React.FC = () => {
     });
   }, []);
   return (
-    <NavigationContainer>
-      {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
-    </NavigationContainer>
+    <ReduxProvider store={store}>
+      <NavigationContainer>
+        {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
+      </NavigationContainer>
+    </ReduxProvider>
   );
 };
 

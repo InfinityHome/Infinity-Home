@@ -3,15 +3,28 @@ import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { authMethod } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { useDispatch } from 'react-redux';
+import { database } from '../firebase/firebaseDB';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const dispatch = useDispatch();
 
-  const onLogin = async () => {
+  const onLogin = () => {
+    const t = database.readDatabase('/users')
+    console.log("here ", t)
     try {
       if (email !== '' && password !== '') {
-        await authMethod.signInWithEmailAndPassword(email, password);
+        authMethod.signInWithEmailAndPassword(email, password);
+        // dispatch({
+        //   type: 'LOGIN_USER',
+        //   payload: {
+        //     // userName: name,
+        //     userEmail: email,
+        //     // userPhone: phone,
+        //   },
+        // });
       }
     } catch ({ message }) {
       Alert.alert(

@@ -8,6 +8,7 @@ import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 
 const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
+
   const signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync(googleConfig);

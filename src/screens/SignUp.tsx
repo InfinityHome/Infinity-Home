@@ -3,19 +3,20 @@ import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { useDispatch } from 'react-redux';
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [conformPassword, setConformPassword] = useState('');
+  const dispatch = useDispatch();
 
   const onSignUp = async () => {
-    if (name && phone && address && email && password && conformPassword) {
+    if (name && phone && email && password && conformPassword) {
       if (password != conformPassword) {
-        Alert.alert(`Error`, `Passwork Mismatch`);
+        Alert.alert(`Error`, `Password Mismatch`);
       } else {
         try {
           const { user } = await authMethod.createUserWithEmailAndPassword(
@@ -31,8 +32,16 @@ const SignUp: React.FC = () => {
                 userName: name,
                 userEmail: user.email,
                 userPhone: phone,
-                userAddress: address,
               });
+
+            dispatch({
+              type: 'LOGIN_USER',
+              payload: {
+                userName: name,
+                userEmail: user.email,
+                userPhone: phone,
+              },
+            });
           }
         } catch ({ message }) {
           Alert.alert(
@@ -69,11 +78,6 @@ const SignUp: React.FC = () => {
         style={styles.input}
         placeholder={'Phone Number'}
         onChangeText={(text) => setPhone(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Address'}
-        onChangeText={(text) => setAddress(text)}
       />
       <TextInput
         style={styles.input}
