@@ -23,6 +23,7 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
           }
         );
         console.log(
+          "RESPONSE",
           JSON.stringify(
             userInfoResponse,
             Object.getOwnPropertyNames(userInfoResponse)

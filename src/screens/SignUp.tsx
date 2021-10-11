@@ -4,6 +4,7 @@ import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 import { useDispatch } from 'react-redux';
+import { database } from '../firebase/firebaseDB';
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
@@ -13,24 +14,21 @@ const SignUp: React.FC = () => {
   const [conformPassword, setConformPassword] = useState('');
   const dispatch = useDispatch();
 
-  const onSignUp = async () => {
+  const onSignUp = () => {
     if (name && phone && email && password && conformPassword) {
       if (password != conformPassword) {
-        Alert.alert(`Error`, `Password Mismatch`);
+        alert(`Password Mismatch`);
       } else {
-        try {
-          const { user } = await authMethod.createUserWithEmailAndPassword(
-            email,
-            password
-          );
-          if (user) {
-            console.log(JSON.stringify(user));
+        authMethod
+          .createUserWithEmailAndPassword(email, password)
+          .then(({ user }) => {
+            console.log(user);
             firebase
               .database()
               .ref('/users/' + user?.uid)
               .set({
                 userName: name,
-                userEmail: user.email,
+                userEmail: user?.email,
                 userPhone: phone,
               });
 
@@ -38,25 +36,15 @@ const SignUp: React.FC = () => {
               type: 'LOGIN_USER',
               payload: {
                 userName: name,
-                userEmail: user.email,
+                userEmail: user?.email,
                 userPhone: phone,
               },
             });
-          }
-        } catch ({ message }) {
-          Alert.alert(
-            'Sign UP Failed',
-            JSON.stringify(message, Object.getOwnPropertyNames(message)),
-            [
-              {
-                text: 'Try Again',
-              },
-            ]
-          );
-        }
+          })
+          .catch((error) => {
+            alert(error);
+          });
       }
-    } else {
-      Alert.alert(`Error`, `Missing Fields`);
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { authMethod } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
@@ -9,33 +9,27 @@ import { database } from '../firebase/firebaseDB';
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onLogin = () => {
-    try {
-      if (email !== '' && password !== '') {
-        authMethod.signInWithEmailAndPassword(email, password);
-        database.readDatabase('/users');
+    authMethod
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        const fireBaseUser = database.readDatabase('users', user.user?.uid);
+        console.log("FIREBASEUSER", fireBaseUser)
         // dispatch({
         //   type: 'LOGIN_USER',
         //   payload: {
-        //     // userName: name,
+        //     userName: fireBaseUser.userName,
         //     userEmail: email,
-        //     // userPhone: phone,
+        //     userPhone: fireBaseUser.userPhone,
         //   },
         // });
-      }
-    } catch ({ message }) {
-      Alert.alert(
-        'Sign In Failed',
-        JSON.stringify(message, Object.getOwnPropertyNames(message)),
-        [
-          {
-            text: 'Try Again',
-          },
-        ]
-      );
-    }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
   };
 
   return (

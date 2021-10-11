@@ -19,6 +19,7 @@ const userReducer = (state = defaultState, action: Action): User => {
       newState.userName = action.payload.userName;
       newState.userEmail = action.payload.userEmail;
       newState.userPhone = action.payload.userPhone;
+      console.log('REDUX', newState);
 
       return newState;
     }

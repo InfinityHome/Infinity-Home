@@ -51,15 +51,11 @@ const ServiceList: {
 const Home: React.FC = () => {
   const dispatch = useDispatch();
 
-  const handleSignOut = async () => {
-    try {
-      authMethod.signOut();
-      dispatch({
-        type: 'SIGNOUT_USER',
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSignOut = () => {
+    authMethod.signOut();
+    dispatch({
+      type: 'SIGNOUT_USER',
+    });
   };
   const [finalFilteredList, setFinalFilteredList] =
     useState<{ Service: string; ServiceIcon: string; IconColor: string }[][]>(

@@ -13,7 +13,6 @@ interface Result {
 
 // store google signed in user information into database
 export const onSignIn = (googleUser: Result): void => {
-  const dispatch = useDispatch();
   // console.log('Google Auth Response', googleUser);
   // We need to register an Observer on Firebase Auth to make sure auth is initialized.
   const unsubscribe = authMethod.onAuthStateChanged((firebaseUser) => {
@@ -32,7 +31,7 @@ export const onSignIn = (googleUser: Result): void => {
         .then((result) => {
           console.log('user siggned in');
           if (result.additionalUserInfo?.isNewUser) {
-            console.log(result);
+            console.log("RESULT", result);
             firebase
               .database()
               .ref('/users/' + result.user?.uid)
@@ -44,14 +43,7 @@ export const onSignIn = (googleUser: Result): void => {
               .then((snapshot) => {
                 console.log('snapshot: ', snapshot);
               });
-            dispatch({
-              type: 'LOGIN_USER',
-              payload: {
-                userName: result.user?.displayName,
-                userEmail: result.user?.email,
-                userPhone: result.user?.phoneNumber,
-              },
-            });
+
           }
         })
         .catch((error) => {

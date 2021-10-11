@@ -39,9 +39,10 @@ const BottomNavigation: React.FC = () => {
 const Navigation: React.FC = () => {
   const [userLoggin, setUserLoggin] = useState<firebase.User | null>(null);
   useEffect(() => {
-    authMethod.onAuthStateChanged((user) => {
+    const signout = authMethod.onAuthStateChanged((user) => {
       setUserLoggin(user);
     });
+    return signout
   }, []);
   return (
     <ReduxProvider store={store}>
