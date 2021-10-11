@@ -5,46 +5,45 @@ import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
 
-const ServiceList: {
+export type ServiceListType = {
   Service: string;
   ServiceIcon: string;
   IconColor: string;
-}[][] = [
-  [
-    {
-      Service: 'Plumbing',
-      ServiceIcon: 'plumbing',
-      IconColor: 'gray',
-    },
-    {
-      Service: 'Electrical',
-      ServiceIcon: 'electrical-services',
-      IconColor: 'blue',
-    },
-    {
-      Service: 'Lawn',
-      ServiceIcon: 'grass',
-      IconColor: 'green',
-    },
-  ],
-  [
-    {
-      Service: 'Painting',
-      ServiceIcon: 'format-paint',
-      IconColor: 'red',
-    },
-    {
-      Service: 'Hvac',
-      ServiceIcon: 'hvac',
-      IconColor: 'gray',
-    },
-    {
-      Service: 'Roofing',
-      ServiceIcon: 'roofing',
-      IconColor: 'brown',
-    },
-  ],
-  [{ Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'white' }],
+}[];
+
+const ServiceList: ServiceListType = [
+  {
+    Service: 'Plumbing',
+    ServiceIcon: 'plumbing',
+    IconColor: 'gray',
+  },
+  {
+    Service: 'Electrical',
+    ServiceIcon: 'electrical-services',
+    IconColor: 'blue',
+  },
+  {
+    Service: 'Lawn',
+    ServiceIcon: 'grass',
+    IconColor: 'green',
+  },
+
+  {
+    Service: 'Painting',
+    ServiceIcon: 'format-paint',
+    IconColor: 'red',
+  },
+  {
+    Service: 'Hvac',
+    ServiceIcon: 'hvac',
+    IconColor: 'gray',
+  },
+  {
+    Service: 'Roofing',
+    ServiceIcon: 'roofing',
+    IconColor: 'brown',
+  },
+  { Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'black' },
 ];
 
 const Home: React.FC = () => {
@@ -56,9 +55,7 @@ const Home: React.FC = () => {
     }
   };
   const [finalFilteredList, setFinalFilteredList] =
-    useState<{ Service: string; ServiceIcon: string; IconColor: string }[][]>(
-      ServiceList
-    );
+    useState<ServiceListType>(ServiceList);
 
   return (
     <SafeAreaView
