@@ -27,7 +27,6 @@ const SignUp: React.FC = () => {
     confirmPassword: Yup.string()
       .equals([Yup.ref('password'), null], 'Password does not match!')
       .required('Password is required')
-      .min(6, 'Your password has to have at least 6 characters'),
   });
 
   const onSignUp = async (
