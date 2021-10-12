@@ -1,15 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import Text from '../customText/CustomText';
+import Text from '../customs/CustomText';
 import { Icon } from 'react-native-elements';
+import { ServiceListType } from '../screens/Home';
 
 interface ServicesProps {
-  finalFilteredList: {
-    Service: string;
-    ServiceIcon: string;
-    IconColor: string;
-  }[][];
+  finalFilteredList: ServiceListType;
 }
+
 const Services: React.FC<ServicesProps> = (props) => {
   return (
     <View>
@@ -22,37 +20,32 @@ const Services: React.FC<ServicesProps> = (props) => {
         }}>
         Categories
       </Text>
-      {props.finalFilteredList.map((rowServices, index) => (
-        <View
-          key={index}
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            marginBottom: 30,
-          }}>
-          {rowServices.map((singleService, i) => (
-            <View
-              key={i}
-              style={{
-                alignItems: 'center',
-                paddingVertical: 10,
-                justifyContent: 'space-around',
-                paddingHorizontal: 10,
-                backgroundColor: '#519EE7',
-                borderRadius: 15,
-                width: 90,
-                height: 100,
-              }}>
-              <ServiceIcon
-                ServiceIcon={singleService.ServiceIcon}
-                IconColor={singleService.IconColor}
-              />
-              <Service service={singleService.Service} />
-            </View>
-          ))}
-        </View>
-      ))}
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+        }}>
+        {props.finalFilteredList.map((d, index) => (
+          <View
+            key={index}
+            style={{
+              justifyContent: 'space-around',
+              padding: 10,
+              backgroundColor: '#519EE7',
+              borderRadius: 15,
+              marginBottom: 30,
+              marginHorizontal: 10,
+              width: 90,
+              height: 100,
+            }}>
+            <ServiceIcon ServiceIcon={d.ServiceIcon} IconColor={d.IconColor} />
+            <Service service={d.Service} />
+          </View>
+        ))}
+      </View>
     </View>
   );
 };

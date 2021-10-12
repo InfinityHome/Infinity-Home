@@ -1,81 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StatusBar, ScrollView, Button } from 'react-native';
+import { authMethod } from '../firebase/config';
 import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { loginStackParams } from '../components/Navigation';
-import firebase from '../firebase/config';
 
-const auth = firebase.auth();
-
-interface HomeProp {
-	navigation: NativeStackNavigationProp<loginStackParams, 'Home'>
-  }
-
-
-const ServiceList: {
+export type ServiceListType = {
   Service: string;
   ServiceIcon: string;
   IconColor: string;
-}[][] = [
-  [
-    {
-      Service: 'Plumbing',
-      ServiceIcon: 'plumbing',
-      IconColor: 'gray',
-    },
-    {
-      Service: 'Electrical',
-      ServiceIcon: 'electrical-services',
-      IconColor: 'blue',
-    },
-    {
-      Service: 'Lawn',
-      ServiceIcon: 'grass',
-      IconColor: 'green',
-    },
-  ],
-  [
-    {
-      Service: 'Painting',
-      ServiceIcon: 'format-paint',
-      IconColor: 'red',
-    },
-    {
-      Service: 'Hvac',
-      ServiceIcon: 'hvac',
-      IconColor: 'gray',
-    },
-    {
-      Service: 'Roofing',
-      ServiceIcon: 'roofing',
-      IconColor: 'brown',
-    },
-  ],
-  [{ Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'white' }],
+}[];
+
+const ServiceList: ServiceListType = [
+  {
+    Service: 'Plumbing',
+    ServiceIcon: 'plumbing',
+    IconColor: 'gray',
+  },
+  {
+    Service: 'Electrical',
+    ServiceIcon: 'electrical-services',
+    IconColor: 'blue',
+  },
+  {
+    Service: 'Lawn',
+    ServiceIcon: 'grass',
+    IconColor: 'green',
+  },
+
+  {
+    Service: 'Painting',
+    ServiceIcon: 'format-paint',
+    IconColor: 'red',
+  },
+  {
+    Service: 'Hvac',
+    ServiceIcon: 'hvac',
+    IconColor: 'gray',
+  },
+  {
+    Service: 'Roofing',
+    ServiceIcon: 'roofing',
+    IconColor: 'brown',
+  },
+  { Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'black' },
 ];
 
-const Home: React.FC<HomeProp> = ({navigation}) => {
-
-	const handleSignOut = async () => {
-		try {
-			await auth.signOut();
-			navigation.navigate("Login");
-		} catch (error) {
-			console.log(error);
-		}
-	};
+const Home: React.FC = () => {
+  const handleSignOut = async () => {
+    try {
+      await authMethod.signOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const [finalFilteredList, setFinalFilteredList] =
-    useState<{ Service: string; ServiceIcon: string; IconColor: string }[][]>(
-      ServiceList
-    );
-
-	useEffect(() => {
-		navigation.setOptions({
-			headerBackVisible: false,
-		});
-	}, []);
+    useState<ServiceListType>(ServiceList);
 
   return (
     <SafeAreaView
@@ -88,10 +68,7 @@ const Home: React.FC<HomeProp> = ({navigation}) => {
         setFinalFilteredList={setFinalFilteredList}
         ServiceList={ServiceList}
       />
-	<Button
-		title="Log Out"
-        onPress={handleSignOut}
-    />
+      <Button title="Log Out" onPress={handleSignOut} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Services finalFilteredList={finalFilteredList} />
       </ScrollView>
