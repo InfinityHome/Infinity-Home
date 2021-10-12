@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { LoginNavProps } from '../Navigation/Params';
+import { LoginNavProps, LoginParamList } from '../Navigation/Params';
 import { onSignIn } from '../firebase/firebaseMethods';
 import { googleConfig } from '../firebase/config';
 import * as Google from 'expo-google-app-auth';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
   const signInWithGoogleAsync = async () => {
@@ -65,22 +66,26 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
         <View style={{ flex: 0.14, paddingBottom: 10 }}>
           <Text style={{ fontSize: 20, textAlign: 'center' }}> OR </Text>
         </View>
-        <View style={{ flex: 0.32 }}>
-          <Button
-            title="Sign Up"
-            onPress={() => navigation.navigate('SignUp')}
-          />
-        </View>
-        <View style={{ flex: 0.32 }}>
-          <Button
-            title="Sign In"
-            onPress={() => navigation.navigate('SignIn')}
-          />
-        </View>
+
+        <Buttons name="Sign In" screen="SignIn" navigation={navigation} />
+        <Buttons name="Sign Up" screen="SignUp" navigation={navigation} />
       </View>
     </View>
   );
 };
+
+const Buttons: React.FC<{
+  name: string;
+  screen: keyof LoginParamList;
+  navigation: NativeStackNavigationProp<LoginParamList, 'Login'>;
+}> = (props) => (
+  <View style={{ flex: 0.32 }}>
+    <Button
+      title={props.name}
+      onPress={() => props.navigation.navigate(props.screen)}
+    />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -94,10 +99,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   motto: {
-    fontSize: 22,
+    fontSize: 18,
     color: 'black',
-    paddingLeft: 30,
-    paddingRight: 20,
+    paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -106,11 +110,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   middle: {
-    flex: 0.45,
+    flex: 0.4,
     justifyContent: 'center',
   },
   bottom: {
-    flex: 0.3,
+    flex: 0.4,
     justifyContent: 'center',
   },
 });
