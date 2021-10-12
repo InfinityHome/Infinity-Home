@@ -34,11 +34,6 @@ const SignIn: React.FC<LoginNavProps<'SignIn'>> = ({ navigation }) => {
               },
             ]);
             break;
-          case 'auth/invalid-email':
-            Alert.alert('Uh-Oh', 'Email not valid ex:name@gmail.com', [
-              { text: 'Try Again' },
-            ]);
-            break;
           default:
             Alert.alert('Error', 'Something Went Wrong', [
               { text: 'Try Again' },
