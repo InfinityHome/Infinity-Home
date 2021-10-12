@@ -118,17 +118,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingLeft: 170,
   },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 30,
-    marginHorizontal: 40,
-    padding: 10,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: 'black',
-  },
 });
 
 export default SignIn;
