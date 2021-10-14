@@ -46,7 +46,6 @@ class DataBase {
     }
 
     async writeUser(userInfo: userInfoType) {
-        console.log(userInfo);
         const userRef = this.database.ref('/users/' + userInfo?.userID)
         await userRef.set(
             {
@@ -54,10 +53,10 @@ class DataBase {
                 userName: userInfo?.userName,
                 userPhone: userInfo?.userPhone,
                 userAddress: {
-                    firstLine: userInfo.userAddress.firstLine,
-                    city: userInfo.userAddress.city,
-                    state: userInfo.userAddress.state,
-                    zip: userInfo.userAddress.zip,
+                    firstLine: userInfo.userAddress?.firstLine,
+                    city: userInfo.userAddress?.city,
+                    state: userInfo.userAddress?.state,
+                    zip: userInfo.userAddress?.zip,
                 }
             }
         ).catch((error) => {

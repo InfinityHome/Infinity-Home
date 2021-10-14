@@ -53,14 +53,6 @@ const SignUp: React.FC = () => {
             }
           }
         )
-        firebase
-          .database()
-          .ref('/users/' + user?.uid)
-          .set({
-            userName: name,
-            userEmail: email,
-            userPhone: phone,
-          });
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
