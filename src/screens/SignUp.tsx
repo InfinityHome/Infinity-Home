@@ -46,10 +46,10 @@ const SignUp: React.FC = () => {
             userName: name,
             userPhone: phone,
             userAddress: {
-                firstLine: "",
-                city: "",
-                state: "",
-                zip: "",
+              firstLine: "",
+              city: "",
+              state: "",
+              zip: "",
             }
           }
         )

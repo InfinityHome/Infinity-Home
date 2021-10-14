@@ -8,6 +8,14 @@ type ServiceListType = {
     serviceIcon: string | null;
 }[];
 
+type userInfoType = {
+    userID: string | undefined | null;
+    userEmail: string | undefined | null;
+    userName: string | undefined | null;
+    userPhone: string | undefined | null;
+    userAddress: any; 
+}
+
 class DataBase {
     database: firebase.database.Database;
     serviceTable: ServiceListType;
@@ -37,7 +45,7 @@ class DataBase {
         return this.serviceTable;
     }
 
-    async writeUser( userInfo: any) {
+    async writeUser(userInfo: userInfoType) {
         console.log(userInfo);
         const userRef = this.database.ref('/users/' + userInfo?.userID)
         await userRef.set(
@@ -46,10 +54,10 @@ class DataBase {
                 userName: userInfo?.userName,
                 userPhone: userInfo?.userPhone,
                 userAddress: {
-                    firstLine: userInfo?.userAddress.firstLine,
-                    city: userInfo?.userAddress.city,
-                    state: userInfo?.userAddress.state,
-                    zip: userInfo?.userAddress.zip,
+                    firstLine: userInfo.userAddress.firstLine,
+                    city: userInfo.userAddress.city,
+                    state: userInfo.userAddress.state,
+                    zip: userInfo.userAddress.zip,
                 }
             }
         ).catch((error) => {
