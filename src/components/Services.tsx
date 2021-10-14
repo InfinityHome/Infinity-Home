@@ -41,8 +41,8 @@ const Services: React.FC<ServicesProps> = (props) => {
               width: 90,
               height: 100,
             }}>
-            <ServiceIcon ServiceIcon={d.ServiceIcon} IconColor={d.IconColor} />
-            <Service service={d.Service} />
+            <ServiceIcon ServiceIcon={d.serviceDetails.serviceIcon} />
+            <Service service={d.serviceDetails.serviceName} />
           </View>
         ))}
       </View>
@@ -50,15 +50,8 @@ const Services: React.FC<ServicesProps> = (props) => {
   );
 };
 
-const ServiceIcon: React.FC<{ ServiceIcon: string; IconColor: string }> = (
-  props
-) => (
-  <Icon
-    type="material"
-    name={props.ServiceIcon}
-    color={props.IconColor}
-    size={32}
-  />
+const ServiceIcon: React.FC<{ ServiceIcon: string }> = (props) => (
+  <Icon type="material" name={props.ServiceIcon} size={32} />
 );
 
 const Service: React.FC<{ service: string }> = (props) => (
