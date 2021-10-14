@@ -2,7 +2,7 @@ import { Alert } from "react-native";
 import {firebase} from "./config";
 
 type ServiceListType = {
-    companyDetails: Record<string, { resourcesAllocated: number }>;
+    companyDetails: Record<string, { resourcesAllocated: number }>[];
     serviceId: string | null;
     serviceName: string | null;
     serviceIcon: string | null;
