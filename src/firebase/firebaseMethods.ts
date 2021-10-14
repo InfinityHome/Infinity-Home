@@ -47,7 +47,6 @@ import { database } from './firebaseDB';
                 }
             })
             .catch((error) => {
-            // error.code, error.message, error.email, error.credential
             Alert.alert("Sonething Went Wrong", error.code)
         });
         } else {
