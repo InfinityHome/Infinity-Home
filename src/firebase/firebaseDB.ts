@@ -14,7 +14,7 @@ type userInfoType = {
     userName: string | undefined | null;
     userPhone: string | undefined | null;
     userAddress: {
-        firstLine: string | undefined | null,
+        street: string | undefined | null,
         city: string | undefined | null,
         state: string | undefined | null,
         zip: string | undefined | null,
@@ -58,7 +58,7 @@ class DataBase {
                 userName: userInfo?.userName,
                 userPhone: userInfo?.userPhone,
                 userAddress: {
-                    firstLine: userInfo.userAddress?.firstLine,
+                    street: userInfo.userAddress?.street,
                     city: userInfo.userAddress?.city,
                     state: userInfo.userAddress?.state,
                     zip: userInfo.userAddress?.zip,

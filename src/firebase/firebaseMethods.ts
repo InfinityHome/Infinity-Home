@@ -37,7 +37,7 @@ import { database } from './firebaseDB';
                             userName: userInfo.user?.displayName,
                             userPhone: userInfo.user?.phoneNumber,
                             userAddress: {
-                                firstLine: "",
+                                street: "",
                                 city: "",
                                 state: "",
                                 zip: "",

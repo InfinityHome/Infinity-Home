@@ -46,7 +46,7 @@ const SignUp: React.FC = () => {
             userName: name,
             userPhone: phone,
             userAddress: {
-              firstLine: "",
+              street: "",
               city: "",
               state: "",
               zip: "",
