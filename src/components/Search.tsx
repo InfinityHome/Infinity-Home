@@ -3,7 +3,7 @@ import { Icon, SearchBar } from 'react-native-elements';
 import { ServiceListType } from '../screens/Home';
 
 interface SearchProps {
-  ServiceList: ServiceListType;
+  serviceList: ServiceListType;
   setFinalFilteredList: Dispatch<SetStateAction<ServiceListType>>;
 }
 
@@ -12,8 +12,8 @@ const Search: React.FC<SearchProps> = (props) => {
 
   const onSearch = (desiredService: string) => {
     //Get a new list if service name includes user input
-    const filteredArrayOnInput: ServiceListType = props.ServiceList.filter(
-      (sl) => sl.Service.toLowerCase().includes(desiredService.toLowerCase())
+    const filteredArrayOnInput: ServiceListType = props.serviceList.filter(
+      (sl) => sl.serviceDetails.serviceName.toLowerCase().includes(desiredService.toLowerCase())
     );
 
     props.setFinalFilteredList(filteredArrayOnInput);
