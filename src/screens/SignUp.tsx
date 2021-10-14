@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC = ({ navigation }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -52,70 +52,64 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    // <ScrollView>
-    //   <KeyboardAvoidingView behavior='padding' style={{flex: 1}}>
-        <View style={styles.container}>
-          <Text style={styles.text}>Glad to see you</Text>
-          <Text style={styles.text1}>Sign Up</Text>
-          <View style={{flex: 0.8, /*borderWidth: 1 */}}>
-            <TextInput
-              style={styles.input}
-              placeholder={'Name'}
-              placeholderTextColor="#93969e"
-              onChangeText={(text) => setName(text)}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={'Email'}
-              placeholderTextColor="#93969e"
-              onChangeText={(text) => setEmail(text)}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={'Phone Number'}
-              placeholderTextColor="#93969e"
-              onChangeText={(text) => setPhone(text)}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={'Address'}
-              placeholderTextColor="#93969e"
-              onChangeText={(text) => setAddress(text)}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={'Password'}
-              placeholderTextColor="#93969e"
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={'Confirm Password'}
-              placeholderTextColor="#93969e"
-              onChangeText={(text) => setConformPassword(text)}
-              secureTextEntry
-            />
-          </View>
-
-          <View style={{flex: 0.2, /*borderWidth: 1 */}}>
-            <Button title="Sign Up" onPress={onSignUp} />
-          </View>
-        </View>
-    //   </KeyboardAvoidingView>
-    // </ScrollView>
+    <View style={styles.container}>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={{fontSize: 50, color: "#fff"}}>New{"\n"}Account</Text>
+        <Text style={{
+                fontSize: 30, 
+                color: "#fff",  
+                position: 'absolute',
+                right: 25,
+                bottom: 5}}>Steps{"\n"} 1 / 2</Text>
+      </View>
+        <TextInput
+          style={styles.input}
+          placeholder={'Name'}
+          placeholderTextColor="#93969e"
+          onChangeText={(text) => setName(text)}
+        />
+        {/* <TextInput
+          style={styles.input}
+          placeholder={'Email'}
+          placeholderTextColor="#93969e"
+          onChangeText={(text) => setEmail(text)}
+        /> */}
+        <TextInput
+          style={styles.input}
+          placeholder={'Phone Number'}
+          placeholderTextColor="#93969e"
+          onChangeText={(text) => setPhone(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder={'Address'}
+          placeholderTextColor="#93969e"
+          onChangeText={(text) => setAddress(text)}
+        />
+        {/* <TextInput
+          style={styles.input}
+          placeholder={'Password'}
+          placeholderTextColor="#93969e"
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder={'Confirm Password'}
+          placeholderTextColor="#93969e"
+          onChangeText={(text) => setConformPassword(text)}
+          secureTextEntry
+        /> */}
+        {/* <Button title="Sign Up" onPress={onSignUp} /> */}
+        <Button
+            title="Proceed"
+            onPress={() => navigation.navigate('SignUpFinal')}
+        />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 40,
-    color: "#fff",
-  },
-  text1: {
-    fontSize: 35,
-    color: "#fff",
-  },
   container: {
     flex: 1,
     padding: 20,
@@ -123,11 +117,12 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    padding: 20,
+    marginVertical: 15,
+    paddingBottom: 10,
     borderBottomWidth: 3,
     borderBottomColor: "#f8ad1c",
     fontSize: 20,
-    color: "#f8ad1c"
+    color: "#f8ad1c",
   },
 });
 

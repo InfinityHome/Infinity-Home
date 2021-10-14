@@ -2,6 +2,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type LoginParamList = {
   SignUp: undefined;
+  SignUpFinal: undefined;
   Login: undefined;
   SignIn: undefined;
 };

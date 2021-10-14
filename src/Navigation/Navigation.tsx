@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LoginParamList, BottomNavParamList } from './Params';
 import { authMethod, firebase } from '../firebase/config';
 import SignUp from '../screens/SignUp';
+import SignUpFinal from '../screens/SignUpFinal';
 import Login from '../screens/Login';
 import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
@@ -17,6 +18,13 @@ const LoginNavigation: React.FC = () => {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false}} />
       <Stack.Screen name="SignUp" component={SignUp}
+          options={{ 
+            title: "",
+            headerStyle: { backgroundColor: '#444956'},
+            headerShadowVisible: false,
+            headerTintColor: '#fff',
+            }} />
+      <Stack.Screen name="SignUpFinal" component={SignUpFinal} 
           options={{ 
             title: "",
             headerStyle: { backgroundColor: '#444956'},
