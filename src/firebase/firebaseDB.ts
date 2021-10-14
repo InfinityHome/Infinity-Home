@@ -17,7 +17,7 @@ class DataBase {
     }
 
     /**
-     * @return Promise<any returns the fetched data from the services object in firebase 
+     * @return Promise<ServiceListType> returns the fetched data from the services object in firebase 
      * reference this function as such: database.readServices().then((data) => {setServices(data);})
      */
     async readServices(): Promise<ServiceListType> {
