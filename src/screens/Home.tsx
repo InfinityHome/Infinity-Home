@@ -4,16 +4,7 @@ import { authMethod } from '../firebase/config';
 import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
-import { database } from '../firebase/firebaseDB';
-
-export type ServiceListType = {
-  serviceDetails: {
-    company: Record<string, { resourcesAllocated: number }>;
-    serviceIcon: string;
-    serviceName: string;
-  };
-  serviceID: string;
-}[];
+import { database, ServiceListType } from '../firebase/firebaseDB';
 
 const Home: React.FC = () => {
   const handleSignOut = async () => {
@@ -23,7 +14,7 @@ const Home: React.FC = () => {
       console.log(error);
     }
   };
-  const [serviceList, setServiceList] = useState([]);
+  const [serviceList, setServiceList] = useState<ServiceListType>([]);
   const [finalFilteredList, setFinalFilteredList] = useState<ServiceListType>(
     []
   );
