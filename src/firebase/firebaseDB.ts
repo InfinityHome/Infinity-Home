@@ -13,7 +13,12 @@ type userInfoType = {
     userEmail: string | undefined | null;
     userName: string | undefined | null;
     userPhone: string | undefined | null;
-    userAddress: any; 
+    userAddress: {
+        firstLine: string | undefined | null,
+        city: string | undefined | null,
+        state: string | undefined | null,
+        zip: string | undefined | null,
+    }; 
 }
 
 class DataBase {
