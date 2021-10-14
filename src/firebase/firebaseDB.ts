@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import {firebase} from "./config";
 
 type ServiceListType = {
@@ -34,6 +35,30 @@ class DataBase {
             console.log('The read failed: ' + errorObject.name);
         });
         return this.serviceTable;
+    }
+
+    async writeUser( userInfo: any) {
+        console.log(userInfo);
+        const userRef = this.database.ref('/users/' + userInfo?.userID)
+        await userRef.set(
+            {
+                userEmail: userInfo?.userEmail,
+                userName: userInfo?.userName,
+                userPhone: userInfo?.userPhone,
+                userAddress: {
+                    firstLine: userInfo?.userAddress.firstLine,
+                    city: userInfo?.userAddress.city,
+                    state: userInfo?.userAddress.state,
+                    zip: userInfo?.userAddress.zip,
+                }
+            }
+        ).catch((error) => {
+            if (error.code === 'auth/email-already-in-use') {
+              Alert.alert('Oops', 'Email Taken', [{ text: 'Try Again' }]);
+            } else {
+              Alert.alert('Error', 'Something Went Wrong', [{ text: 'Try Again' }]);
+            }
+        });
     }
 }
 

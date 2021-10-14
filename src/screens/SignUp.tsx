@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Alert, SafeAreaView } from 'react-native';
 import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
@@ -8,6 +8,7 @@ import TextField from '../components/TextField';
 import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
+import { database } from '../firebase/firebaseDB';
 
 type FromValidate = {
   name: string;
@@ -38,7 +39,20 @@ const SignUp: React.FC = () => {
     await authMethod
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        console.log(user);
+        database.writeUser(
+          {
+            userID: user?.uid,
+            userEmail: email,
+            userName: name,
+            userPhone: phone,
+            userAddress: {
+                firstLine: "",
+                city: "",
+                state: "",
+                zip: "",
+            }
+          }
+        )
         firebase
           .database()
           .ref('/users/' + user?.uid)

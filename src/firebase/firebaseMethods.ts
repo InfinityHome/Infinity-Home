@@ -1,6 +1,7 @@
 import * as Google from 'expo-google-app-auth';
 import { Alert } from 'react-native';
 import {authMethod, firebase} from './config';
+import { database } from './firebaseDB';
 
  interface Result {
      type: "success";
@@ -26,21 +27,23 @@ import {authMethod, firebase} from './config';
 
             // Sign in with credential from the Google user.
             authMethod.signInWithCredential(credential)
-            .then((result) => {
-                console.log('user siggned in');
-                if(result.additionalUserInfo?.isNewUser)
+            .then((userInfo) => {
+                if(userInfo.additionalUserInfo?.isNewUser)
                 {
-                    // console.log(result);
-                    firebase
-                    .database()
-                    .ref('/users/' + result.user?.uid)
-                    .set({
-                        userEmail: result.user?.email,
-                        userName: result.user?.displayName,
-                        userPhone: result.user?.phoneNumber,
-                    }).then((snapshot) => {
-                        console.log("snapshot: ",snapshot)
-                    });
+                    database.writeUser(
+                        {
+                            userID: userInfo.user?.uid,
+                            userEmail: userInfo.user?.email,
+                            userName: userInfo.user?.displayName,
+                            userPhone: userInfo.user?.phoneNumber,
+                            userAddress: {
+                                firstLine: "",
+                                city: "",
+                                state: "",
+                                zip: "",
+                            }
+                        }
+                    )
                 }
             })
             .catch((error) => {

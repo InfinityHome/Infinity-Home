@@ -14,19 +14,12 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
       const result = await Google.logInAsync(googleConfig);
 
       if (result.type === 'success') {
-        console.log(result);
         // validate Id token by calling Google REST API
         const userInfoResponse = await fetch(
           'https://oauth2.googleapis.com/tokeninfo?id_token',
           {
             headers: { Authorization: `Bearer ${result.accessToken}` },
           }
-        );
-        console.log(
-          JSON.stringify(
-            userInfoResponse,
-            Object.getOwnPropertyNames(userInfoResponse)
-          )
         );
         onSignIn(result);
         return result.accessToken;
