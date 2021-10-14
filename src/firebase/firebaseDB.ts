@@ -45,7 +45,7 @@ class DataBase {
         return this.serviceTable;
     }
 
-    async writeUser(userInfo: userInfoType) {
+    async updateUserObject(userInfo: userInfoType) {
         const userRef = this.database.ref('/users/' + userInfo?.userID)
         await userRef.set(
             {

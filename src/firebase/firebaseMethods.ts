@@ -30,7 +30,7 @@ import { database } from './firebaseDB';
             .then((userInfo) => {
                 if(userInfo.additionalUserInfo?.isNewUser)
                 {
-                    database.writeUser(
+                    database.updateUserObject(
                         {
                             userID: userInfo.user?.uid,
                             userEmail: userInfo.user?.email,

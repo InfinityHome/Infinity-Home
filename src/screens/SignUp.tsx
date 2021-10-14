@@ -39,7 +39,7 @@ const SignUp: React.FC = () => {
     await authMethod
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        database.writeUser(
+        database.updateUserObject(
           {
             userID: user?.uid,
             userEmail: email,
