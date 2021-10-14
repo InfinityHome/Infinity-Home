@@ -5,11 +5,18 @@ import Text from './CustomText';
 interface ButtonProp {
   title: string;
   onPress: () => void;
+  isValid?: boolean;
+  buttonOpacity?: Record<string, unknown>;
 }
 
 const Button: React.FC<ButtonProp> = (props) => {
   return (
-    <Pressable style={styles.button} onPress={props.onPress}>
+    <Pressable
+      style={[
+        styles.button,
+        props.buttonOpacity || { opacity: 1 },
+      ]}
+      onPress={props.onPress}>
       <Text style={styles.text}>{props.title}</Text>
     </Pressable>
   );
