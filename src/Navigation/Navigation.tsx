@@ -15,9 +15,21 @@ const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false}} />
+      <Stack.Screen name="SignUp" component={SignUp}
+          options={{ 
+            title: "",
+            headerStyle: { backgroundColor: '#444956'},
+            headerShadowVisible: false,
+            headerTintColor: '#fff',
+            }} />
+      <Stack.Screen name="SignIn" component={SignIn} 
+          options={{ 
+            title: "",
+            headerStyle: { backgroundColor: '#444956'},
+            headerShadowVisible: false,
+            headerTintColor: '#fff',
+            }}/>
     </Stack.Navigator>
   );
 };

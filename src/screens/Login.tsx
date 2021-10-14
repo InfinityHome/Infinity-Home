@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Pressable } from 'react-native';
 import { LoginNavProps } from '../Navigation/Params';
 import { onSignIn } from '../firebase/firebaseMethods';
 import { googleConfig } from '../firebase/config';
@@ -7,7 +7,7 @@ import * as Google from 'expo-google-app-auth';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 
-const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
+const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }, props) => {
   const signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync(googleConfig);
@@ -41,11 +41,11 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
       <View style={styles.top}>
         <Image
           source={{
-            uri: 'https://www.freepnglogos.com/uploads/logo-home-png/photo-icon-home-logo-23.png',
+            uri: 'https://creazilla-store.fra1.digitaloceanspaces.com/emojis/49812/house-with-garden-emoji-clipart-xl.png',
           }}
-          style={{ width: 100, height: 100 }}
+          style={{ marginTop: 10, width: 200, height: 150 }}
         />
-        <Text style={styles.text}>Infinity Home</Text>
+        <Text style={{fontSize: 50, color: '#fff'}}>Infinity Home</Text>
       </View>
       <View style={styles.middle}>
         <Text style={styles.motto}>
@@ -56,26 +56,29 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
         </Text>
       </View>
       <View style={styles.bottom}>
-        <View style={{ flex: 0.32 }}>
+        <View style={{ flex: 0.3 }}>
+          <Button
+            title="Sign In"
+            onPress={() => navigation.navigate('SignIn')}
+          />
+        </View>
+        <View style={{ flex: 0.20, paddingBottom: 15 }}>
+          <Text style={{ fontSize: 20, textAlign: 'center' }}>- OR -</Text>
+          <Text style={{ fontSize: 18, textAlign: 'center' }}> Sign in with</Text>
+        </View>
+        <View style={{ flex: 0.3 }}>
           <Button
             title="Continue with Google"
             onPress={signInWithGoogleAsync}
           />
         </View>
-        <View style={{ flex: 0.14, paddingBottom: 10 }}>
-          <Text style={{ fontSize: 20, textAlign: 'center' }}> OR </Text>
-        </View>
-        <View style={{ flex: 0.32 }}>
-          <Button
-            title="Sign Up"
-            onPress={() => navigation.navigate('SignUp')}
-          />
-        </View>
-        <View style={{ flex: 0.32 }}>
-          <Button
-            title="Sign In"
-            onPress={() => navigation.navigate('SignIn')}
-          />
+        <View style={{ flex: 0.3}}>
+          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <Text style={{ fontSize: 18, color: 'black'}}> Don&apos;t have an account? </Text>
+            <Pressable onPress={() => navigation.navigate('SignUp')}>
+              <Text style={{ fontSize: 18, color: '#fff'}}>Sign Up</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </View>
@@ -85,32 +88,27 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#9BBCFD',
-    padding: 5,
-  },
-  text: {
-    fontSize: 40,
-    color: 'black',
-    padding: 10,
+    backgroundColor: '#444956',
+    padding: 7,
   },
   motto: {
     fontSize: 22,
-    color: 'black',
-    paddingLeft: 30,
-    paddingRight: 20,
+    color: '#fff',
+    paddingHorizontal: 25,
     alignItems: 'center',
     justifyContent: 'center',
   },
   top: {
-    flex: 0.25,
+    flex: 0.3,
     alignItems: 'center',
+    paddingTop: 20
   },
   middle: {
-    flex: 0.45,
+    flex: 0.35,
     justifyContent: 'center',
   },
   bottom: {
-    flex: 0.3,
+    flex: 0.35,
     justifyContent: 'center',
   },
 });

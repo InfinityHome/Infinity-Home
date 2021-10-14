@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
@@ -52,66 +52,82 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Glad to see you</Text>
-      <Text style={styles.text1}>Sign Up</Text>
-      <TextInput
-        style={styles.input}
-        placeholder={'Name'}
-        onChangeText={(text) => setName(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Email'}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Phone Number'}
-        onChangeText={(text) => setPhone(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Address'}
-        onChangeText={(text) => setAddress(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Password'}
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Confirm Password'}
-        onChangeText={(text) => setConformPassword(text)}
-        secureTextEntry
-      />
-      <Button title="Sign Up" onPress={onSignUp} />
-    </View>
+    // <ScrollView>
+    //   <KeyboardAvoidingView behavior='padding' style={{flex: 1}}>
+        <View style={styles.container}>
+          <Text style={styles.text}>Glad to see you</Text>
+          <Text style={styles.text1}>Sign Up</Text>
+          <View style={{flex: 0.8, /*borderWidth: 1 */}}>
+            <TextInput
+              style={styles.input}
+              placeholder={'Name'}
+              placeholderTextColor="#93969e"
+              onChangeText={(text) => setName(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={'Email'}
+              placeholderTextColor="#93969e"
+              onChangeText={(text) => setEmail(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={'Phone Number'}
+              placeholderTextColor="#93969e"
+              onChangeText={(text) => setPhone(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={'Address'}
+              placeholderTextColor="#93969e"
+              onChangeText={(text) => setAddress(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={'Password'}
+              placeholderTextColor="#93969e"
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={'Confirm Password'}
+              placeholderTextColor="#93969e"
+              onChangeText={(text) => setConformPassword(text)}
+              secureTextEntry
+            />
+          </View>
+
+          <View style={{flex: 0.2, /*borderWidth: 1 */}}>
+            <Button title="Sign Up" onPress={onSignUp} />
+          </View>
+        </View>
+    //   </KeyboardAvoidingView>
+    // </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30,
+    fontSize: 40,
+    color: "#fff",
   },
   text1: {
-    fontSize: 30,
-    paddingLeft: 170,
+    fontSize: 35,
+    color: "#fff",
   },
   container: {
     flex: 1,
-    paddingTop: 90,
     padding: 20,
-    backgroundColor: '#9BBCFD',
+    backgroundColor: '#444956',
   },
   input: {
-    backgroundColor: 'white',
     width: '100%',
-    marginVertical: 10,
     padding: 20,
-    borderRadius: 10,
+    borderBottomWidth: 3,
+    borderBottomColor: "#f8ad1c",
+    fontSize: 20,
+    color: "#f8ad1c"
   },
 });
 

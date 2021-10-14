@@ -15,7 +15,7 @@ const CustomText: React.FC<TextProp> = (props) => {
       case 'Quin':
         return 'Quintessential-Regular';
       default:
-        return 'Radley-Regular';
+        return 'ArchivoNarrow-Regular';
     }
   };
   //Set font to want to use

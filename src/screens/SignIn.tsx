@@ -33,11 +33,13 @@ const SignIn: React.FC = () => {
       <TextInput
         style={styles.input}
         placeholder={'Email'}
+        placeholderTextColor="#93969e"
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         style={styles.input}
         placeholder={'Password'}
+        placeholderTextColor="#93969e"
         secureTextEntry
         onChangeText={(text) => setPassword(text)}
       />
@@ -48,24 +50,26 @@ const SignIn: React.FC = () => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30,
+    fontSize: 40,
+    color: "#fff",
   },
   text1: {
-    fontSize: 30,
-    paddingLeft: 170,
+    fontSize: 35,
+    color: "#fff",
   },
   container: {
     flex: 1,
-    paddingTop: 90,
     padding: 20,
-    backgroundColor: '#9BBCFD',
+    backgroundColor: '#444956',
   },
   input: {
-    backgroundColor: 'white',
     width: '100%',
     marginVertical: 10,
     padding: 20,
-    borderRadius: 10,
+    borderBottomWidth: 3,
+    borderBottomColor: "#f8ad1c",
+    fontSize: 20,
+    color: "#f8ad1c"
   },
 });
 

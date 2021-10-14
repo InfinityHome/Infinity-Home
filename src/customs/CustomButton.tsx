@@ -20,15 +20,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
-    elevation: 3,
-    backgroundColor: '#6081F9',
-    marginLeft: 40,
-    marginRight: 40,
+    elevation: 5,
+    backgroundColor: '#21242c',
+    marginHorizontal: 60,
     padding: 10,
   },
   text: {
-    fontSize: 20,
-    color: 'black',
+    fontSize: 25,
+    color: '#fff',
   },
 });
 
