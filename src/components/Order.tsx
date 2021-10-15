@@ -31,9 +31,11 @@ const Order: React.FC<OrderProps> = (props) => {
     <View
       style={{
         display: 'flex',
+        borderRadius: 20,
+        borderWidth: 3,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#6081F9',
+        backgroundColor: '#b2b4b9',
         minHeight: 100,
         marginHorizontal: 20,
         marginVertical: 10,
@@ -60,7 +62,7 @@ const Order: React.FC<OrderProps> = (props) => {
           <Progress.Bar
             progress={progress(props.item.Status)}
             color="#51E839"
-            unfilledColor="grey"
+            unfilledColor="white"
             height={15}
             borderColor="black"
             borderRadius={11}

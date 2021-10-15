@@ -57,7 +57,7 @@ const ServiceIcon: React.FC<{ ServiceIcon: string; IconColor: string }> = (
     type="material"
     name={props.ServiceIcon}
     color={props.IconColor}
-    size={32}
+    size={45}
   />
 );
 
@@ -65,7 +65,7 @@ const Service: React.FC<{ service: string }> = (props) => (
   <Text
     
     style={{
-      fontSize: 12,
+      fontSize: 15,
       color: "#fff",
       textAlign: 'center',
       fontWeight: '600',

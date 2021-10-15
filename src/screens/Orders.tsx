@@ -52,10 +52,11 @@ const Orders: React.FC = () => {
   return (
     <SafeAreaView
       style={{
+        backgroundColor: "#3e4350",
         flex: 1,
         paddingTop: StatusBar.currentHeight,
       }}>
-      <Header name="Orders" size={24} />
+      <Header name="Orders" size={24} color={"#fff"}/>
       <SectionList
         sections={Data}
         stickySectionHeadersEnabled
@@ -74,13 +75,15 @@ const Title: React.FC<{ title: string }> = (props) => (
     <Text
       style={{
         paddingHorizontal: 32,
-        paddingVertical: 10,
-        fontSize: 19,
-        backgroundColor: '#fff',
+        paddingTop: 7,
+        fontSize: 22,
+        backgroundColor: '#b2b4b9',
+        textAlign:"center",
+        borderTopWidth: 3,
+        borderBottomWidth: 3
       }}>
       {props.title}
     </Text>
-    <Divider width={1} />
   </View>
 );
 

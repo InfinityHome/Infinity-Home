@@ -14,7 +14,7 @@ const ServiceList: ServiceListType = [
   {
     Service: 'Plumbing',
     ServiceIcon: 'plumbing',
-    IconColor: 'gray',
+    IconColor: 'red',
   },
   {
     Service: 'Electrical',
@@ -30,19 +30,19 @@ const ServiceList: ServiceListType = [
   {
     Service: 'Painting',
     ServiceIcon: 'format-paint',
-    IconColor: 'red',
+    IconColor: 'purple',
   },
   {
     Service: 'Hvac',
     ServiceIcon: 'hvac',
-    IconColor: 'gray',
+    IconColor: 'black',
   },
   {
     Service: 'Roofing',
     ServiceIcon: 'roofing',
-    IconColor: 'brown',
+    IconColor: 'yellow',
   },
-  { Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'black' },
+  { Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'gray' },
 ];
 
 const Home: React.FC = () => {
