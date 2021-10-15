@@ -2,26 +2,38 @@ import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { authMethod } from '../firebase/config';
 
 const Account: React.FC = () => {
+  const handleSignOut = async () => {
+    try {
+      await authMethod.signOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello, How are you?</Text>
-      <TextInput style={styles.input} placeholder={'Email'} />
-      <TextInput style={styles.input} placeholder={'Address'} />
-      <TextInput style={styles.input} placeholder={'Country'} />
+      <Text style={{fontSize: 40, paddingBottom: 10, color: "#fff"}}>Hello, How are you?</Text>
+      <TextInput style={styles.input} placeholder={'Email'} placeholderTextColor="#93969e" />
+      <TextInput style={styles.input} placeholder={'Address'} placeholderTextColor="#93969e" />
+      <TextInput style={styles.input} placeholder={'Country'} placeholderTextColor="#93969e"/>
 
-      <View style={styles.row}>
-        <View style={styles.column}>
-          <TextInput style={styles.inputState} placeholder={'State'} />
+      <View style={{flexDirection: 'row'}}>
+          <TextInput style={styles.input2} placeholder={'State'} placeholderTextColor="#93969e" />
+          <TextInput style={styles.input2} placeholder={'Zip'} placeholderTextColor="#93969e" />
+      </View>
+      <View style={{flexDirection:"column"}}>
+        <View style={{justifyContent:"space-between", paddingBottom: 10}}>
+          <Button title="Change Details" onPress={() => ''} />
         </View>
-        <View style={styles.column}>
-          <TextInput style={styles.input} placeholder={'Zip'} />
+        <View style={{justifyContent:"space-between", paddingBottom: 10}}>
+          <Button title="Change Password" onPress={() => ''} />
+        </View>
+        <View style={{justifyContent:"space-between"}}>
+          <Button title="Sign Out" onPress={handleSignOut} />
         </View>
       </View>
-
-      <Button title="Change Details" onPress={() => ''} />
-      <Button title="Change Password" onPress={() => ''} />
     </View>
   );
 };
@@ -35,21 +47,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 90,
     padding: 20,
-    backgroundColor: '#9BBCFD',
+    backgroundColor: '#444956',
   },
   input: {
-    backgroundColor: 'white',
     width: '100%',
-    marginVertical: 10,
-    padding: 20,
-    borderRadius: 10,
+    marginVertical: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 3,
+    borderBottomColor: "#f8ad1c",
+    fontSize: 20,
+    color: "#f8ad1c",
   },
-  inputState: {
-    backgroundColor: 'white',
-    width: '95%',
-    marginVertical: 10,
-    padding: 20,
-    borderRadius: 10,
+  input2: {
+    width: '50%',
+    marginVertical: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 3,
+    borderBottomColor: "#f8ad1c",
+    fontSize: 20,
+    color: "#f8ad1c",
   },
   row: {
     flex: 1,

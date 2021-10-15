@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StatusBar, ScrollView, Button } from 'react-native';
-import { authMethod } from '../firebase/config';
+import { SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
@@ -47,13 +46,6 @@ const ServiceList: ServiceListType = [
 ];
 
 const Home: React.FC = () => {
-  const handleSignOut = async () => {
-    try {
-      await authMethod.signOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const [finalFilteredList, setFinalFilteredList] =
     useState<ServiceListType>(ServiceList);
 
@@ -62,13 +54,13 @@ const Home: React.FC = () => {
       style={{
         paddingTop: StatusBar.currentHeight,
         flex: 1,
+        backgroundColor: "#3e4350"
       }}>
-      <Header name="Infinity Home" font="Italic" size={42} />
+      <Header name="Infinity Home" size={50} color={"#fff"} />
       <Search
         setFinalFilteredList={setFinalFilteredList}
         ServiceList={ServiceList}
       />
-      <Button title="Log Out" onPress={handleSignOut} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Services finalFilteredList={finalFilteredList} />
       </ScrollView>

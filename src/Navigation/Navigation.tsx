@@ -45,7 +45,12 @@ const LoginNavigation: React.FC = () => {
 const Tab = createBottomTabNavigator<BottomNavParamList>();
 const BottomNavigation: React.FC = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: "#fff",
+      tabBarActiveBackgroundColor: "#3e4350",
+      tabBarInactiveBackgroundColor: "#21242c",
+    }}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Orders" component={Orders} />
       <Tab.Screen name="Account" component={Account} />
