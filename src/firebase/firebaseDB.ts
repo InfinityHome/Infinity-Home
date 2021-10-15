@@ -75,4 +75,4 @@ class DataBase {
 }
 
 export const database = new DataBase();
-export { ServiceListType };
+export { ServiceListType, userInfoType };
