@@ -42,7 +42,11 @@ const ServiceList: ServiceListType = [
     ServiceIcon: 'roofing',
     IconColor: 'yellow',
   },
-  { Service: 'Gutter', ServiceIcon: 'filter-alt', IconColor: 'gray' },
+  { 
+    Service: 'Gutter', 
+    ServiceIcon: 'filter-alt', 
+    IconColor: 'brown' 
+  },
 ];
 
 const Home: React.FC = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import Text from './CustomText';
 
 interface ButtonProp {
@@ -9,9 +9,9 @@ interface ButtonProp {
 
 const Button: React.FC<ButtonProp> = (props) => {
   return (
-    <Pressable style={styles.button} onPress={props.onPress}>
+    <TouchableOpacity style={styles.button} onPress={props.onPress}>
       <Text style={styles.text}>{props.title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
