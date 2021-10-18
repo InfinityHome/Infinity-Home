@@ -3,8 +3,9 @@ import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { LoginNavProps } from '../Navigation/Params';
 
-const SignUpFinal: React.FC = ({navigation}) => {
+const SignUpFinal: React.FC<LoginNavProps<'SignUpFinal'>> = () => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');

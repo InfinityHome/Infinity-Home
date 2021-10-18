@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LoginParamList, BottomNavParamList } from './Params';
+import { LoginParamList, BottomNavParamList, AccountParamList } from './Params';
 import { authMethod, firebase } from '../firebase/config';
 import { Icon } from 'react-native-elements'
 import SignUp from '../screens/SignUp';
@@ -12,6 +12,7 @@ import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
 import Orders from '../screens/Orders';
 import Account from '../screens/Account';
+import AccountDetails from '../screens/AccountDetails';
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
@@ -43,14 +44,28 @@ const LoginNavigation: React.FC = () => {
   );
 };
 
+const AccStack = createNativeStackNavigator<AccountParamList>();
+const AccountNavigation: React.FC = () => {
+  return (
+    <AccStack.Navigator>
+      <AccStack.Screen name='AccountScreen' component={Account} options={{ headerShown: false}}/>
+      <AccStack.Screen name='AccountDetails' component={AccountDetails}
+        options={{ 
+          title: "",
+          headerStyle: { backgroundColor: '#444956'},
+          headerShadowVisible: false,
+          headerTintColor: '#fff',
+          }} />
+    </AccStack.Navigator>
+  )
+};
+
 const Tab = createBottomTabNavigator<BottomNavParamList>();
 const BottomNavigation: React.FC = () => {
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: "#fff",
-      //tabBarActiveBackgroundColor: "#3e4350",
-      //tabBarInactiveBackgroundColor: "#21242c",
       tabBarLabelStyle: {fontSize: 13, bottom: 8},
       tabBarStyle: { 
         position: 'absolute',
@@ -88,7 +103,7 @@ const BottomNavigation: React.FC = () => {
           }} />
       <Tab.Screen 
         name="Account" 
-        component={Account}
+        component={AccountNavigation}
         options={{
           tabBarLabel: 'Account',
           tabBarIcon:() => 

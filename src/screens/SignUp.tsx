@@ -3,8 +3,9 @@ import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { authMethod, firebase } from '../firebase/config';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { LoginNavProps } from '../Navigation/Params';
 
-const SignUp: React.FC = ({ navigation }) => {
+const SignUp: React.FC<LoginNavProps<'SignUp'>> = ({ navigation }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -100,7 +101,6 @@ const SignUp: React.FC = ({ navigation }) => {
           onChangeText={(text) => setConformPassword(text)}
           secureTextEntry
         /> */}
-        {/* <Button title="Sign Up" onPress={onSignUp} /> */}
         <Button
             title="Proceed"
             onPress={() => navigation.navigate('SignUpFinal')}
