@@ -15,9 +15,7 @@ const Home: React.FC = () => {
     }
   };
   const [serviceList, setServiceList] = useState<ServiceListType>([]);
-  const [finalFilteredList, setFinalFilteredList] = useState<ServiceListType>(
-    []
-  );
+  const [finalFilteredList, setFinalFilteredList] = useState<ServiceListType>([]);
 
   useEffect(() => {
     database.readServices().then((data) => {
