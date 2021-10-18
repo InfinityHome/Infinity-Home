@@ -67,6 +67,7 @@ const BottomNavigation: React.FC = () => {
       headerShown: false,
       tabBarActiveTintColor: "#fff",
       tabBarLabelStyle: {fontSize: 13, bottom: 8},
+      tabBarHideOnKeyboard : true,
       tabBarStyle: { 
         position: 'absolute',
         bottom: 25,
