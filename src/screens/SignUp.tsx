@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Alert, SafeAreaView } from 'react-native';
-import { authMethod, firebase } from '../firebase/config';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 import TextField from '../components/TextField';
@@ -8,7 +7,7 @@ import TextField from '../components/TextField';
 import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
-import { database } from '../firebase/firebaseDB';
+import { onSignUp } from '../firebase/firebaseMethods';
 
 type FromValidate = {
   name: string;
@@ -29,39 +28,6 @@ const SignUp: React.FC = () => {
       .equals([Yup.ref('password'), null], 'Password does not match!')
       .required('Password is required')
   });
-
-  const onSignUp = async (
-    name: string,
-    email: string,
-    password: string,
-    phone: string
-  ) => {
-    await authMethod
-      .createUserWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        database.updateUserObject(
-          {
-            userID: user?.uid,
-            userEmail: email,
-            userName: name,
-            userPhone: phone,
-            userAddress: {
-              street: "",
-              city: "",
-              state: "",
-              zip: "",
-            }
-          }
-        )
-      })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('Oops', 'Email Taken', [{ text: 'Try Again' }]);
-        } else {
-          Alert.alert('Error', 'Something Went Wrong', [{ text: 'Try Again' }]);
-        }
-      });
-  };
 
   return (
     <SafeAreaView
