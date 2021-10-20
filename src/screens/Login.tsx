@@ -1,41 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { LoginNavProps } from '../Navigation/Params';
-import { onSignIn } from '../firebase/firebaseMethods';
-import { googleConfig } from '../firebase/config';
-import * as Google from 'expo-google-app-auth';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import { signInWithGoogleAsync } from '../firebase/firebaseMethods';
+
 
 const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
-  const signInWithGoogleAsync = async () => {
-    try {
-      const result = await Google.logInAsync(googleConfig);
-
-      if (result.type === 'success') {
-        console.log(result);
-        // validate Id token by calling Google REST API
-        const userInfoResponse = await fetch(
-          'https://oauth2.googleapis.com/tokeninfo?id_token',
-          {
-            headers: { Authorization: `Bearer ${result.accessToken}` },
-          }
-        );
-        console.log(
-          JSON.stringify(
-            userInfoResponse,
-            Object.getOwnPropertyNames(userInfoResponse)
-          )
-        );
-        onSignIn(result);
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      return { error: true };
-    }
-  };
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -75,15 +46,16 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
         <View style={{ flex: 0.3}}>
           <View style={{flexDirection: 'row', justifyContent: 'center'}}>
             <Text style={{ fontSize: 18, color: 'black'}}> Don&apos;t have an account? </Text>
-            <Pressable onPress={() => navigation.navigate('SignUp')}>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
               <Text style={{ fontSize: 18, color: '#fff'}}>Sign Up</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

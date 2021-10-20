@@ -1,59 +1,36 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import { authMethod, firebase } from '../firebase/config';
+import React from 'react';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
-import { LoginNavProps } from '../Navigation/Params';
+import TextField from '../components/TextField';
 
-const SignUp: React.FC<LoginNavProps<'SignUp'>> = ({ navigation }) => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [conformPassword, setConformPassword] = useState('');
+import { Formik, FormikProps } from 'formik';
+import * as Yup from 'yup';
+import Validator from 'email-validator';
+import { onSignUp } from '../firebase/firebaseMethods';
 
-  const onSignUp = async () => {
-    if (name && phone && address && email && password && conformPassword) {
-      if (password != conformPassword) {
-        Alert.alert(`Error`, `Passwork Mismatch`);
-      } else {
-        try {
-          const { user } = await authMethod.createUserWithEmailAndPassword(
-            email,
-            password
-          );
-          if (user) {
-            console.log(JSON.stringify(user));
-            firebase
-              .database()
-              .ref('/users/' + user?.uid)
-              .set({
-                userName: name,
-                userEmail: user.email,
-                userPhone: phone,
-                userAddress: address,
-              });
-          }
-        } catch ({ message }) {
-          Alert.alert(
-            'Sign UP Failed',
-            JSON.stringify(message, Object.getOwnPropertyNames(message)),
-            [
-              {
-                text: 'Try Again',
-              },
-            ]
-          );
-        }
-      }
-    } else {
-      Alert.alert(`Error`, `Missing Fields`);
-    }
-  };
+type FromValidate = {
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
+  confirmPassword: string;
+};
+const SignUp: React.FC = () => {
+  const SignUpSchema = Yup.object().shape({
+    name: Yup.string().required('A name is required'),
+    email: Yup.string().email().required('An email is required'),
+    phone: Yup.string().required('Phone number is required'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(6, 'Your password has to have at least 6 characters'),
+    confirmPassword: Yup.string()
+      .equals([Yup.ref('password'), null], 'Password does not match!')
+      .required('Password is required')
+  });
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={{flexDirection: 'row'}}>
         <Text style={{fontSize: 50, color: "#fff"}}>New{"\n"}Account</Text>
         <Text style={{
@@ -63,49 +40,76 @@ const SignUp: React.FC<LoginNavProps<'SignUp'>> = ({ navigation }) => {
                 right: 25,
                 bottom: 5}}>Steps{"\n"} 1 / 2</Text>
       </View>
-        <TextInput
-          style={styles.input}
-          placeholder={'Name'}
-          placeholderTextColor="#93969e"
-          onChangeText={(text) => setName(text)}
-        />
-        {/* <TextInput
-          style={styles.input}
-          placeholder={'Email'}
-          placeholderTextColor="#93969e"
-          onChangeText={(text) => setEmail(text)}
-        /> */}
-        <TextInput
-          style={styles.input}
-          placeholder={'Phone Number'}
-          placeholderTextColor="#93969e"
-          onChangeText={(text) => setPhone(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder={'Address'}
-          placeholderTextColor="#93969e"
-          onChangeText={(text) => setAddress(text)}
-        />
-        {/* <TextInput
-          style={styles.input}
-          placeholder={'Password'}
-          placeholderTextColor="#93969e"
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry
-        />
-        <TextInput
-          style={styles.input}
-          placeholder={'Confirm Password'}
-          placeholderTextColor="#93969e"
-          onChangeText={(text) => setConformPassword(text)}
-          secureTextEntry
-        /> */}
-        <Button
-            title="Proceed"
-            onPress={() => navigation.navigate('SignUpFinal')}
-        />
-    </View>
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+          phone: '',
+          confirmPassword: '',
+        }}
+        onSubmit={(values) => {
+          onSignUp(values.name, values.email, values.password, values.phone);
+        }}
+        validationSchema={SignUpSchema}
+        validateOnMount>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+        }: FormikProps<FromValidate>) => (
+          <>
+            <TextField
+              placeholder="Email"
+              name="email"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              keyboardType="email-address"
+              value={values.email}
+              validate={
+                values.email.length < 1 || Validator.validate(values.email)
+                  ? '#f8ad1c'
+                  : 'red'
+              }
+            />
+            <TextField
+              placeholder="Password"
+              name="password"
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              secureTextEntry
+              value={values.password}
+              validate={
+                1 > values.password.length || values.password.length >= 6
+                  ? '#f8ad1c'
+                  : 'red'
+              }
+            />
+            <TextField
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              secureTextEntry
+              value={values.confirmPassword}
+              validate={
+                1 > values.confirmPassword.length ||
+                values.password === values.confirmPassword
+                  ? '#f8ad1c'
+                  : 'red'
+              }
+            />
+            <Button
+              title="Sign Up"
+              buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
+              onPress={handleSubmit}
+            />
+          </>
+        )}
+      </Formik>
+    </SafeAreaView>
   );
 };
 
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#444956',
+    justifyContent: 'center'
   },
   input: {
     width: '100%',

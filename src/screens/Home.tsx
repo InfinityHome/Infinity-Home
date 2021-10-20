@@ -1,57 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import Header from '../components/Header';
 import Services from '../components/Services';
 import Search from '../components/Search';
-
-export type ServiceListType = {
-  Service: string;
-  ServiceIcon: string;
-  IconColor: string;
-}[];
-
-const ServiceList: ServiceListType = [
-  {
-    Service: 'Plumbing',
-    ServiceIcon: 'plumbing',
-    IconColor: 'red',
-  },
-  {
-    Service: 'Electrical',
-    ServiceIcon: 'electrical-services',
-    IconColor: 'blue',
-  },
-  {
-    Service: 'Lawn',
-    ServiceIcon: 'grass',
-    IconColor: 'green',
-  },
-
-  {
-    Service: 'Painting',
-    ServiceIcon: 'format-paint',
-    IconColor: 'purple',
-  },
-  {
-    Service: 'Hvac',
-    ServiceIcon: 'hvac',
-    IconColor: 'black',
-  },
-  {
-    Service: 'Roofing',
-    ServiceIcon: 'roofing',
-    IconColor: 'yellow',
-  },
-  { 
-    Service: 'Gutter', 
-    ServiceIcon: 'filter-alt', 
-    IconColor: 'brown' 
-  },
-];
+import { database, ServiceListType } from '../firebase/firebaseDB';
 
 const Home: React.FC = () => {
-  const [finalFilteredList, setFinalFilteredList] =
-    useState<ServiceListType>(ServiceList);
+  const [serviceList, setServiceList] = useState<ServiceListType>([]);
+  const [finalFilteredList, setFinalFilteredList] = useState<ServiceListType>([]);
+
+  useEffect(() => {
+    database.readServices().then((data) => {
+      setServiceList(data);
+      setFinalFilteredList(data);
+    });
+  }, []);
 
   return (
     <SafeAreaView
@@ -63,7 +26,7 @@ const Home: React.FC = () => {
       <Header name="Infinity Home" size={50} color={"#fff"} />
       <Search
         setFinalFilteredList={setFinalFilteredList}
-        ServiceList={ServiceList}
+        serviceList={serviceList}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Services finalFilteredList={finalFilteredList} />

@@ -1,50 +1,84 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import { authMethod } from '../firebase/config';
+import React from 'react';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
+import TextField from '../components/TextField';
+import { LoginNavProps } from '../Navigation/Params';
+import { Formik, FormikProps } from 'formik';
+import * as Yup from 'yup';
+import Validator from 'email-validator';
+import { onSignin } from '../firebase/firebaseMethods';
 
-const SignIn: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const onLogin = async () => {
-    try {
-      if (email !== '' && password !== '') {
-        await authMethod.signInWithEmailAndPassword(email, password);
-      }
-    } catch ({ message }) {
-      Alert.alert(
-        'Sign In Failed',
-        JSON.stringify(message, Object.getOwnPropertyNames(message)),
-        [
-          {
-            text: 'Try Again',
-          },
-        ]
-      );
-    }
-  };
+const SignIn: React.FC<LoginNavProps<'SignIn'>> = () => {
+  const SignInSchema = Yup.object().shape({
+    email: Yup.string().email().required('An email is required'),
+    password: Yup.string()
+      .required()
+      .min(6, 'Your password has to have at least 6 characters'),
+  });
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: '#9BBCFD',
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+      }}>
       <Text style={styles.text}>Welcome Back</Text>
       <Text style={styles.text1}>Sign In</Text>
-      <TextInput
-        style={styles.input}
-        placeholder={'Email'}
-        placeholderTextColor="#93969e"
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder={'Password'}
-        placeholderTextColor="#93969e"
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-      />
-      <Button title="Sign In" onPress={onLogin} />
-    </View>
+
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        onSubmit={(values) => {
+          onSignin(values.email, values.password);
+        }}
+        validationSchema={SignInSchema}
+        validateOnMount>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+        }: FormikProps<{ email: string; password: string }>) => (
+          <>
+            <TextField
+              placeholder="Email"
+              name="email"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              keyboardType="email-address"
+              value={values.email}
+              vadilate={
+                values.email.length < 1 || Validator.validate(values.email)
+                  ? '#000'
+                  : 'red'
+              }
+            />
+            <TextField
+              placeholder="Password"
+              name="password"
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              secureTextEntry
+              value={values.password}
+              vadilate={
+                1 > values.password.length || values.password.length >= 6
+                  ? '#000'
+                  : 'red'
+              }
+            />
+            <Button
+              title="Sign In"
+              buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
+              onPress={handleSubmit}
+            />
+          </>
+        )}
+      </Formik>
+    </SafeAreaView>
   );
 };
 

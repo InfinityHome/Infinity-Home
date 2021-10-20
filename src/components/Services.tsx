@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Text from '../customs/CustomText';
 import { Icon } from 'react-native-elements';
-import { ServiceListType } from '../screens/Home';
+import { ServiceListType } from '../firebase/firebaseDB';
 
 interface ServicesProps {
   finalFilteredList: ServiceListType;
@@ -41,8 +41,8 @@ const Services: React.FC<ServicesProps> = (props) => {
               width: 90,
               height: 100,
             }}>
-            <ServiceIcon ServiceIcon={d.ServiceIcon} IconColor={d.IconColor} />
-            <Service service={d.Service} />
+            <ServiceIcon ServiceIcon={d.serviceIcon} />
+            <Service service={d.serviceName} />
           </View>
         ))}
       </View>
@@ -50,18 +50,11 @@ const Services: React.FC<ServicesProps> = (props) => {
   );
 };
 
-const ServiceIcon: React.FC<{ ServiceIcon: string; IconColor: string }> = (
-  props
-) => (
-  <Icon
-    type="material"
-    name={props.ServiceIcon}
-    color={props.IconColor}
-    size={45}
-  />
+const ServiceIcon: React.FC<{ ServiceIcon: string | null }> = (props) => (
+  <Icon type="material" name={props.ServiceIcon || 'build'} size={45} />
 );
 
-const Service: React.FC<{ service: string }> = (props) => (
+const Service: React.FC<{ service: string | null }> = (props) => (
   <Text
     
     style={{
