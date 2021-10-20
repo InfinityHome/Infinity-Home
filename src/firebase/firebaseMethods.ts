@@ -4,8 +4,8 @@ import { googleConfig } from '../firebase/config';
 import {authMethod, firebase} from './config';
 import { database } from './firebaseDB';
 
-interface Result {
-     type: string | null;
+type ResultType = {
+     type: "success";
      accessToken: string | null;
      idToken: string | null;
      refreshToken: string | null;
@@ -22,7 +22,7 @@ interface Result {
   };
 
  // store google signed in user information into database
- const onGoogleSignIn = (googleUser:Result): void => {
+ const onGoogleSignIn = (googleUser:ResultType): void => {
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     const unsubscribe = authMethod.onAuthStateChanged((firebaseUser) => {
         unsubscribe();
@@ -65,7 +65,7 @@ interface Result {
 }
 
 // helper method
-const isUserEqual = (googleUser:Result, firebaseUser:firebase.User | null):boolean => {
+const isUserEqual = (googleUser:ResultType, firebaseUser:firebase.User | null):boolean => {
     if (firebaseUser) {
         const providerData = firebaseUser.providerData;
         for (let i = 0; i < providerData.length; i++) {
