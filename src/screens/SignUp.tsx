@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
-import TextField from '../components/TextField';
+import React from "react";
+import { View, StyleSheet, SafeAreaView } from "react-native";
+import Text from "../customs/CustomText";
+import Button from "../customs/CustomButton";
+import TextField from "../components/TextField";
 
-import { Formik, FormikProps } from 'formik';
-import * as Yup from 'yup';
-import Validator from 'email-validator';
-import { onSignUp } from '../firebase/firebaseMethods';
+import { Formik, FormikProps } from "formik";
+import * as Yup from "yup";
+import Validator from "email-validator";
+import { onSignUp } from "../firebase/firebaseMethods";
 
 type FromValidate = {
   name: string;
@@ -18,41 +18,36 @@ type FromValidate = {
 };
 const SignUp: React.FC = () => {
   const SignUpSchema = Yup.object().shape({
-    name: Yup.string().required('A name is required'),
-    email: Yup.string().email().required('An email is required'),
-    phone: Yup.string().required('Phone number is required'),
+    name: Yup.string().required("A name is required"),
+    email: Yup.string().email().required("An email is required"),
+    phone: Yup.string().required("Phone number is required"),
     password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Your password has to have at least 6 characters'),
+      .required("Password is required")
+      .min(6, "Your password has to have at least 6 characters"),
     confirmPassword: Yup.string()
-      .equals([Yup.ref('password'), null], 'Password does not match!')
-      .required('Password is required')
+      .equals([Yup.ref("password"), null], "Password does not match!")
+      .required("Password is required"),
   });
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{flexDirection: 'row'}}>
-        <Text style={{fontSize: 50, color: "#fff"}}>New{"\n"}Account</Text>
-        <Text style={{
-                fontSize: 30, 
-                color: "#fff",  
-                position: 'absolute',
-                right: 25,
-                bottom: 5}}>Steps{"\n"} 1 / 2</Text>
+      <View style={{ flexDirection: "row" }}>
+        <Text style={{ fontSize: 40, color: "#fff" }}>New{"\n"}Account</Text>
       </View>
       <Formik
         initialValues={{
-          name: '',
-          email: '',
-          password: '',
-          phone: '',
-          confirmPassword: '',
+          name: "",
+          email: "",
+          password: "",
+          phone: "",
+          confirmPassword: "",
         }}
         onSubmit={(values) => {
           onSignUp(values.name, values.email, values.password, values.phone);
         }}
         validationSchema={SignUpSchema}
-        validateOnMount>
+        validateOnMount
+      >
         {({
           handleChange,
           handleBlur,
@@ -62,6 +57,14 @@ const SignUp: React.FC = () => {
         }: FormikProps<FromValidate>) => (
           <>
             <TextField
+              placeholder="Name"
+              name="name"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              value={values.name}
+              validate={true}
+            />
+            <TextField
               placeholder="Email"
               name="email"
               handleChange={handleChange}
@@ -70,9 +73,16 @@ const SignUp: React.FC = () => {
               value={values.email}
               validate={
                 values.email.length < 1 || Validator.validate(values.email)
-                  ? '#f8ad1c'
-                  : 'red'
               }
+            />
+            <TextField
+              placeholder="Phone Number (0123456789)"
+              name="phone"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              keyboardType="number-pad"
+              value={values.phone}
+              validate={true}
             />
             <TextField
               placeholder="Password"
@@ -83,8 +93,6 @@ const SignUp: React.FC = () => {
               value={values.password}
               validate={
                 1 > values.password.length || values.password.length >= 6
-                  ? '#f8ad1c'
-                  : 'red'
               }
             />
             <TextField
@@ -97,8 +105,6 @@ const SignUp: React.FC = () => {
               validate={
                 1 > values.confirmPassword.length ||
                 values.password === values.confirmPassword
-                  ? '#f8ad1c'
-                  : 'red'
               }
             />
             <Button
@@ -117,11 +123,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#444956',
-    justifyContent: 'center'
+    backgroundColor: "#444956",
+    justifyContent: "center",
   },
   input: {
-    width: '100%',
+    width: "100%",
     marginVertical: 15,
     paddingBottom: 10,
     borderBottomWidth: 3,

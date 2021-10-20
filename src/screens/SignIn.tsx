@@ -1,41 +1,35 @@
-import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
-import TextField from '../components/TextField';
-import { LoginNavProps } from '../Navigation/Params';
-import { Formik, FormikProps } from 'formik';
-import * as Yup from 'yup';
-import Validator from 'email-validator';
-import { onSignin } from '../firebase/firebaseMethods';
+import React from "react";
+import { StyleSheet, SafeAreaView } from "react-native";
+import Text from "../customs/CustomText";
+import Button from "../customs/CustomButton";
+import TextField from "../components/TextField";
+import { LoginNavProps } from "../Navigation/Params";
+import { Formik, FormikProps } from "formik";
+import * as Yup from "yup";
+import Validator from "email-validator";
+import { onSignin } from "../firebase/firebaseMethods";
 
-
-const SignIn: React.FC<LoginNavProps<'SignIn'>> = () => {
+const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   const SignInSchema = Yup.object().shape({
-    email: Yup.string().email().required('An email is required'),
+    email: Yup.string().email().required("An email is required"),
     password: Yup.string()
       .required()
-      .min(6, 'Your password has to have at least 6 characters'),
+      .min(6, "Your password has to have at least 6 characters"),
   });
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: '#9BBCFD',
-        paddingHorizontal: 20,
-        justifyContent: 'center',
-      }}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Welcome Back</Text>
       <Text style={styles.text1}>Sign In</Text>
 
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
           onSignin(values.email, values.password);
         }}
         validationSchema={SignInSchema}
-        validateOnMount>
+        validateOnMount
+      >
         {({
           handleChange,
           handleBlur,
@@ -51,10 +45,8 @@ const SignIn: React.FC<LoginNavProps<'SignIn'>> = () => {
               handleBlur={handleBlur}
               keyboardType="email-address"
               value={values.email}
-              vadilate={
+              validate={
                 values.email.length < 1 || Validator.validate(values.email)
-                  ? '#000'
-                  : 'red'
               }
             />
             <TextField
@@ -64,10 +56,8 @@ const SignIn: React.FC<LoginNavProps<'SignIn'>> = () => {
               handleChange={handleChange}
               secureTextEntry
               value={values.password}
-              vadilate={
+              validate={
                 1 > values.password.length || values.password.length >= 6
-                  ? '#000'
-                  : 'red'
               }
             />
             <Button
@@ -93,17 +83,19 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#444956',
+    marginTop: -150,
+    paddingHorizontal: 20,
+    backgroundColor: "#444956",
+    justifyContent: "center",
   },
   input: {
-    width: '100%',
+    width: "100%",
     marginVertical: 10,
     padding: 20,
     borderBottomWidth: 3,
     borderBottomColor: "#f8ad1c",
     fontSize: 20,
-    color: "#f8ad1c"
+    color: "#f8ad1c",
   },
 });
 
