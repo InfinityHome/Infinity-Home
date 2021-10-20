@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Alert, SafeAreaView } from 'react-native';
-import { authMethod } from '../firebase/config';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 import TextField from '../components/TextField';
@@ -8,40 +7,16 @@ import { LoginNavProps } from '../Navigation/Params';
 import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
+import { onSignin } from '../firebase/firebaseMethods';
 
-const SignIn: React.FC<LoginNavProps<'SignIn'>> = ({ navigation }) => {
+
+const SignIn: React.FC<LoginNavProps<'SignIn'>> = () => {
   const SignInSchema = Yup.object().shape({
     email: Yup.string().email().required('An email is required'),
     password: Yup.string()
       .required()
       .min(6, 'Your password has to have at least 6 characters'),
   });
-
-  const onLogin = async (email: string, password: string) => {
-    await authMethod
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        switch (error.code) {
-          case 'auth/wrong-password':
-            Alert.alert('Oops', 'Wrong Password', [{ text: 'Try Again' }]);
-            break;
-          case 'auth/user-not-found':
-            Alert.alert('Sorry', 'User does not exist', [
-              { text: 'Cancel' },
-              {
-                text: 'Sign Up',
-                onPress: () => navigation.replace('SignUp'),
-              },
-            ]);
-            break;
-          default:
-            Alert.alert('Error', 'Something Went Wrong', [
-              { text: 'Try Again' },
-            ]);
-            break;
-        }
-      });
-  };
 
   return (
     <SafeAreaView
@@ -57,7 +32,7 @@ const SignIn: React.FC<LoginNavProps<'SignIn'>> = ({ navigation }) => {
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={(values) => {
-          onLogin(values.email, values.password);
+          onSignin(values.email, values.password);
         }}
         validationSchema={SignInSchema}
         validateOnMount>

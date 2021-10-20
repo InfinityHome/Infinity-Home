@@ -1,35 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { LoginNavProps, LoginParamList } from '../Navigation/Params';
-import { onSignIn } from '../firebase/firebaseMethods';
-import { googleConfig } from '../firebase/config';
-import * as Google from 'expo-google-app-auth';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { signInWithGoogleAsync } from '../firebase/firebaseMethods';
+
 
 const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
-  const signInWithGoogleAsync = async () => {
-    try {
-      const result = await Google.logInAsync(googleConfig);
-
-      if (result.type === 'success') {
-        // validate Id token by calling Google REST API
-        const userInfoResponse = await fetch(
-          'https://oauth2.googleapis.com/tokeninfo?id_token',
-          {
-            headers: { Authorization: `Bearer ${result.accessToken}` },
-          }
-        );
-        onSignIn(result);
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      return { error: true };
-    }
-  };
   return (
     <View style={styles.container}>
       <View style={styles.top}>
