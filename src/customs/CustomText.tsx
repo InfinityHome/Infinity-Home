@@ -14,6 +14,10 @@ const CustomText: React.FC<TextProp> = (props) => {
         return 'Radley-Italic';
       case 'Quin':
         return 'Quintessential-Regular';
+      case 'ShareTechMono':
+        return 'ShareTechMono-Regular';
+      case 'Electrolize':
+        return 'Electrolize-Regular';
       default:
         return 'ArchivoNarrow-Regular';
     }

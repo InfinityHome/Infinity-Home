@@ -25,15 +25,14 @@ const Button: React.FC<ButtonProp> = (props) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    justifyContent: 'center',
     borderRadius: 30,
     elevation: 5,
     backgroundColor: '#21242c',
-    marginHorizontal: 60,
+    marginHorizontal: 70,
     padding: 10,
   },
   text: {
-    fontSize: 25,
+    fontSize: 16,
     color: '#fff',
   },
 });

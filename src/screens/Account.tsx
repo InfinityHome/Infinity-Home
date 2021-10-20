@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import Text from '../customs/CustomText';
 import Button from '../customs/CustomButton';
 import { authMethod } from '../firebase/config';
@@ -14,36 +14,36 @@ const Account: React.FC<AccountNavProps<'AccountScreen'>> = ({ navigation }) => 
     }
   };
   return (
-    <View style={[styles.container, {flexDirection: "column"}]}>
-      <View style={{ flex: 1, flexDirection: "row", paddingBottom: 10}}>
-        <TouchableOpacity style={{borderWidth: 5}}onPress={() => ''}>
-          <Text style={{ fontSize: 20, color: '#fff', padding: 25, marginVertical: 25}}>Click to change{"\n"}profile picture</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={{ flexDirection: "row", paddingBottom: 20}}>
+        <TouchableOpacity style={{borderWidth: 5, padding: 40}}onPress={() => ''}>
+          <Text style={{ fontSize: 20, color: '#fff'}}>Click to change{"\n"}profile picture</Text>
         </TouchableOpacity>
         <View style={{justifyContent: "flex-end"}}>
-          <Text style={{fontSize: 35, color: '#fff'}}> First Name{"\n"} Last Name</Text>
+          <Text style={{fontSize: 25, color: '#fff'}}> First Name{"\n"} Last Name</Text>
         </View>
       </View>
-      <View style={{ flex: 2, borderTopWidth: 3, borderBottomWidth: 3, borderColor: "#fff", justifyContent: "space-evenly" }} >
+      <View style={{ flex: 1, borderTopWidth: 3, borderBottomWidth: 3, borderColor: "#fff", justifyContent: "space-evenly" }} >
         <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 25, color: '#fff'}}>Saved</Text>
+          <Text style={{ fontSize: 20, color: '#fff'}}>Saved</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 25, color: '#fff'}}>Billing</Text>
+          <Text style={{ fontSize: 20, color: '#fff'}}>Billing</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 25, color: '#fff'}}>Payment Methods</Text>
+          <Text style={{ fontSize: 20, color: '#fff'}}>Payment Methods</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 25, color: '#fff'}}>Change Password</Text>
+          <Text style={{ fontSize: 20, color: '#fff'}}>Change Password</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('AccountDetails')}>
-          <Text style={{ fontSize: 25, color: '#fff'}}>Change Details</Text>
+          <Text style={{ fontSize: 20, color: '#fff'}}>Change Details</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, paddingTop: 10 }} >
+      <View style={{ paddingTop: 15 }} >
         <Button title="Sign Out" onPress={handleSignOut} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -54,9 +54,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 60,
-    padding: 15,
+    paddingVertical: 50,
+    paddingHorizontal: 20,
     backgroundColor: '#444956',
+    justifyContent: 'space-evenly',
   },
 });
 

@@ -19,8 +19,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Welcome Back</Text>
-      <Text style={styles.text1}>Sign In</Text>
+      <Text style={{ fontSize: 30, color: "#fff"}}>Welcome Back,{"\n"}Sign In</Text>
 
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -73,29 +72,12 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 40,
-    color: "#fff",
-  },
-  text1: {
-    fontSize: 35,
-    color: "#fff",
-  },
   container: {
     flex: 1,
     marginTop: -150,
     paddingHorizontal: 20,
     backgroundColor: "#444956",
     justifyContent: "center",
-  },
-  input: {
-    width: "100%",
-    marginVertical: 10,
-    padding: 20,
-    borderBottomWidth: 3,
-    borderBottomColor: "#f8ad1c",
-    fontSize: 20,
-    color: "#f8ad1c",
   },
 });
 

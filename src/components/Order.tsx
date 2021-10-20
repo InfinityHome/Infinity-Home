@@ -32,7 +32,7 @@ const Order: React.FC<OrderProps> = (props) => {
       style={{
         display: 'flex',
         borderRadius: 20,
-        borderWidth: 3,
+        borderWidth: 2,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#b2b4b9',
@@ -49,13 +49,13 @@ const Order: React.FC<OrderProps> = (props) => {
           marginLeft: 15,
         }}>
         <Service_Status
-          type="Quin"
-          style={{ fontSize: 25 }}
+          type="Electrolize"
+          style={{ fontSize: 23 }}
           Name={props.item.Service}
         />
         <View>
           <Service_Status
-            type="Italic"
+            type="ShareTechMono"
             style={{ marginLeft: 10, fontSize: 17 }}
             Name={props.item.Status}
           />

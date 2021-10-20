@@ -33,11 +33,11 @@ const TextField: React.FC<TextFieldProps> = (props) => {
       style={{
         width: '100%',
         marginVertical: 10,
-        padding: 20,
+        padding: 10,
         borderBottomWidth: 3,
         borderBottomColor: props.validate? '#f8ad1c'
         : 'red',
-        fontSize: 20,
+        fontSize: 16,
         color: "#f8ad1c"
       }}
       placeholder={props.placeholder}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, SectionList, View } from 'react-native';
-import { Divider } from 'react-native-elements';
 import Order from '../components/Order';
 import Header from '../components/Header';
 import Text from '../customs/CustomText';
@@ -79,8 +78,8 @@ const Title: React.FC<{ title: string }> = (props) => (
         fontSize: 22,
         backgroundColor: '#b2b4b9',
         textAlign:"center",
-        borderTopWidth: 3,
-        borderBottomWidth: 3
+        borderTopWidth: 2,
+        borderBottomWidth: 2
       }}>
       {props.title}
     </Text>

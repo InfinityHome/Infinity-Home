@@ -15,7 +15,7 @@ const Services: React.FC<ServicesProps> = (props) => {
         style={{
           paddingHorizontal: 20,
           paddingVertical: 5,
-          fontSize: 25,
+          fontSize: 20,
           color: "#fff"
         }}>
         Categories
@@ -56,7 +56,6 @@ const ServiceIcon: React.FC<{ ServiceIcon: string | null }> = (props) => (
 
 const Service: React.FC<{ service: string | null }> = (props) => (
   <Text
-    
     style={{
       fontSize: 15,
       color: "#fff",

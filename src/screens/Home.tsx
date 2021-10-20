@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         flex: 1,
         backgroundColor: "#3e4350"
       }}>
-      <Header name="Infinity Home" size={50} color={"#fff"} />
+      <Header name="Infinity Home" size={40} color={"#fff"} />
       <Search
         setFinalFilteredList={setFinalFilteredList}
         serviceList={serviceList}
