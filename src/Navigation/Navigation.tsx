@@ -6,7 +6,6 @@ import { LoginParamList, BottomNavParamList, AccountParamList } from "./Params";
 import { authMethod, firebase } from "../firebase/config";
 import { Icon } from "react-native-elements";
 import SignUp from "../screens/SignUp";
-import SignUpFinal from "../screens/SignUpFinal";
 import Login from "../screens/Login";
 import SignIn from "../screens/SignIn";
 import Home from "../screens/Home";
@@ -31,7 +30,6 @@ const LoginNavigation: React.FC = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="SignUpFinal" component={SignUpFinal} />
       <Stack.Screen name="SignIn" component={SignIn} />
     </Stack.Navigator>
   );
@@ -67,17 +65,12 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "#fff",
-        tabBarLabelStyle: { fontSize: 13, bottom: 8 },
+        tabBarLabelStyle: { fontSize: 10, bottom: 8 },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          // position: "absolute",
-          // bottom: 25,
-          // left: 40,
-          // right: 40,
-          // borderRadius: 13,
           backgroundColor: "#21242c",
           borderTopWidth: 0,
-          height: 65,
+          height: 55,
           elevation: 5,
         },
       }}
@@ -87,7 +80,7 @@ const BottomNavigation: React.FC = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <Icon name="house" color="#fff" size={35} />,
+          tabBarIcon: () => <Icon name="house" color="#fff" size={30} />,
         }}
       />
       <Tab.Screen
@@ -105,7 +98,7 @@ const BottomNavigation: React.FC = () => {
         component={AccountNavigation}
         options={{
           tabBarLabel: "Account",
-          tabBarIcon: () => <Icon name="person" color="#fff" size={35} />,
+          tabBarIcon: () => <Icon name="person" color="#fff" size={30} />,
         }}
       />
     </Tab.Navigator>

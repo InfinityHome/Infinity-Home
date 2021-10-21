@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
@@ -30,10 +30,13 @@ const SignUp: React.FC = () => {
       .required("Password is required"),
   });
 
+  const [hidePass, setHidePass] = useState(true);
+  const [hideConfPass, setHideConfPass] = useState(true);
+
   return (
     <KeyboardAvoidingWrapper>
       <SafeAreaView style={styles.container}>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 35, color: "#fff" }}>New Account</Text>
         </View>
         <Formik
@@ -59,6 +62,7 @@ const SignUp: React.FC = () => {
           }: FormikProps<FromValidate>) => (
             <>
               <TextField
+                leftIconName="person"
                 placeholder="Name"
                 name="name"
                 handleChange={handleChange}
@@ -67,6 +71,7 @@ const SignUp: React.FC = () => {
                 validate={true}
               />
               <TextField
+                leftIconName="email"
                 placeholder="Email"
                 name="email"
                 handleChange={handleChange}
@@ -78,6 +83,7 @@ const SignUp: React.FC = () => {
                 }
               />
               <TextField
+                leftIconName="phone"
                 placeholder="Phone Number (0123456789)"
                 name="phone"
                 handleChange={handleChange}
@@ -87,33 +93,41 @@ const SignUp: React.FC = () => {
                 validate={true}
               />
               <TextField
+                setHidePass={() => setHidePass(!hidePass)}
+                leftIconName="lock"
+                rightIconName={hidePass ? "visibility-off" : "visibility"}
                 placeholder="Password"
                 name="password"
                 handleBlur={handleBlur}
                 handleChange={handleChange}
-                secureTextEntry
+                secureTextEntry={hidePass ? true : false}
                 value={values.password}
                 validate={
                   1 > values.password.length || values.password.length >= 6
                 }
               />
               <TextField
+                setHidePass={() => setHideConfPass(!hideConfPass)}
+                leftIconName="lock"
+                rightIconName={hideConfPass ? "visibility-off" : "visibility"}
                 placeholder="Confirm Password"
                 name="confirmPassword"
                 handleBlur={handleBlur}
                 handleChange={handleChange}
-                secureTextEntry
+                secureTextEntry={hideConfPass ? true : false}
                 value={values.confirmPassword}
                 validate={
                   1 > values.confirmPassword.length ||
                   values.password === values.confirmPassword
                 }
               />
-              <Button
-                title="Sign Up"
-                buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
-                onPress={handleSubmit}
-              />
+              <View style={{ paddingTop: 15 }}>
+                <Button
+                  title="Sign Up"
+                  buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
+                  onPress={handleSubmit}
+                />
+              </View>
             </>
           )}
         </Formik>

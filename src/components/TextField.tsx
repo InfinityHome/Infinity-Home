@@ -1,5 +1,6 @@
-import React from 'react';
-import { KeyboardTypeOptions, TextInput} from 'react-native';
+import React from "react";
+import { KeyboardTypeOptions, TextInput, View } from "react-native";
+import { Icon } from "react-native-elements";
 
 type handleChange = {
   (e: React.ChangeEvent<any>): void;
@@ -25,30 +26,50 @@ interface TextFieldProps {
   handleBlur: handleBlur;
   value: string;
   validate?: boolean;
+  leftIconName: string;
+  setHidePass?: () => void;
+  rightIconName?: string;
 }
 
 const TextField: React.FC<TextFieldProps> = (props) => {
   return (
-    <TextInput
+    <View
       style={{
-        width: '100%',
-        marginVertical: 10,
-        padding: 10,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         borderBottomWidth: 3,
-        borderBottomColor: props.validate? '#f8ad1c'
-        : 'red',
-        fontSize: 16,
-        color: "#f8ad1c"
+        borderBottomColor: props.validate ? "#f8ad1c" : "red",
       }}
-      placeholder={props.placeholder}
-      placeholderTextColor="#93969e"
-      keyboardType={props.keyboardType}
-      onChangeText={props.handleChange(props.name)}
-      onBlur={props.handleBlur(props.name)}
-      secureTextEntry={props.secureTextEntry}
-      autoCapitalize="none"
-      value={props.value}
-    />
+    >
+      <Icon name={props.leftIconName} color="#d3d4d7" size={18} />
+      <TextInput
+        style={{
+          flex: 1,
+          width: "100%",
+          marginVertical: 5,
+          padding: 10,
+          fontSize: 16,
+          color: "#f8ad1c",
+        }}
+        placeholder={props.placeholder}
+        placeholderTextColor="#93969e"
+        keyboardType={props.keyboardType}
+        onChangeText={props.handleChange(props.name)}
+        onBlur={props.handleBlur(props.name)}
+        secureTextEntry={props.secureTextEntry}
+        autoCapitalize="none"
+        value={props.value}
+      />
+      {props.rightIconName && (
+        <Icon
+          name={props.rightIconName}
+          color="#d3d4d7"
+          size={18}
+          onPress={props.setHidePass}
+        />
+      )}
+    </View>
   );
 };
 
