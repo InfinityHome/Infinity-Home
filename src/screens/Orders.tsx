@@ -78,7 +78,6 @@ const Title: React.FC<{ title: string }> = (props) => (
         fontSize: 22,
         backgroundColor: "#b2b4b9",
         textAlign: "center",
-        borderTopWidth: 2,
         borderWidth: 2,
       }}
     >

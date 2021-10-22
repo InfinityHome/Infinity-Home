@@ -5,22 +5,6 @@ import Button from "../customs/CustomButton";
 import { authMethod } from "../firebase/config";
 import { AccountNavProps } from "../Navigation/Params";
 
-interface TouchableProp {
-  title: string;
-  onPress: () => void;
-  size: number;
-}
-
-const Touchable: React.FC<TouchableProp> = (props) => {
-  return (
-    <TouchableOpacity onPress={props.onPress}>
-      <Text style={{ fontSize: props.size, color: "white" }}>
-        {props.title}
-      </Text>
-    </TouchableOpacity>
-  );
-};
-
 const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
   navigation,
 }) => {
@@ -44,7 +28,6 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </TouchableOpacity>
         <View style={{ justifyContent: "flex-end" }}>
           <Text style={{ fontSize: 25, color: "white" }}>
-            {" "}
             First Name{"\n"} Last Name
           </Text>
         </View>
@@ -58,20 +41,26 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           justifyContent: "space-evenly",
         }}
       >
-        <Touchable title="Saved" onPress={() => ""} size={20} />
-        <Touchable title="Billing" onPress={() => ""} size={20} />
-        <Touchable title="Payment Methods" onPress={() => ""} size={20} />
-        <Touchable title="Change Password" onPress={() => ""} size={20} />
-        <Touchable
-          title="Change Details"
-          onPress={() => navigation.navigate("AccountDetails")}
-          size={20}
-        />
+        <Touchable onPress={() => ""}>Saved</Touchable>
+        <Touchable onPress={() => ""}>Billing</Touchable>
+        <Touchable onPress={() => ""}>Payment Methods</Touchable>
+        <Touchable onPress={() => ""}>Change Password</Touchable>
+        <Touchable onPress={() => navigation.navigate("AccountDetails")}>
+          Change Details
+        </Touchable>
       </View>
       <View style={{ paddingTop: 15 }}>
         <Button title="Sign Out" onPress={handleSignOut} />
       </View>
     </SafeAreaView>
+  );
+};
+
+const Touchable: React.FC<{ onPress: () => void }> = (props) => {
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      <Text style={{ fontSize: 20, color: "white" }}>{props.children}</Text>
+    </TouchableOpacity>
   );
 };
 

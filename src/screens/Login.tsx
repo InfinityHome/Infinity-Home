@@ -43,8 +43,7 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
           }}
         >
           <Text style={{ fontSize: 16, color: "black" }}>
-            {" "}
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
             <Text style={{ fontSize: 16, color: "white" }}>Sign Up</Text>
