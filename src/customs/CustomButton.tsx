@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
-import Text from './CustomText';
+import React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import Text from "./CustomText";
 
 interface ButtonProp {
   title: string;
@@ -11,31 +11,26 @@ interface ButtonProp {
 
 const Button: React.FC<ButtonProp> = (props) => {
   return (
-    <Pressable
-      style={[
-        styles.button,
-        props.buttonOpacity || { opacity: 1 },
-      ]}
-      onPress={props.onPress}>
+    <TouchableOpacity
+      style={[styles.button, props.buttonOpacity || { opacity: 1 }]}
+      onPress={props.onPress}
+    >
       <Text style={styles.text}>{props.title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
     borderRadius: 30,
-    elevation: 3,
-    backgroundColor: '#6081F9',
-    marginLeft: 40,
-    marginRight: 40,
+    backgroundColor: "#21242c",
+    marginHorizontal: 70,
     padding: 10,
   },
   text: {
-    fontSize: 20,
-    color: 'black',
+    fontSize: 16,
+    color: "white",
   },
 });
 

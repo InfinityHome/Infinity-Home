@@ -1,28 +1,66 @@
-import React from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
+import React from "react";
+import { StyleSheet, View, TouchableOpacity, SafeAreaView } from "react-native";
+import Text from "../customs/CustomText";
+import Button from "../customs/CustomButton";
+import { authMethod } from "../firebase/config";
+import { AccountNavProps } from "../Navigation/Params";
 
-const Account: React.FC = () => {
+const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
+  navigation,
+}) => {
+  const handleSignOut = async () => {
+    try {
+      await authMethod.signOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello, How are you?</Text>
-      <TextInput style={styles.input} placeholder={'Email'} />
-      <TextInput style={styles.input} placeholder={'Address'} />
-      <TextInput style={styles.input} placeholder={'Country'} />
-
-      <View style={styles.row}>
-        <View style={styles.column}>
-          <TextInput style={styles.inputState} placeholder={'State'} />
-        </View>
-        <View style={styles.column}>
-          <TextInput style={styles.input} placeholder={'Zip'} />
+    <SafeAreaView style={styles.container}>
+      <View style={{ flexDirection: "row", paddingBottom: 20 }}>
+        <TouchableOpacity
+          style={{ borderWidth: 5, padding: 40 }}
+          onPress={() => ""}
+        >
+          <Text style={{ fontSize: 20, color: "white" }}>
+            Click to change{"\n"}profile picture
+          </Text>
+        </TouchableOpacity>
+        <View style={{ justifyContent: "flex-end" }}>
+          <Text style={{ fontSize: 25, color: "white" }}>
+            First Name{"\n"} Last Name
+          </Text>
         </View>
       </View>
+      <View
+        style={{
+          flex: 1,
+          borderTopWidth: 3,
+          borderBottomWidth: 3,
+          borderColor: "white",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <Touchable onPress={() => ""}>Saved</Touchable>
+        <Touchable onPress={() => ""}>Billing</Touchable>
+        <Touchable onPress={() => ""}>Payment Methods</Touchable>
+        <Touchable onPress={() => ""}>Change Password</Touchable>
+        <Touchable onPress={() => navigation.navigate("AccountDetails")}>
+          Change Details
+        </Touchable>
+      </View>
+      <View style={{ paddingTop: 15 }}>
+        <Button title="Sign Out" onPress={handleSignOut} />
+      </View>
+    </SafeAreaView>
+  );
+};
 
-      <Button title="Change Details" onPress={() => ''} />
-      <Button title="Change Password" onPress={() => ''} />
-    </View>
+const Touchable: React.FC<{ onPress: () => void }> = (props) => {
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      <Text style={{ fontSize: 20, color: "white" }}>{props.children}</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -33,30 +71,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 90,
-    padding: 20,
-    backgroundColor: '#9BBCFD',
-  },
-  input: {
-    backgroundColor: 'white',
-    width: '100%',
-    marginVertical: 10,
-    padding: 20,
-    borderRadius: 10,
-  },
-  inputState: {
-    backgroundColor: 'white',
-    width: '95%',
-    marginVertical: 10,
-    padding: 20,
-    borderRadius: 10,
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  column: {
-    flex: 1,
+    paddingVertical: 50,
+    paddingHorizontal: 20,
+    backgroundColor: "#444956",
+    justifyContent: "space-evenly",
   },
 });
 

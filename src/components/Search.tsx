@@ -23,7 +23,7 @@ const Search: React.FC<SearchProps> = (props) => {
     <SearchBar
       lightTheme
       containerStyle={{
-        backgroundColor: '#fff',
+        backgroundColor: '#3e4350',
         borderTopWidth: 0,
         borderBottomWidth: 0,
       }}

@@ -31,9 +31,11 @@ const Order: React.FC<OrderProps> = (props) => {
     <View
       style={{
         display: 'flex',
+        borderRadius: 20,
+        borderWidth: 2,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#6081F9',
+        backgroundColor: '#b2b4b9',
         minHeight: 100,
         marginHorizontal: 20,
         marginVertical: 10,
@@ -47,20 +49,20 @@ const Order: React.FC<OrderProps> = (props) => {
           marginLeft: 15,
         }}>
         <Service_Status
-          type="Quin"
-          style={{ fontSize: 25 }}
+          type="Electrolize"
+          style={{ fontSize: 23 }}
           Name={props.item.Service}
         />
         <View>
           <Service_Status
-            type="Italic"
+            type="ShareTechMono"
             style={{ marginLeft: 10, fontSize: 17 }}
             Name={props.item.Status}
           />
           <Progress.Bar
             progress={progress(props.item.Status)}
             color="#51E839"
-            unfilledColor="grey"
+            unfilledColor="white"
             height={15}
             borderColor="black"
             borderRadius={11}
