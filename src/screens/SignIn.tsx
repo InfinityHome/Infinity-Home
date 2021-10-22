@@ -21,73 +21,75 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   const [hidePass, setHidePass] = useState(true);
 
   return (
-    <KeyboardAvoidingWrapper>
-      <SafeAreaView style={styles.container}>
-        <Text style={{ fontSize: 30, color: "#fff" }}>
-          Welcome Back,{"\n"}Sign In
-        </Text>
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingWrapper>
+        <>
+          <Text style={{ fontSize: 30, color: "white" }}>
+            Welcome Back,{"\n"}Sign In
+          </Text>
 
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => {
-            onSignin(values.email, values.password);
-          }}
-          validationSchema={SignInSchema}
-          validateOnMount
-        >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            isValid,
-          }: FormikProps<{ email: string; password: string }>) => (
-            <>
-              <TextField
-                leftIconName="email"
-                placeholder="Email"
-                name="email"
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                keyboardType="email-address"
-                value={values.email}
-                validate={
-                  values.email.length < 1 || Validator.validate(values.email)
-                }
-              />
-              <TextField
-                setHidePass={() => setHidePass(!hidePass)}
-                leftIconName="lock"
-                rightIconName={hidePass ? "visibility-off" : "visibility"}
-                placeholder="Password"
-                name="password"
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                secureTextEntry={hidePass ? true : false}
-                value={values.password}
-                validate={
-                  1 > values.password.length || values.password.length >= 6
-                }
-              />
-              <View style={{ paddingTop: 15 }}>
-                <Button
-                  title="Sign In"
-                  buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
-                  onPress={handleSubmit}
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={(values) => {
+              onSignin(values.email, values.password);
+            }}
+            validationSchema={SignInSchema}
+            validateOnMount
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              isValid,
+            }: FormikProps<{ email: string; password: string }>) => (
+              <>
+                <TextField
+                  leftIconName="email"
+                  placeholder="Email"
+                  name="email"
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  keyboardType="email-address"
+                  value={values.email}
+                  validate={
+                    values.email.length < 1 || Validator.validate(values.email)
+                  }
                 />
-              </View>
-            </>
-          )}
-        </Formik>
-      </SafeAreaView>
-    </KeyboardAvoidingWrapper>
+                <TextField
+                  setHidePass={() => setHidePass(!hidePass)}
+                  leftIconName="lock"
+                  rightIconName={hidePass ? "visibility-off" : "visibility"}
+                  placeholder="Password"
+                  name="password"
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  secureTextEntry={hidePass ? true : false}
+                  value={values.password}
+                  validate={
+                    1 > values.password.length || values.password.length >= 6
+                  }
+                />
+                <View style={{ paddingTop: 15 }}>
+                  <Button
+                    title="Sign In"
+                    buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
+                    onPress={handleSubmit}
+                  />
+                </View>
+              </>
+            )}
+          </Formik>
+        </>
+      </KeyboardAvoidingWrapper>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 150,
+    marginTop: -50,
     paddingHorizontal: 20,
     backgroundColor: "#444956",
     justifyContent: "center",

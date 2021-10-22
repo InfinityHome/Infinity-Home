@@ -21,7 +21,7 @@ const LoginNavigation: React.FC = () => {
         title: "",
         headerStyle: { backgroundColor: "#444956" },
         headerShadowVisible: false,
-        headerTintColor: "#fff",
+        headerTintColor: "white",
       }}
     >
       <Stack.Screen
@@ -51,7 +51,7 @@ const AccountNavigation: React.FC = () => {
           title: "",
           headerStyle: { backgroundColor: "#444956" },
           headerShadowVisible: false,
-          headerTintColor: "#fff",
+          headerTintColor: "white",
         }}
       />
     </AccStack.Navigator>
@@ -64,7 +64,7 @@ const BottomNavigation: React.FC = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#fff",
+        tabBarActiveTintColor: "white",
         tabBarLabelStyle: { fontSize: 10, bottom: 8 },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
@@ -80,7 +80,7 @@ const BottomNavigation: React.FC = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <Icon name="house" color="#fff" size={30} />,
+          tabBarIcon: () => <Icon name="house" color="white" size={30} />,
         }}
       />
       <Tab.Screen
@@ -89,7 +89,7 @@ const BottomNavigation: React.FC = () => {
         options={{
           tabBarLabel: "Orders",
           tabBarIcon: () => (
-            <Icon name="shopping-cart" color="#fff" size={30} />
+            <Icon name="shopping-cart" color="white" size={30} />
           ),
         }}
       />
@@ -98,7 +98,7 @@ const BottomNavigation: React.FC = () => {
         component={AccountNavigation}
         options={{
           tabBarLabel: "Account",
-          tabBarIcon: () => <Icon name="person" color="#fff" size={30} />,
+          tabBarIcon: () => <Icon name="person" color="white" size={30} />,
         }}
       />
     </Tab.Navigator>

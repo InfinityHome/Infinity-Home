@@ -1,11 +1,29 @@
-import React from 'react';
-import { StyleSheet, View, TouchableOpacity, SafeAreaView } from 'react-native';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
-import { authMethod } from '../firebase/config';
-import { AccountNavProps } from '../Navigation/Params';
+import React from "react";
+import { StyleSheet, View, TouchableOpacity, SafeAreaView } from "react-native";
+import Text from "../customs/CustomText";
+import Button from "../customs/CustomButton";
+import { authMethod } from "../firebase/config";
+import { AccountNavProps } from "../Navigation/Params";
 
-const Account: React.FC<AccountNavProps<'AccountScreen'>> = ({ navigation }) => {
+interface TouchableProp {
+  title: string;
+  onPress: () => void;
+  size: number;
+}
+
+const Touchable: React.FC<TouchableProp> = (props) => {
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      <Text style={{ fontSize: props.size, color: "white" }}>
+        {props.title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
+  navigation,
+}) => {
   const handleSignOut = async () => {
     try {
       await authMethod.signOut();
@@ -15,32 +33,42 @@ const Account: React.FC<AccountNavProps<'AccountScreen'>> = ({ navigation }) => 
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flexDirection: "row", paddingBottom: 20}}>
-        <TouchableOpacity style={{borderWidth: 5, padding: 40}}onPress={() => ''}>
-          <Text style={{ fontSize: 20, color: '#fff'}}>Click to change{"\n"}profile picture</Text>
+      <View style={{ flexDirection: "row", paddingBottom: 20 }}>
+        <TouchableOpacity
+          style={{ borderWidth: 5, padding: 40 }}
+          onPress={() => ""}
+        >
+          <Text style={{ fontSize: 20, color: "white" }}>
+            Click to change{"\n"}profile picture
+          </Text>
         </TouchableOpacity>
-        <View style={{justifyContent: "flex-end"}}>
-          <Text style={{fontSize: 25, color: '#fff'}}> First Name{"\n"} Last Name</Text>
+        <View style={{ justifyContent: "flex-end" }}>
+          <Text style={{ fontSize: 25, color: "white" }}>
+            {" "}
+            First Name{"\n"} Last Name
+          </Text>
         </View>
       </View>
-      <View style={{ flex: 1, borderTopWidth: 3, borderBottomWidth: 3, borderColor: "#fff", justifyContent: "space-evenly" }} >
-        <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 20, color: '#fff'}}>Saved</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 20, color: '#fff'}}>Billing</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 20, color: '#fff'}}>Payment Methods</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => ''}>
-          <Text style={{ fontSize: 20, color: '#fff'}}>Change Password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AccountDetails')}>
-          <Text style={{ fontSize: 20, color: '#fff'}}>Change Details</Text>
-        </TouchableOpacity>
+      <View
+        style={{
+          flex: 1,
+          borderTopWidth: 3,
+          borderBottomWidth: 3,
+          borderColor: "white",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <Touchable title="Saved" onPress={() => ""} size={20} />
+        <Touchable title="Billing" onPress={() => ""} size={20} />
+        <Touchable title="Payment Methods" onPress={() => ""} size={20} />
+        <Touchable title="Change Password" onPress={() => ""} size={20} />
+        <Touchable
+          title="Change Details"
+          onPress={() => navigation.navigate("AccountDetails")}
+          size={20}
+        />
       </View>
-      <View style={{ paddingTop: 15 }} >
+      <View style={{ paddingTop: 15 }}>
         <Button title="Sign Out" onPress={handleSignOut} />
       </View>
     </SafeAreaView>
@@ -56,8 +84,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 50,
     paddingHorizontal: 20,
-    backgroundColor: '#444956',
-    justifyContent: 'space-evenly',
+    backgroundColor: "#444956",
+    justifyContent: "space-evenly",
   },
 });
 

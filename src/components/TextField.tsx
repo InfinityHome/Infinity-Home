@@ -36,10 +36,11 @@ const TextField: React.FC<TextFieldProps> = (props) => {
     <View
       style={{
         flexDirection: "row",
-        justifyContent: "center",
+        paddingHorizontal: 5,
         alignItems: "center",
         borderBottomWidth: 3,
         borderBottomColor: props.validate ? "#f8ad1c" : "red",
+        marginVertical: 10,
       }}
     >
       <Icon name={props.leftIconName} color="#d3d4d7" size={18} />
@@ -47,7 +48,6 @@ const TextField: React.FC<TextFieldProps> = (props) => {
         style={{
           flex: 1,
           width: "100%",
-          marginVertical: 5,
           padding: 10,
           fontSize: 16,
           color: "#f8ad1c",

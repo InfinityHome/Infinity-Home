@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import Text from './CustomText';
+import React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import Text from "./CustomText";
 
 interface ButtonProp {
   title: string;
@@ -12,11 +12,9 @@ interface ButtonProp {
 const Button: React.FC<ButtonProp> = (props) => {
   return (
     <TouchableOpacity
-      style={[
-        styles.button,
-        props.buttonOpacity || { opacity: 1 },
-      ]}
-      onPress={props.onPress}>
+      style={[styles.button, props.buttonOpacity || { opacity: 1 }]}
+      onPress={props.onPress}
+    >
       <Text style={styles.text}>{props.title}</Text>
     </TouchableOpacity>
   );
@@ -24,16 +22,15 @@ const Button: React.FC<ButtonProp> = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 30,
-    elevation: 5,
-    backgroundColor: '#21242c',
+    backgroundColor: "#21242c",
     marginHorizontal: 70,
     padding: 10,
   },
   text: {
     fontSize: 16,
-    color: '#fff',
+    color: "white",
   },
 });
 
