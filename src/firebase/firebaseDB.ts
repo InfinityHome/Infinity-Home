@@ -36,22 +36,20 @@ class DataBase {
    */
   async readServices(): Promise<ServiceListType> {
     const serviceRef = this.database.ref("/services");
-    await serviceRef.once(
-      "value",
-      (snapshot) => {
-        snapshot.forEach((child) => {
-          const serviceId = child.key;
-          const serviceName = child.val().serviceName;
-          const serviceIcon = child.val().serviceIcon;
-          const companyDetails = child.val().company;
-          this.serviceTable.push({
-            serviceId,
-            serviceIcon,
-            serviceName,
-            companyDetails,
-          });
+    await serviceRef.once("value",(snapshot) => {
+      snapshot.forEach((child) => {
+        const serviceId = child.key;
+        const serviceName = child.val().serviceName;
+        const serviceIcon = child.val().serviceIcon;
+        const companyDetails = child.val().company;
+        this.serviceTable.push({
+          serviceId,
+          serviceIcon,
+          serviceName,
+          companyDetails,
         });
-      },
+      });
+    },
       (errorObject: { name: string }) => {
         console.log("The read failed: " + errorObject.name);
       }
@@ -61,18 +59,17 @@ class DataBase {
 
   async updateUserObject(userInfo: userInfoType) {
     const userRef = this.database.ref("/users/" + userInfo?.userID);
-    await userRef
-      .set({
-        userEmail: userInfo?.userEmail,
-        userName: userInfo?.userName,
-        userPhone: userInfo?.userPhone,
-        userAddress: {
-          street: userInfo.userAddress?.street,
-          city: userInfo.userAddress?.city,
-          state: userInfo.userAddress?.state,
-          zip: userInfo.userAddress?.zip,
-        },
-      })
+    await userRef.set({
+      userEmail: userInfo?.userEmail,
+      userName: userInfo?.userName,
+      userPhone: userInfo?.userPhone,
+      userAddress: {
+        street: userInfo.userAddress?.street,
+        city: userInfo.userAddress?.city,
+        state: userInfo.userAddress?.state,
+        zip: userInfo.userAddress?.zip,
+      },
+    })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
           Alert.alert("Oops", "Email Taken", [{ text: "Try Again" }]);
