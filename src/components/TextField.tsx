@@ -1,6 +1,6 @@
-import { FormikProps } from 'formik';
-import React, { Dispatch, SetStateAction } from 'react';
-import { KeyboardTypeOptions, TextInput, View } from 'react-native';
+import React from "react";
+import { KeyboardTypeOptions, TextInput, View } from "react-native";
+import { Icon } from "react-native-elements";
 
 type handleChange = {
   (e: React.ChangeEvent<any>): void;
@@ -25,29 +25,51 @@ interface TextFieldProps {
   keyboardType?: KeyboardTypeOptions;
   handleBlur: handleBlur;
   value: string;
-  vadilate?: string;
+  validate?: boolean;
+  leftIconName: string;
+  setHidePass?: () => void;
+  rightIconName?: string;
 }
 
 const TextField: React.FC<TextFieldProps> = (props) => {
   return (
-    <TextInput
+    <View
       style={{
-        backgroundColor: 'white',
-        width: '100%',
+        flexDirection: "row",
+        paddingHorizontal: 5,
+        alignItems: "center",
+        borderBottomWidth: 3,
+        borderBottomColor: props.validate ? "#f8ad1c" : "red",
         marginVertical: 10,
-        padding: 10,
-        borderRadius: 10,
-        borderWidth: 1.7,
-        borderColor: props.vadilate,
       }}
-      placeholder={props.placeholder}
-      keyboardType={props.keyboardType}
-      onChangeText={props.handleChange(props.name)}
-      onBlur={props.handleBlur(props.name)}
-      secureTextEntry={props.secureTextEntry}
-      autoCapitalize="none"
-      value={props.value}
-    />
+    >
+      <Icon name={props.leftIconName} color="#d3d4d7" size={18} />
+      <TextInput
+        style={{
+          flex: 1,
+          width: "100%",
+          padding: 10,
+          fontSize: 16,
+          color: "#f8ad1c",
+        }}
+        placeholder={props.placeholder}
+        placeholderTextColor="#93969e"
+        keyboardType={props.keyboardType}
+        onChangeText={props.handleChange(props.name)}
+        onBlur={props.handleBlur(props.name)}
+        secureTextEntry={props.secureTextEntry}
+        autoCapitalize="none"
+        value={props.value}
+      />
+      {props.rightIconName && (
+        <Icon
+          name={props.rightIconName}
+          color="#d3d4d7"
+          size={18}
+          onPress={props.setHidePass}
+        />
+      )}
+    </View>
   );
 };
 

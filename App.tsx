@@ -11,6 +11,9 @@ const App: React.FC = () => {
         'Radley-Italic': require('./assets/fonts/Radley-Italic.ttf'),
         'Radley-Regular': require('./assets/fonts/Radley-Regular.ttf'),
         'Quintessential-Regular': require('./assets/fonts/Quintessential-Regular.ttf'),
+        'ArchivoNarrow-Regular': require('./assets/fonts/ArchivoNarrow-Regular.ttf'),
+        'ShareTechMono-Regular': require('./assets/fonts/ShareTechMono-Regular.ttf'),
+        'Electrolize-Regular': require('./assets/fonts/Electrolize-Regular.ttf'),
       });
     fetchFont().then(() => {
       setFontLoaded(true);

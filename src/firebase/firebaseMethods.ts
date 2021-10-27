@@ -1,18 +1,28 @@
-import * as Google from 'expo-google-app-auth';
 import { Alert } from 'react-native';
+import * as Google from 'expo-google-app-auth';
+import { googleConfig } from '../firebase/config';
 import {authMethod, firebase} from './config';
+import { database } from './firebaseDB';
 
- interface Result {
+type ResultType = {
      type: "success";
      accessToken: string | null;
      idToken: string | null;
      refreshToken: string | null;
      user: Google.GoogleUser;
 }
+  export const signInWithGoogleAsync = (): void => {
+      Google.logInAsync(googleConfig).then((result) => {
+        if (result.type === 'success') {
+            onGoogleSignIn(result);
+        } 
+      }).catch((error) => {
+          Alert.alert("Something went wrong: ", error.message);
+      }); 
+  };
 
  // store google signed in user information into database
- export const onSignIn = (googleUser:Result): void => {
-    // console.log('Google Auth Response', googleUser);
+ const onGoogleSignIn = (googleUser:ResultType): void => {
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     const unsubscribe = authMethod.onAuthStateChanged((firebaseUser) => {
         unsubscribe();
@@ -26,25 +36,26 @@ import {authMethod, firebase} from './config';
 
             // Sign in with credential from the Google user.
             authMethod.signInWithCredential(credential)
-            .then((result) => {
-                console.log('user siggned in');
-                if(result.additionalUserInfo?.isNewUser)
+            .then((userInfo) => {
+                if(userInfo.additionalUserInfo?.isNewUser)
                 {
-                    // console.log(result);
-                    firebase
-                    .database()
-                    .ref('/users/' + result.user?.uid)
-                    .set({
-                        userEmail: result.user?.email,
-                        userName: result.user?.displayName,
-                        userPhone: result.user?.phoneNumber,
-                    }).then((snapshot) => {
-                        console.log("snapshot: ",snapshot)
-                    });
+                    database.updateUserObject(
+                        {
+                            userID: userInfo.user?.uid,
+                            userEmail: userInfo.user?.email,
+                            userName: userInfo.user?.displayName,
+                            userPhone: userInfo.user?.phoneNumber,
+                            userAddress: {
+                                street: "",
+                                city: "",
+                                state: "",
+                                zip: "",
+                            }
+                        }
+                    )
                 }
             })
             .catch((error) => {
-            // error.code, error.message, error.email, error.credential
             Alert.alert("Sonething Went Wrong", error.code)
         });
         } else {
@@ -53,8 +64,8 @@ import {authMethod, firebase} from './config';
     });
 }
 
-   // helper method
-const isUserEqual = (googleUser:Result, firebaseUser:firebase.User | null):boolean => {
+// helper method
+const isUserEqual = (googleUser:ResultType, firebaseUser:firebase.User | null):boolean => {
     if (firebaseUser) {
         const providerData = firebaseUser.providerData;
         for (let i = 0; i < providerData.length; i++) {
@@ -67,3 +78,63 @@ const isUserEqual = (googleUser:Result, firebaseUser:firebase.User | null):boole
     }
     return false;
 }
+
+// sign in existing user
+export const onSignin = (email: string, password: string): void => {
+    authMethod
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        switch (error.code) {
+          case 'auth/wrong-password':
+            Alert.alert('Oops', 'Wrong Password', [{ text: 'Try Again' }]);
+            break;
+          case 'auth/user-not-found':
+            Alert.alert('Sorry', 'User does not exist', [
+              { text: 'Cancel' },
+              {
+                text: 'Sign Up',
+              },
+            ]);
+            break;
+          default:
+            Alert.alert('Error', 'Something Went Wrong', [
+              { text: 'Try Again' },
+            ]);
+            break;
+        }
+      });
+  };
+
+// sign up new user
+export const onSignUp = (
+    name: string,
+    email: string,
+    password: string,
+    phone: string
+  ): void => {
+    authMethod
+      .createUserWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        database.updateUserObject(
+          {
+            userID: user?.uid,
+            userEmail: email,
+            userName: name,
+            userPhone: phone,
+            userAddress: {
+              street: "",
+              city: "",
+              state: "",
+              zip: "",
+            }
+          }
+        )
+      })
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('Oops', 'Email Taken', [{ text: 'Try Again' }]);
+        } else {
+          Alert.alert('Error', 'Something Went Wrong', [{ text: 'Try Again' }]);
+        }
+      });
+  };

@@ -1,122 +1,95 @@
-import React from 'react';
-import { StyleSheet, Alert, SafeAreaView } from 'react-native';
-import { authMethod } from '../firebase/config';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
-import TextField from '../components/TextField';
-import { LoginNavProps } from '../Navigation/Params';
-import { Formik, FormikProps } from 'formik';
-import * as Yup from 'yup';
-import Validator from 'email-validator';
+import React, { useState } from "react";
+import { StyleSheet, SafeAreaView, View } from "react-native";
+import Text from "../customs/CustomText";
+import Button from "../customs/CustomButton";
+import TextField from "../components/TextField";
+import { LoginNavProps } from "../Navigation/Params";
+import { Formik, FormikProps } from "formik";
+import * as Yup from "yup";
+import Validator from "email-validator";
+import { onSignin } from "../firebase/firebaseMethods";
 
-const SignIn: React.FC<LoginNavProps<'SignIn'>> = ({ navigation }) => {
+const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   const SignInSchema = Yup.object().shape({
-    email: Yup.string().email().required('An email is required'),
+    email: Yup.string().email().required("An email is required"),
     password: Yup.string()
       .required()
-      .min(6, 'Your password has to have at least 6 characters'),
+      .min(6, "Your password has to have at least 6 characters"),
   });
 
-  const onLogin = async (email: string, password: string) => {
-    await authMethod
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        switch (error.code) {
-          case 'auth/wrong-password':
-            Alert.alert('Oops', 'Wrong Password', [{ text: 'Try Again' }]);
-            break;
-          case 'auth/user-not-found':
-            Alert.alert('Sorry', 'User does not exist', [
-              { text: 'Cancel' },
-              {
-                text: 'Sign Up',
-                onPress: () => navigation.replace('SignUp'),
-              },
-            ]);
-            break;
-          default:
-            Alert.alert('Error', 'Something Went Wrong', [
-              { text: 'Try Again' },
-            ]);
-            break;
-        }
-      });
-  };
+  const [hidePass, setHidePass] = useState(true);
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: '#9BBCFD',
-        paddingHorizontal: 20,
-        justifyContent: 'center',
-      }}>
-      <Text style={styles.text}>Welcome Back</Text>
-      <Text style={styles.text1}>Sign In</Text>
+    <SafeAreaView style={styles.container}>
+      <>
+        <Text style={{ fontSize: 30, color: "white" }}>
+          Welcome Back,{"\n"}Sign In
+        </Text>
 
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={(values) => {
-          onLogin(values.email, values.password);
-        }}
-        validationSchema={SignInSchema}
-        validateOnMount>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          isValid,
-        }: FormikProps<{ email: string; password: string }>) => (
-          <>
-            <TextField
-              placeholder="Email"
-              name="email"
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              keyboardType="email-address"
-              value={values.email}
-              vadilate={
-                values.email.length < 1 || Validator.validate(values.email)
-                  ? '#000'
-                  : 'red'
-              }
-            />
-            <TextField
-              placeholder="Password"
-              name="password"
-              handleBlur={handleBlur}
-              handleChange={handleChange}
-              secureTextEntry
-              value={values.password}
-              vadilate={
-                1 > values.password.length || values.password.length >= 6
-                  ? '#000'
-                  : 'red'
-              }
-            />
-            <Button
-              title="Sign In"
-              buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
-              onPress={handleSubmit}
-            />
-          </>
-        )}
-      </Formik>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={(values) => {
+            onSignin(values.email, values.password);
+          }}
+          validationSchema={SignInSchema}
+          validateOnMount
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            isValid,
+          }: FormikProps<{ email: string; password: string }>) => (
+            <>
+              <TextField
+                leftIconName="email"
+                placeholder="Email"
+                name="email"
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                keyboardType="email-address"
+                value={values.email}
+                validate={
+                  values.email.length < 1 || Validator.validate(values.email)
+                }
+              />
+              <TextField
+                setHidePass={() => setHidePass(!hidePass)}
+                leftIconName="lock"
+                rightIconName={hidePass ? "visibility-off" : "visibility"}
+                placeholder="Password"
+                name="password"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                secureTextEntry={hidePass ? true : false}
+                value={values.password}
+                validate={
+                  1 > values.password.length || values.password.length >= 6
+                }
+              />
+              <View style={{ paddingTop: 15 }}>
+                <Button
+                  title="Sign In"
+                  buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
+                  onPress={handleSubmit}
+                />
+              </View>
+            </>
+          )}
+        </Formik>
+      </>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    textAlign: 'center',
-    marginLeft: -50,
-  },
-  text1: {
-    fontSize: 30,
-    textAlign: 'center',
-    paddingLeft: 170,
+  container: {
+    flex: 1,
+    marginTop: -50,
+    paddingHorizontal: 20,
+    backgroundColor: "#444956",
+    justifyContent: "center",
   },
 });
 

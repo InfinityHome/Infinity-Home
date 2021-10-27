@@ -1,48 +1,47 @@
-import React from 'react';
-import { SafeAreaView, StatusBar, SectionList, View } from 'react-native';
-import { Divider } from 'react-native-elements';
-import Order from '../components/Order';
-import Header from '../components/Header';
-import Text from '../customs/CustomText';
+import React from "react";
+import { SafeAreaView, StatusBar, SectionList, View } from "react-native";
+import Order from "../components/Order";
+import Header from "../components/Header";
+import Text from "../customs/CustomText";
 
 const Data = [
   {
-    title: 'Current',
+    title: "Current",
     data: [
       {
-        Service: 'Roofing',
-        ServiceIcon: 'roofing',
-        Status: 'In-Transit',
+        Service: "Roofing",
+        ServiceIcon: "roofing",
+        Status: "In-Transit",
       },
       {
-        Service: 'Plumbing',
-        ServiceIcon: 'plumbing',
-        Status: 'In-Progress',
+        Service: "Plumbing",
+        ServiceIcon: "plumbing",
+        Status: "In-Progress",
       },
       {
-        Service: 'Electrical',
-        ServiceIcon: 'electrical-services',
-        Status: 'Completing Work',
+        Service: "Electrical",
+        ServiceIcon: "electrical-services",
+        Status: "Completing Work",
       },
     ],
   },
   {
-    title: 'Completed',
+    title: "Completed",
     data: [
-      { Service: 'Lawn', ServiceIcon: 'grass', Status: 'Completed' },
-      { Service: 'Painting', ServiceIcon: 'format-paint', Status: 'Completed' },
-      { Service: 'Hvac', ServiceIcon: 'hvac', Status: 'Completed' },
-      { Service: 'Gutter', ServiceIcon: 'filter-alt', Status: 'Completed' },
-      { Service: 'Home Cleaning', ServiceIcon: 'home', Status: 'Completed' },
+      { Service: "Lawn", ServiceIcon: "grass", Status: "Completed" },
+      { Service: "Painting", ServiceIcon: "format-paint", Status: "Completed" },
+      { Service: "Hvac", ServiceIcon: "hvac", Status: "Completed" },
+      { Service: "Gutter", ServiceIcon: "filter-alt", Status: "Completed" },
+      { Service: "Home Cleaning", ServiceIcon: "home", Status: "Completed" },
       {
-        Service: 'Locks Installation',
-        ServiceIcon: 'lock',
-        Status: 'Completed',
+        Service: "Locks Installation",
+        ServiceIcon: "lock",
+        Status: "Completed",
       },
       {
-        Service: 'Window Treatments',
-        ServiceIcon: 'branding-watermark',
-        Status: 'Completed',
+        Service: "Window Treatments",
+        ServiceIcon: "branding-watermark",
+        Status: "Completed",
       },
     ],
   },
@@ -52,9 +51,11 @@ const Orders: React.FC = () => {
   return (
     <SafeAreaView
       style={{
+        backgroundColor: "#3e4350",
         flex: 1,
         paddingTop: StatusBar.currentHeight,
-      }}>
+      }}
+    >
       <Header name="Orders" size={24} />
       <SectionList
         sections={Data}
@@ -73,14 +74,15 @@ const Title: React.FC<{ title: string }> = (props) => (
   <View style={{ paddingBottom: 10 }}>
     <Text
       style={{
-        paddingHorizontal: 32,
-        paddingVertical: 10,
-        fontSize: 19,
-        backgroundColor: '#fff',
-      }}>
+        paddingTop: 7,
+        fontSize: 22,
+        backgroundColor: "#b2b4b9",
+        textAlign: "center",
+        borderWidth: 2,
+      }}
+    >
       {props.title}
     </Text>
-    <Divider width={1} />
   </View>
 );
 

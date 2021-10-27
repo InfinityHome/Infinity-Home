@@ -1,54 +1,24 @@
-import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-import { LoginNavProps, LoginParamList } from '../Navigation/Params';
-import { onSignIn } from '../firebase/firebaseMethods';
-import { googleConfig } from '../firebase/config';
-import * as Google from 'expo-google-app-auth';
-import Text from '../customs/CustomText';
-import Button from '../customs/CustomButton';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React from "react";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { LoginNavProps } from "../Navigation/Params";
+import Text from "../customs/CustomText";
+import Button from "../customs/CustomButton";
+import { signInWithGoogleAsync } from "../firebase/firebaseMethods";
 
-const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
-  const signInWithGoogleAsync = async () => {
-    try {
-      const result = await Google.logInAsync(googleConfig);
-
-      if (result.type === 'success') {
-        console.log(result);
-        // validate Id token by calling Google REST API
-        const userInfoResponse = await fetch(
-          'https://oauth2.googleapis.com/tokeninfo?id_token',
-          {
-            headers: { Authorization: `Bearer ${result.accessToken}` },
-          }
-        );
-        console.log(
-          JSON.stringify(
-            userInfoResponse,
-            Object.getOwnPropertyNames(userInfoResponse)
-          )
-        );
-        onSignIn(result);
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      return { error: true };
-    }
-  };
+const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.top}>
+      <View>
         <Image
           source={{
-            uri: 'https://www.freepnglogos.com/uploads/logo-home-png/photo-icon-home-logo-23.png',
+            uri: "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/49812/house-with-garden-emoji-clipart-xl.png",
           }}
-          style={{ width: 100, height: 100 }}
+          style={{ width: 180, height: 135 }}
         />
-        <Text style={styles.text}>Infinity Home</Text>
+        <Text style={{ fontSize: 40, color: "white" }}>Infinity Home</Text>
       </View>
-      <View style={styles.middle}>
+
+      <View>
         <Text style={styles.motto}>
           We aim to deliver a mobile application which can provide a list of
           home services according to the needs of the customer. The motivation
@@ -56,66 +26,46 @@ const Login: React.FC<LoginNavProps<'Login'>> = ({ navigation }) => {
           stressful for the customer.
         </Text>
       </View>
-      <View style={styles.bottom}>
-        <View style={{ flex: 0.32 }}>
-          <Button
-            title="Continue with Google"
-            onPress={signInWithGoogleAsync}
-          />
-        </View>
-        <View style={{ flex: 0.14, paddingBottom: 10 }}>
-          <Text style={{ fontSize: 20, textAlign: 'center' }}> OR </Text>
-        </View>
 
-        <Buttons name="Sign In" screen="SignIn" navigation={navigation} />
-        <Buttons name="Sign Up" screen="SignUp" navigation={navigation} />
+      <View>
+        <Button title="Continue with Google" onPress={signInWithGoogleAsync} />
+        <Text
+          style={{ fontSize: 16, textAlign: "center", paddingVertical: 20 }}
+        >
+          - OR -
+        </Text>
+        <Button title="Sign In" onPress={() => navigation.navigate("SignIn")} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            paddingTop: 10,
+          }}
+        >
+          <Text style={{ fontSize: 16, color: "black" }}>
+            Don&apos;t have an account?
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={{ fontSize: 16, color: "white" }}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
-const Buttons: React.FC<{
-  name: string;
-  screen: keyof LoginParamList;
-  navigation: NativeStackNavigationProp<LoginParamList, 'Login'>;
-}> = (props) => (
-  <View style={{ flex: 0.32 }}>
-    <Button
-      title={props.name}
-      onPress={() => props.navigation.navigate(props.screen)}
-    />
-  </View>
-);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#9BBCFD',
-    padding: 5,
-  },
-  text: {
-    fontSize: 40,
-    color: 'black',
-    padding: 10,
+    backgroundColor: "#444956",
+    padding: 7,
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   motto: {
-    fontSize: 18,
-    color: 'black',
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  top: {
-    flex: 0.25,
-    alignItems: 'center',
-  },
-  middle: {
-    flex: 0.4,
-    justifyContent: 'center',
-  },
-  bottom: {
-    flex: 0.4,
-    justifyContent: 'center',
+    fontSize: 16,
+    color: "white",
+    paddingHorizontal: 25,
   },
 });
 
