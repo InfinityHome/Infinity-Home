@@ -49,8 +49,7 @@ class DataBase {
           companyDetails,
         });
       });
-    },
-      (errorObject: { name: string }) => {
+    }, (errorObject: { name: string }) => {
         console.log("The read failed: " + errorObject.name);
       }
     );
@@ -69,8 +68,7 @@ class DataBase {
         state: userInfo.userAddress?.state,
         zip: userInfo.userAddress?.zip,
       },
-    })
-      .catch((error) => {
+    }).catch((error) => {
         if (error.code === "auth/email-already-in-use") {
           Alert.alert("Oops", "Email Taken", [{ text: "Try Again" }]);
         } else {
