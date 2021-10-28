@@ -20,9 +20,9 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   const [hidePass, setHidePass] = useState(true);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <>
-        <Text style={{ fontSize: 30, color: "white" }}>
+        <Text style={{fontSize: 30, color: "white",textAlign:"center" }}>
           Welcome Back,{"\n"}Sign In
         </Text>
 
@@ -79,7 +79,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
           )}
         </Formik>
       </>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#444956",
     justifyContent: "center",
-    //padding: Platform.OS === "ios"?5:0,
+    //paddingRight: Platform.OS === "ios"?10:0,
   },
 });
 
