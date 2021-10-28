@@ -65,13 +65,13 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: { fontSize: 10, bottom: 8 },
+        tabBarLabelStyle: { fontSize: 10, bottom: 5 },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: "#21242c",
           borderTopWidth: 0,
-          height: 55,
-          elevation: 5,
+          minHeight: 55,
+  
         },
       }}
     >
