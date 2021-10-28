@@ -36,6 +36,7 @@ class DataBase {
      */
     async readServices(): Promise<ServiceListType> {
         const serviceRef = this.database.ref('/services')
+        this.serviceTable = [];
         await serviceRef.once('value', (snapshot) => {
             snapshot.forEach((child) => {
                 const serviceId = child.key;
