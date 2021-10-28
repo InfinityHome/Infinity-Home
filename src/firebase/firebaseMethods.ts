@@ -138,3 +138,9 @@ export const onSignUp = (
         }
       });
   };
+
+export const handleSignOut = (): void => {
+  authMethod.signOut().catch((error) => {
+    console.log(error);
+  });
+};
