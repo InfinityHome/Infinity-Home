@@ -65,13 +65,13 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: { fontSize: 10, bottom: 5 },
+        tabBarLabelStyle: { fontSize: 12, bottom: 2 },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: "#21242c",
           borderTopWidth: 0,
           minHeight: 55,
-  
+          paddingTop: 10,
         },
       }}
     >
@@ -80,7 +80,7 @@ const BottomNavigation: React.FC = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <Icon name="house" color="white" size={30} />,
+          tabBarIcon: () => <Icon name="house" color="white" size={25} />,
         }}
       />
       <Tab.Screen
@@ -89,7 +89,7 @@ const BottomNavigation: React.FC = () => {
         options={{
           tabBarLabel: "Orders",
           tabBarIcon: () => (
-            <Icon name="shopping-cart" color="white" size={30} />
+            <Icon name="shopping-cart" color="white" size={25} />
           ),
         }}
       />
@@ -98,7 +98,7 @@ const BottomNavigation: React.FC = () => {
         component={AccountNavigation}
         options={{
           tabBarLabel: "Account",
-          tabBarIcon: () => <Icon name="person" color="white" size={30} />,
+          tabBarIcon: () => <Icon name="person" color="white" size={25} />,
         }}
       />
     </Tab.Navigator>
