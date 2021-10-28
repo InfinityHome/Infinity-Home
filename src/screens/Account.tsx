@@ -2,19 +2,12 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, SafeAreaView } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
-import { authMethod } from "../firebase/config";
+import { handleSignOut } from "../firebase/firebaseMethods";
 import { AccountNavProps } from "../Navigation/Params";
 
 const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
   navigation,
 }) => {
-  const handleSignOut = async () => {
-    try {
-      await authMethod.signOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flexDirection: "row", paddingBottom: 20 }}>
