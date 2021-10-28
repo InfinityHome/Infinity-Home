@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View,Platform} from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import TextField from "../components/TextField";
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#444956",
     justifyContent: "center",
+    //padding: Platform.OS === "ios"?5:0,
   },
 });
 

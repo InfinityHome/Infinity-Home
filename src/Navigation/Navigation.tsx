@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Platform,StyleSheet } from "react-native";
+import { Platform,StyleSheet} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -66,12 +66,15 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: Platform.OS==="android"?{ fontSize: 10, bottom: 8 }:{ fontSize: 12, bottom: 5},
+        tabBarLabelStyle: Platform.OS==="android"?{ fontSize: 10, bottom: 8 }:{ fontSize: 10, bottom: 0 },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: "#21242c",
           borderTopWidth: 0,
-          elevation:  5,
+          //height: Platform.OS==="ios"?55:55,
+          //paddingTop:Platform.OS==="android"?0:2,
+          
+          // elevation: 5,
         },
       }}
     >
@@ -80,7 +83,7 @@ const BottomNavigation: React.FC = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <Icon name="house" color="white" size={30} />,
+          tabBarIcon: () => <Icon style={ {padding:Platform.OS==="ios"?5:0}} name="house" color="white" size={30} />,
         }}
       />
       <Tab.Screen

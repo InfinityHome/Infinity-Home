@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, SafeAreaView } from "react-native";
+import { StyleSheet, View, TouchableOpacity, SafeAreaView, Platform } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import { authMethod } from "../firebase/config";
@@ -17,9 +17,9 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flexDirection: "row", paddingBottom: 20 }}>
+      <View style={{ flexDirection: "row", paddingBottom: Platform.OS==="android"?20:5,padding:Platform.OS==="ios"?10:0 }}>
         <TouchableOpacity
-          style={{ borderWidth: 5, padding: 40 }}
+          style={{ borderWidth: 5, padding:Platform.OS==="ios"?40:40 }}
           onPress={() => ""}
         >
           <Text style={{ fontSize: 20, color: "white" }}>
@@ -27,7 +27,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           </Text>
         </TouchableOpacity>
         <View style={{ justifyContent: "flex-end" }}>
-          <Text style={{ fontSize: 25, color: "white" }}>
+          <Text style={{ fontSize: 25, color: "white",padding:Platform.OS==="ios"?5:0 }}>
             First Name{"\n"} Last Name
           </Text>
         </View>
@@ -36,6 +36,8 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         style={{
           flex: 1,
           borderTopWidth: 3,
+          padding: Platform.OS === "ios" ? 15 : 0,
+
           borderBottomWidth: 3,
           borderColor: "white",
           justifyContent: "space-evenly",
@@ -49,7 +51,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           Change Details
         </Touchable>
       </View>
-      <View style={{ paddingTop: 15 }}>
+      <View style={{ paddingTop: 15, paddingBottom:15 }}>
         <Button title="Sign Out" onPress={handleSignOut} />
       </View>
     </SafeAreaView>
