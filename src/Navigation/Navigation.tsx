@@ -12,6 +12,19 @@ import Home from "../screens/Home";
 import Orders from "../screens/Orders";
 import Account from "../screens/Account";
 import AccountDetails from "../screens/AccountDetails";
+import ContractorAccount from "../screens/ContractorAccount";
+import Bid from "../screens/Bid";
+
+import { createDrawerNavigator } from '@react-navigation/drawer';
+const Drawer = createDrawerNavigator();
+const ContractorNavigation: React.FC = () => {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="ContractorAccount" component={ContractorAccount} />
+        <Drawer.Screen name="Bid" component={Bid} />
+      </Drawer.Navigator>
+  );
+};
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
@@ -114,7 +127,8 @@ const Navigation: React.FC = () => {
   }, []);
   return (
     <NavigationContainer>
-      {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
+      {/* {userLoggin ? <BottomNavigation /> : <LoginNavigation />} */}
+      <ContractorNavigation />
     </NavigationContainer>
   );
 };
