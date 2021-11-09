@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { LoginParamList, BottomNavParamList, AccountParamList } from "./Params";
 import { authMethod, firebase } from "../firebase/config";
+import { Platform } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
 import SignUp from "../screens/SignUp";
 import Login from "../screens/Login";
@@ -65,13 +67,16 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: { fontSize: 12, bottom: 2 },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          bottom: Platform.OS === "ios" ? 0 : 8,
+        },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: "#21242c",
           borderTopWidth: 0,
           minHeight: 55,
-          paddingTop: 10,
+          paddingTop: Platform.OS === "ios" ? 10 : 0,
         },
       }}
     >
