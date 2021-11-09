@@ -14,15 +14,19 @@ import Account from "../screens/Account";
 import AccountDetails from "../screens/AccountDetails";
 import ContractorAccount from "../screens/ContractorAccount";
 import Bid from "../screens/Bid";
+import Payments from "../screens/Payments";
+import Messages from "../screens/Messages";
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator } from "@react-navigation/drawer";
 const Drawer = createDrawerNavigator();
 const ContractorNavigation: React.FC = () => {
   return (
     <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="ContractorAccount" component={ContractorAccount} />
-        <Drawer.Screen name="Bid" component={Bid} />
-      </Drawer.Navigator>
+      <Drawer.Screen name="Contractor Account" component={ContractorAccount} />
+      <Drawer.Screen name="Bids" component={Bid} />
+      <Drawer.Screen name="Payments" component={Payments} />
+      <Drawer.Screen name="Messages" component={Messages} />
+    </Drawer.Navigator>
   );
 };
 
