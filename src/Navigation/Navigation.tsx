@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { LoginParamList, BottomNavParamList, AccountParamList } from "./Params";
 import { authMethod, firebase } from "../firebase/config";
+import { Platform } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
 import SignUp from "../screens/SignUp";
 import Login from "../screens/Login";
@@ -65,13 +67,16 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: { fontSize: 10, bottom: 8 },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          bottom: Platform.OS === "ios" ? 0 : 8,
+        },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: "#21242c",
           borderTopWidth: 0,
-          height: 55,
-          elevation: 5,
+          minHeight: 55,
+          paddingTop: Platform.OS === "ios" ? 10 : 0,
         },
       }}
     >
@@ -80,7 +85,7 @@ const BottomNavigation: React.FC = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <Icon name="house" color="white" size={30} />,
+          tabBarIcon: () => <Icon name="house" color="white" size={25} />,
         }}
       />
       <Tab.Screen
@@ -89,7 +94,7 @@ const BottomNavigation: React.FC = () => {
         options={{
           tabBarLabel: "Orders",
           tabBarIcon: () => (
-            <Icon name="shopping-cart" color="white" size={30} />
+            <Icon name="shopping-cart" color="white" size={25} />
           ),
         }}
       />
@@ -98,7 +103,7 @@ const BottomNavigation: React.FC = () => {
         component={AccountNavigation}
         options={{
           tabBarLabel: "Account",
-          tabBarIcon: () => <Icon name="person" color="white" size={30} />,
+          tabBarIcon: () => <Icon name="person" color="white" size={25} />,
         }}
       />
     </Tab.Navigator>
