@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, ScrollView } from "react-native";
-import Header from "../components/Header";
-import Services from "../components/Services";
-import Search from "../components/Search";
-import { database, ServiceListType } from "../firebase/firebaseDB";
+import Header from "../../components/Header";
+import Services from "../../components/Services";
+import Search from "../../components/Search";
+import { database, ServiceListType } from "../../firebase/firebaseDB";
 
 const Home: React.FC = () => {
   const [serviceList, setServiceList] = useState<ServiceListType>([]);

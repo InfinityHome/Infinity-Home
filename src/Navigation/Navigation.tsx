@@ -10,8 +10,8 @@ import { Icon } from "react-native-elements";
 import SignUp from "../screens/SignUp";
 import Login from "../screens/Login";
 import SignIn from "../screens/SignIn";
-import Home from "../screens/Home";
-import Orders from "../screens/Orders";
+import Home from "../screens/Home/Home";
+import Orders from "../screens/Orders/Orders";
 import Account from "../screens/Account";
 import AccountDetails from "../screens/AccountDetails";
 
