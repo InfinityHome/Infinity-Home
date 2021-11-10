@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, SafeAreaView } from "react-native";
-import Text from "../customs/CustomText";
-import Button from "../customs/CustomButton";
-import { handleSignOut } from "../firebase/firebaseMethods";
-import { AccountNavProps } from "../Navigation/Params";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
+import Text from "../../customs/CustomText";
+import Button from "../../customs/CustomButton";
+import { handleSignOut } from "../../firebase/firebaseMethods";
+import { AccountNavProps } from "../../Navigation/Params";
 
 const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
   navigation,

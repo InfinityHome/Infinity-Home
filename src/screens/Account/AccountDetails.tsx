@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TextInput, SafeAreaView } from "react-native";
-import Text from "../customs/CustomText";
-import Button from "../customs/CustomButton";
+import Text from "../../customs/CustomText";
+import Button from "../../customs/CustomButton";
 
 const AccountDetails: React.FC = () => {
   return (

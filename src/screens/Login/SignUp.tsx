@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
-import Text from "../customs/CustomText";
-import Button from "../customs/CustomButton";
-import TextField from "../components/TextField";
+import { View, StyleSheet } from "react-native";
+import Text from "../../customs/CustomText";
+import Button from "../../customs/CustomButton";
+import TextField from "../../components/TextField";
 
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
-import { onSignUp } from "../firebase/firebaseMethods";
+import { onSignUp } from "../../firebase/firebaseMethods";
 
 type FromValidate = {
   name: string;

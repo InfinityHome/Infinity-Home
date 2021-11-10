@@ -5,15 +5,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { LoginParamList, BottomNavParamList, AccountParamList } from "./Params";
 import { authMethod, firebase } from "../firebase/config";
 import { Platform } from "react-native";
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
-import SignUp from "../screens/SignUp";
-import Login from "../screens/Login";
-import SignIn from "../screens/SignIn";
+import SignUp from "../screens/Login/SignUp";
+import Login from "../screens/Login/Login";
+import SignIn from "../screens/Login/SignIn";
 import Home from "../screens/Home/Home";
 import Orders from "../screens/Orders/Orders";
-import Account from "../screens/Account";
-import AccountDetails from "../screens/AccountDetails";
+import Account from "../screens/Account/Account";
+import AccountDetails from "../screens/Account/AccountDetails";
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {

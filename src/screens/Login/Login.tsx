@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import { LoginNavProps } from "../Navigation/Params";
-import Text from "../customs/CustomText";
-import Button from "../customs/CustomButton";
-import { signInWithGoogleAsync } from "../firebase/firebaseMethods";
+import { LoginNavProps } from "../../Navigation/Params";
+import Text from "../../customs/CustomText";
+import Button from "../../customs/CustomButton";
+import { signInWithGoogleAsync } from "../../firebase/firebaseMethods";
 
 const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
   return (

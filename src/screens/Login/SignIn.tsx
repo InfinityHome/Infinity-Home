@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
-import Text from "../customs/CustomText";
-import Button from "../customs/CustomButton";
-import TextField from "../components/TextField";
-import { LoginNavProps } from "../Navigation/Params";
+import { StyleSheet, View } from "react-native";
+import Text from "../../customs/CustomText";
+import Button from "../../customs/CustomButton";
+import TextField from "../../components/TextField";
+import { LoginNavProps } from "../../Navigation/Params";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
-import { onSignin } from "../firebase/firebaseMethods";
+import { onSignin } from "../../firebase/firebaseMethods";
 
 const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   const SignInSchema = Yup.object().shape({
