@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { LoginParamList, BottomNavParamList, AccountParamList } from "./Params";
 import { authMethod, firebase } from "../firebase/config";
-import { Icon } from "react-native-elements";
+import Icon from 'react-native-vector-icons/Feather';
 import SignUp from "../screens/SignUp";
 import Login from "../screens/Login";
 import SignIn from "../screens/SignIn";
@@ -26,13 +26,16 @@ const ContractorNavigation: React.FC = () => {
       initialRouteName="Home"
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={{
-        drawerActiveBackgroundColor: "#3884ff",
-        drawerActiveTintColor: "black",
-        drawerInactiveTintColor: "black",
-        // drawerStyle: {
-        //   backgroundColor: 'black',
-        //   width: 240,
-        // },
+        headerStyle: { backgroundColor: "#292c31" },
+        headerShadowVisible: false,
+        headerTintColor: "white",
+
+        drawerActiveBackgroundColor: "#0e90e0",
+        drawerActiveTintColor: "white",
+        drawerInactiveTintColor: "grey",
+        drawerStyle: {
+          width: 240,
+        },
         drawerLabelStyle: {
           marginLeft: -25,
           fontSize: 16,
@@ -40,17 +43,17 @@ const ContractorNavigation: React.FC = () => {
       }}
     >
       <Drawer.Screen
-        name="Contractor Account"
+        name="Contractor Portal"
         component={ContractorAccount}
         options={{
-          drawerIcon: () => <Icon name="house" color="black" size={25} />,
+          drawerIcon: () => <Icon name="home" color="white" size={20} />,
         }}
       />
       <Drawer.Screen
         name="Bids"
         component={Bid}
         options={{
-          drawerIcon: () => <Icon name="money" color="black" size={25} />,
+          drawerIcon: () => <Icon name="clipboard" color="white" size={20} />,
         }}
       />
       <Drawer.Screen
@@ -58,7 +61,7 @@ const ContractorNavigation: React.FC = () => {
         component={Payments}
         options={{
           drawerIcon: () => (
-            <Icon name="monetization-on" color="black" size={25} />
+            <Icon name="dollar-sign" color="white" size={20} />
           ),
         }}
       />
@@ -66,7 +69,7 @@ const ContractorNavigation: React.FC = () => {
         name="Messages"
         component={Messages}
         options={{
-          drawerIcon: () => <Icon name="message" color="black" size={25} />,
+          drawerIcon: () => <Icon name="send" color="white" size={20} />,
         }}
       />
     </Drawer.Navigator>

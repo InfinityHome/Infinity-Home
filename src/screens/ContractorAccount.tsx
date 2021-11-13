@@ -2,7 +2,6 @@ import React from "react";
 import {
   StyleSheet,
   View,
-  ScrollView,
   Image,
   SafeAreaView,
 } from "react-native";
@@ -11,7 +10,7 @@ import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import { handleSignOut } from "../firebase/firebaseMethods";
 import { Divider } from "react-native-elements";
-import { Icon } from "react-native-elements";
+import Icon from 'react-native-vector-icons/Ionicons';
 //import { ContractorNavProps } from "../Navigation/Params";
 
 const ContractorAccount: React.FC = () => {
@@ -25,6 +24,7 @@ const ContractorAccount: React.FC = () => {
           backgroundColor: "#292c31",
           paddingVertical: 5,
           marginTop: 50,
+          marginBottom: 30,
         }}
       >
         <View style={{ zIndex: 1, marginTop: -50 }} />
@@ -45,36 +45,51 @@ const ContractorAccount: React.FC = () => {
           </Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-          <Text style={{ fontSize: 18, color: "white" }}>Date Joined:</Text>
           <Text style={{ fontSize: 18, color: "white" }}>Id: 12345</Text>
+          <Text style={{ fontSize: 18, color: "white" }}>Date Joined:</Text>
         </View>
+      </View>
+
+      <View
+        style={{
+          borderRadius: 15,
+          width: "80%",
+          backgroundColor: "#292c31",
+          paddingVertical: 15,
+          alignSelf: "center",
+        }}
+      >
+      <View style={{ flexDirection: "row", justifyContent:'space-evenly' }}>
+          <Text style={{ fontSize: 18, color: "white" }}>Orders: 5</Text>
+          <Divider orientation='vertical' />
+          <Text style={{ fontSize: 18, color: "white" }}>Revenue: $100</Text>
+      </View>
       </View>
 
       <View
         style={{
           justifyContent: "space-evenly",
           borderRadius: 15,
-          width: "70%",
+          width: "50%",
           backgroundColor: "#292c31",
           paddingVertical: 5,
           marginVertical: 30,
-          //alignItems: "center",
           alignSelf: "center",
         }}
       >
-        <Touchable onPress={() => ""} leftIconName={"money"}>
+        <Touchable onPress={() => ""} leftIconName={"clipboard-outline"} iconColor={"#Ee2e28"}>
           Bills
         </Touchable>
         <Divider color={"#47494d"} />
-        <Touchable onPress={() => ""} leftIconName={"monetization-on"}>
+        <Touchable onPress={() => ""} leftIconName={"cash-outline"} iconColor={"#28ee74"}>
           Payments
         </Touchable>
         <Divider color={"#47494d"} />
-        <Touchable onPress={() => ""} leftIconName={"message"}>
+        <Touchable onPress={() => ""} leftIconName={"chatbox-ellipses-outline"} iconColor={"#28b9ee"}>
           Messages
         </Touchable>
         <Divider color={"#47494d"} />
-        <Touchable onPress={() => ""} leftIconName={"edit"}>
+        <Touchable onPress={() => ""} leftIconName={"pencil"} iconColor={"#F4eb4d"}>
           Change Info
         </Touchable>
       </View>
@@ -85,14 +100,14 @@ const ContractorAccount: React.FC = () => {
   );
 };
 
-const Touchable: React.FC<{ onPress: () => void; leftIconName: string }> = (
+const Touchable: React.FC<{ onPress: () => void; leftIconName: string, iconColor: string }> = (
   props
 ) => {
   return (
     <View
-      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 60, }}
+      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 20, }}
     >
-      <Icon name={props.leftIconName} color="#d3d4d7" size={20} />
+      <Icon name={props.leftIconName} color={props.iconColor} size={20} />
       <TouchableOpacity onPress={props.onPress}>
         <Text style={{ fontSize: 18, color: "white", padding: 10 }}>
           {props.children}
@@ -106,10 +121,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#16181d",
-    //padding: 10,
-    //justifyContent: "space-evenly",
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    padding: 20
   },
 });
 
