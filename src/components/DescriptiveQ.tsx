@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Dimensions, TextInput, View } from 'react-native';
 
-import Text from '../customs/CustomText';
 import Question from './Question';
 
 interface DescriptiveQProps {

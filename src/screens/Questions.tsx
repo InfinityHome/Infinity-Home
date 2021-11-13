@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import DescriptiveQ from '../components/DescriptiveQ';
@@ -12,15 +12,12 @@ const questions = [
         { label: 'Option1' },
         { label: 'Option2' },
         { label: 'Option3' },
-        { label: 'Option4' },
-        { label: 'Option5' },
+        { label: 'Other' },
       ],
     },
-  ],
-  [
     {
       Question: 'Question2',
-      Answer: [{ label: 'Option1' }, { label: 'Option2' }],
+      Answer: [{ label: 'Option1' }, { label: 'Option2' }, { label: 'Other' }],
     },
     {
       Question: 'Question3',
@@ -28,17 +25,19 @@ const questions = [
         { label: 'Option1' },
         { label: 'Option2' },
         { label: 'Option3' },
+        { label: 'Other' },
       ],
-    },
-    {
-      Question: 'Question4',
-      Answer: [{ label: 'Option1' }, { label: 'Option2' }],
     },
   ],
   [
     {
+      Question: 'Question4',
+      Answer: [{ label: 'Option1' }, { label: 'Option2' }, { label: 'Other' }],
+    },
+
+    {
       Question: 'Question5',
-      Answer: [{ label: 'Option1' }, { label: 'Option2' }],
+      Answer: [{ label: 'Option1' }, { label: 'Option2' }, { label: 'Other' }],
     },
     {
       Question: 'Question7',
@@ -46,6 +45,7 @@ const questions = [
         { label: 'Option1' },
         { label: 'Option2' },
         { label: 'Option3' },
+        { label: 'Other' },
       ],
     },
   ],

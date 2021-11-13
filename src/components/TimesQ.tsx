@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Dimensions, View } from 'react-native';
+import { Dimensions, TextInput, View } from 'react-native';
 import RadioButtonRN from 'radio-buttons-react-native';
 import { Icon } from 'react-native-elements';
 import Question from './Question';
@@ -14,9 +14,10 @@ interface TimesQProps {
 }
 
 const TimesQ: React.FC<TimesQProps> = (props) => {
-  useEffect(()=>{
-    props.setError(false)
-  }, [])
+  useEffect(() => {
+    props.setError(false);
+  }, []);
+
   return (
     <View style={{ alignItems: 'center' }}>
       {props.question.map((q) => (
@@ -28,6 +29,29 @@ const TimesQ: React.FC<TimesQProps> = (props) => {
             setUsersSelections={props.setUsersSelections}
             usersSelections={props.usersSelections}
           />
+          {props.usersSelections[q.Question] === 'Other' && (
+            <TextInput
+              style={{
+                width: Dimensions.get('window').width - 50,
+                padding: 10,
+                fontSize: 16,
+                color: '#000000',
+                letterSpacing: 1,
+                borderWidth: 1,
+                borderRadius: 7,
+                marginTop: 15,
+                marginBottom: 30,
+              }}
+              textAlignVertical="top"
+              onChangeText={(text: string) => {
+                return props.setUsersSelections((prev) => ({
+                  ...prev,
+                  [q.Question + 'Other']: text,
+                }));
+              }}
+              value={props.usersSelections[q.Question + 'Other']}
+            />
+          )}
         </View>
       ))}
     </View>
@@ -43,7 +67,9 @@ const Answer: React.FC<{
   usersSelections: Record<string, string>;
 }> = (props) => (
   <RadioButtonRN
-    style={{ marginBottom: 30 }}
+    style={{
+      marginBottom: props.usersSelections[props.question] !== 'Other' ? 30 : 0,
+    }}
     boxStyle={{ width: Dimensions.get('window').width - 50 }}
     icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
     animationTypes={['shake']}
@@ -52,9 +78,12 @@ const Answer: React.FC<{
     initial={
       props.answer.findIndex(
         (a) => a.label === props.usersSelections[props.question]
-      ) + 1 || 1
+      ) + 1
     }
     selectedBtn={(e: Record<string, string>) => {
+      if (e.label !== 'Other') {
+        delete props.usersSelections[props.question + 'Other'];
+      }
       props.setUsersSelections((prev) => ({
         ...prev,
         [props.question]: e.label,
