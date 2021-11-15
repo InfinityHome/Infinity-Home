@@ -32,7 +32,7 @@ const TimesQ: React.FC<TimesQProps> = (props) => {
                 width: Dimensions.get('window').width - 50,
                 padding: 10,
                 fontSize: 16,
-                color: '#000000',
+                color: 'white',
                 letterSpacing: 1,
                 borderWidth: 1,
                 borderRadius: 7,

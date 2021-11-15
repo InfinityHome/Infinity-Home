@@ -58,8 +58,8 @@ const Answer: React.FC<DescriptiveQProps> = (props) => {
           width: Dimensions.get('window').width - 50,
           padding: 10,
           fontSize: 16,
-          color: '#000000',
           letterSpacing: 1,
+          color: 'white',
         }}
         multiline
         textAlignVertical="top"

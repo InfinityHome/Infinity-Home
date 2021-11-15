@@ -68,17 +68,22 @@ const Questions: React.FC = () => {
   const [error, setError] = useState(false);
 
   return (
-    <View style={{ flex: 1, marginHorizontal: 15 }}>
+    <View
+      style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#444956' }}>
       <ProgressSteps marginBottom={30} activeStepIconColor="#4bb543">
         {questions.map((question, index) => (
           <ProgressStep
             key={index}
             errors={error}
             onSubmit={() => console.log('submit', usersSelections)}
-            nextBtnTextStyle={{ fontSize: 20, opacity: error ? 0.2 : 1 }}
+            nextBtnTextStyle={{
+              fontSize: 20,
+              opacity: error ? 0.2 : 1,
+              color: 'white',
+            }}
             nextBtnStyle={{ padding: 0 }}
             previousBtnStyle={{ padding: 0 }}
-            previousBtnTextStyle={{ fontSize: 20 }}>
+            previousBtnTextStyle={{ fontSize: 20, color: 'white' }}>
             {typeof question[0].Answer === 'string' ? (
               <DescriptiveQ
                 setError={setError}
