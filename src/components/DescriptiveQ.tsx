@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Dimensions, TextInput, View } from 'react-native';
-
 import Question from './Question';
 
 interface DescriptiveQProps {
@@ -30,14 +29,20 @@ const DescriptiveQ: React.FC<DescriptiveQProps> = (props) => {
 
 const Answer: React.FC<DescriptiveQProps> = (props) => {
   useEffect(() => {
-    if (
-      props.answer === 'Required' &&
-      (!(props.question in props.usersSelections) ||
-        props.usersSelections[props.question] === '')
-    ) {
-      props.setError(true);
+    // Check if user emptied the answer field, if it did delete the question from usersSelections
+    if (!props.usersSelections[props.question]) {
+      delete props.usersSelections[props.question];
     }
-  }, []);
+
+    //Check if answer is required and if the question is in usersSelections, if it is not, set error to true
+    if (props.answer === 'Required') {
+      if (props.question in props.usersSelections) {
+        props.setError(false);
+      } else {
+        props.setError(true);
+      }
+    }
+  }, [props.usersSelections]);
 
   return (
     <View
@@ -61,19 +66,10 @@ const Answer: React.FC<DescriptiveQProps> = (props) => {
         placeholder={props.answer}
         placeholderTextColor="#93969e"
         onChangeText={(text: string) => {
-          props.setUsersSelections((prev) => {
-            if (props.answer === 'Required') {
-              if (text) {
-                props.setError(false);
-              } else {
-                props.setError(true);
-              }
-            }
-            return {
-              ...prev,
-              [props.question]: text,
-            };
-          });
+          props.setUsersSelections((prev) => ({
+            ...prev,
+            [props.question]: text,
+          }));
         }}
         autoCapitalize="none"
         value={props.usersSelections[props.question]}
