@@ -28,9 +28,9 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
       >
         <ImageBackground
           source={{
-            uri: "https://c4.wallpaperflare.com/wallpaper/697/387/671/4k-green-gradient-blue-wallpaper-preview.jpg",
+            uri: "https://cdn.pixabay.com/photo/2016/10/29/10/16/abstract-1780386_1280.png",
           }}
-          style={{ padding: 15 }}
+          style={{ paddingHorizontal: 15, paddingVertical: 10 }}
         >
           <Image
             source={{ uri: "https://i.redd.it/v0caqchbtn741.jpg" }}
@@ -52,7 +52,20 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
-      <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
+      <View style={{ paddingHorizontal: 10, paddingVertical: 5, borderTopWidth: 1, borderTopColor: "#ccc" }}>
+      <TouchableOpacity
+          onPress={() => {
+            ("");
+          }}
+          style={{ paddingVertical: 10 }}
+        >
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Icon name="info" color="white" size={20} />
+            <Text style={{ fontSize: 16, marginLeft: 5, color:"white" }}>
+              About Us
+            </Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             ("");
@@ -68,7 +81,7 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleSignOut}
-          style={{ paddingVertical: 15 }}
+          style={{ paddingVertical: 10 }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Icon name="power" color="white" size={20} />

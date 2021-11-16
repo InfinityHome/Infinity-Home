@@ -7,13 +7,16 @@ export type LoginParamList = {
 };
 
 export type ContractorParamList = {
-  ContractorAccount: undefined;
-  Bid: undefined;
+  Profile: undefined;
+  Bids: undefined;
+  Payments: undefined;
+  Messages: undefined;
+  Details: undefined;
 };
 
-// export type ContractorNavProps<T extends keyof ContractorParamList> = {
-//   navigation: NativeStackNavigationProp<ContractorParamList, T>;
-// };
+export type ContractorNavProps<T extends keyof ContractorParamList> = {
+  navigation: NativeStackNavigationProp<ContractorParamList, T>;
+};
 
 export type AccountParamList = {
   AccountScreen: undefined;

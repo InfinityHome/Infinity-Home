@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { LoginParamList, BottomNavParamList, AccountParamList } from "./Params";
+import { LoginParamList, BottomNavParamList, AccountParamList, ContractorParamList } from "./Params";
 import { authMethod, firebase } from "../firebase/config";
 import Icon from 'react-native-vector-icons/Feather';
 import SignUp from "../screens/SignUp";
@@ -17,13 +17,13 @@ import Bid from "../screens/Bid";
 import Payments from "../screens/Payments";
 import Messages from "../screens/Messages";
 import CustomDrawer from "../customs/CustomDrawer";
+import ContractorDetails from "../screens/ContractorDetails";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<ContractorParamList>();
 const ContractorNavigation: React.FC = () => {
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={{
         headerStyle: { backgroundColor: "#292c31" },
@@ -43,10 +43,11 @@ const ContractorNavigation: React.FC = () => {
       }}
     >
       <Drawer.Screen
-        name="Contractor Portal"
+        name="Profile"
         component={ContractorAccount}
         options={{
           drawerIcon: () => <Icon name="home" color="white" size={20} />,
+          headerTitle:"Contractor Portal"
         }}
       />
       <Drawer.Screen
@@ -54,6 +55,7 @@ const ContractorNavigation: React.FC = () => {
         component={Bid}
         options={{
           drawerIcon: () => <Icon name="clipboard" color="white" size={20} />,
+          headerTitle:"Contractor Portal"
         }}
       />
       <Drawer.Screen
@@ -63,6 +65,7 @@ const ContractorNavigation: React.FC = () => {
           drawerIcon: () => (
             <Icon name="dollar-sign" color="white" size={20} />
           ),
+          headerTitle:"Contractor Portal"
         }}
       />
       <Drawer.Screen
@@ -70,6 +73,15 @@ const ContractorNavigation: React.FC = () => {
         component={Messages}
         options={{
           drawerIcon: () => <Icon name="send" color="white" size={20} />,
+          headerTitle:"Contractor Portal"
+        }}
+      />
+      <Drawer.Screen
+        name="Details"
+        component={ContractorDetails}
+        options={{
+          drawerIcon: () => <Icon name="edit" color="white" size={20} />,
+          headerTitle:"Contractor Portal"
         }}
       />
     </Drawer.Navigator>
