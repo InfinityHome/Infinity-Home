@@ -39,13 +39,12 @@ const TimesQ: React.FC<TimesQProps> = (props) => {
                 marginTop: 15,
                 marginBottom: 30,
               }}
-              textAlignVertical="top"
-              onChangeText={(text: string) => {
-                return props.setUsersSelections((prev) => ({
+              onChangeText={(text: string) =>
+                props.setUsersSelections((prev) => ({
                   ...prev,
                   [q.Question + 'Other']: text,
-                }));
-              }}
+                }))
+              }
               value={props.usersSelections[q.Question + 'Other']}
             />
           )}
@@ -74,16 +73,12 @@ const Answer: React.FC<{
     if (props.question in props.usersSelections) {
       //Get the number of Other options user selected
       const numberOfOther = Object.values(props.usersSelections).reduce(
-        (acc, curr) => {
-          return curr === 'Other' ? acc + 1 : acc;
-        },
+        (acc, curr) => (curr === 'Other' ? acc + 1 : acc),
         0
       );
       //Get the number of Question+Other properties in usersSelections
       const numberOfOtherText = Object.keys(props.usersSelections).reduce(
-        (acc, curr) => {
-          return curr.includes('Other') ? acc + 1 : acc;
-        },
+        (acc, curr) => (curr.includes('Other') ? acc + 1 : acc),
         0
       );
       //If both numbers are equal, set error to false, else true

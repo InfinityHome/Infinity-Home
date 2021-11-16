@@ -54,8 +54,6 @@ const questions = [
       Question: 'Question8',
       Answer: 'Required',
     },
-  ],
-  [
     {
       Question: 'Question9',
       Answer: 'Optional',
@@ -64,8 +62,31 @@ const questions = [
 ];
 
 const Questions: React.FC = () => {
-  const [usersSelections, setUsersSelections] = useState({});
+  const [usersSelections, setUsersSelections] = useState<
+    Record<string, string>
+  >({});
   const [error, setError] = useState(false);
+
+  const handleSubmit = () => {
+    const acc: { question: string; answer: string }[] = [];
+    //Go over the object
+    Object.keys(usersSelections).map((key) => {
+      //If property is not textInput
+      if (!key.includes('Other')) {
+        //If value is not Other Option
+        if (usersSelections[key] !== 'Other') {
+          acc.push({ question: key, answer: usersSelections[key] });
+        }
+      } else {
+        //Get the question name without the Other
+        acc.push({
+          question: key.substring(0, key.lastIndexOf('Other')),
+          answer: usersSelections[key],
+        });
+      }
+    });
+    console.log(acc);
+  };
 
   return (
     <View
@@ -75,7 +96,7 @@ const Questions: React.FC = () => {
           <ProgressStep
             key={index}
             errors={error}
-            onSubmit={() => console.log('submit', usersSelections)}
+            onSubmit={handleSubmit}
             nextBtnTextStyle={{
               fontSize: 20,
               opacity: error ? 0.2 : 1,
@@ -87,8 +108,7 @@ const Questions: React.FC = () => {
             {typeof question[0].Answer === 'string' ? (
               <DescriptiveQ
                 setError={setError}
-                question={question[0].Question}
-                answer={question[0].Answer}
+                question={question}
                 setUsersSelections={setUsersSelections}
                 usersSelections={usersSelections}
               />

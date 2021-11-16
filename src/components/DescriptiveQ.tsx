@@ -3,8 +3,7 @@ import { Dimensions, TextInput, View } from 'react-native';
 import Question from './Question';
 
 interface DescriptiveQProps {
-  question: string;
-  answer: string;
+  question: { Question: string; Answer: { label: string }[] | string }[];
   setUsersSelections: React.Dispatch<
     React.SetStateAction<Record<string, string>>
   >;
@@ -15,19 +14,31 @@ interface DescriptiveQProps {
 const DescriptiveQ: React.FC<DescriptiveQProps> = (props) => {
   return (
     <View>
-      <Question>{props.question}</Question>
-      <Answer
-        setError={props.setError}
-        question={props.question}
-        answer={props.answer}
-        usersSelections={props.usersSelections}
-        setUsersSelections={props.setUsersSelections}
-      />
+      {props.question.map((q) => (
+        <View key={q.Question}>
+          <Question>{q.Question}</Question>
+          <Answer
+            setError={props.setError}
+            question={q.Question}
+            answer={typeof q.Answer === 'string' ? q.Answer : ""}
+            usersSelections={props.usersSelections}
+            setUsersSelections={props.setUsersSelections}
+          />
+        </View>
+      ))}
     </View>
   );
 };
 
-const Answer: React.FC<DescriptiveQProps> = (props) => {
+const Answer: React.FC<{
+  question: string;
+  answer: string;
+  setUsersSelections: React.Dispatch<
+    React.SetStateAction<Record<string, string>>
+  >;
+  usersSelections: Record<string, string>;
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+}> = (props) => {
   useEffect(() => {
     // Check if user emptied the answer field, if it did delete the question from usersSelections
     if (!props.usersSelections[props.question]) {
@@ -52,6 +63,7 @@ const Answer: React.FC<DescriptiveQProps> = (props) => {
         borderWidth: 1,
         borderRadius: 7,
         marginTop: 10,
+        marginBottom: 30
       }}>
       <TextInput
         style={{
