@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
-import DescriptiveQ from '../components/DescriptiveQ';
-import TimesQ from '../components/TimesQ';
+import Question from '../components/Question';
 
 const questions = [
   [
@@ -27,6 +26,10 @@ const questions = [
         { label: 'Option3' },
         { label: 'Other' },
       ],
+    },
+    {
+      Question: 'Question0',
+      Answer: 'Required',
     },
   ],
   [
@@ -105,21 +108,12 @@ const Questions: React.FC = () => {
             nextBtnStyle={{ padding: 0 }}
             previousBtnStyle={{ padding: 0 }}
             previousBtnTextStyle={{ fontSize: 20, color: 'white' }}>
-            {typeof question[0].Answer === 'string' ? (
-              <DescriptiveQ
-                setError={setError}
-                question={question}
-                setUsersSelections={setUsersSelections}
-                usersSelections={usersSelections}
-              />
-            ) : (
-              <TimesQ
-                setError={setError}
-                question={question}
-                setUsersSelections={setUsersSelections}
-                usersSelections={usersSelections}
-              />
-            )}
+            <Question
+              setError={setError}
+              questions={question}
+              setUsersSelections={setUsersSelections}
+              usersSelections={usersSelections}
+            />
           </ProgressStep>
         ))}
       </ProgressSteps>
