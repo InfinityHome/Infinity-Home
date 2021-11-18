@@ -21,6 +21,20 @@ type userInfoType = {
     }; 
 }
 
+type contractorInfoType = {
+    contractorID: string | undefined | null;
+    contractorEmail: string | undefined | null;
+    contractorName: string | undefined | null;
+    contractorPhone: string | undefined | null;
+    contractorLicense: string | undefined | null;
+    contractorAddress: {
+        street: string | undefined | null,
+        city: string | undefined | null,
+        state: string | undefined | null,
+        zip: string | undefined | null,
+    }; 
+}
+
 class DataBase {
     database: firebase.database.Database;
     serviceTable: ServiceListType;
@@ -63,6 +77,30 @@ class DataBase {
                     city: userInfo.userAddress?.city,
                     state: userInfo.userAddress?.state,
                     zip: userInfo.userAddress?.zip,
+                }
+            }
+        ).catch((error) => {
+            if (error.code === 'auth/email-already-in-use') {
+              Alert.alert('Oops', 'Email Taken', [{ text: 'Try Again' }]);
+            } else {
+              Alert.alert('Error', 'Something Went Wrong', [{ text: 'Try Again' }]);
+            }
+        });
+    }
+
+    async updateContractorObject(contractorInfo: contractorInfoType) {
+        const contractorRef = this.database.ref('/contractor/' + contractorInfo?.contractorID)
+        await contractorRef.set(
+            {
+                contractorEmail: contractorInfo?.contractorEmail,
+                contractorName: contractorInfo?.contractorName,
+                contractorPhone: contractorInfo?.contractorPhone,
+                contractorLicense: contractorInfo?.contractorLicense,
+                contractorAddress: {
+                    street: contractorInfo.contractorAddress?.street,
+                    city: contractorInfo.contractorAddress?.city,
+                    state: contractorInfo.contractorAddress?.state,
+                    zip: contractorInfo.contractorAddress?.zip,
                 }
             }
         ).catch((error) => {
