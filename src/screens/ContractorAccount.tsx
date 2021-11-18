@@ -28,16 +28,16 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ( { navigatio
         }}
       >
         <View style={{ flexDirection: "row", zIndex: 1, alignSelf:"flex-end", }} >
-        <TouchableOpacity style={{ marginTop: -50, right: 75 }} onPress={() => ""}>
+        <View style={{ marginTop: -50, right: 75 }}>
           <Image
-            source={{ uri: "https://i.redd.it/v0caqchbtn741.jpg" }}
+            source={{ uri: "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png" }}
             style={{
               height: 100,
               width: 100,
               borderRadius: 100,
             }}
           />
-        </TouchableOpacity>
+        </View>
         <TouchableOpacity style={{ right: 5 }} onPress={() => navigation.navigate("Details")}>
           <Image
             source={{ uri: "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png" }}

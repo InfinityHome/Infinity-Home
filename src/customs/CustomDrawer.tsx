@@ -28,12 +28,12 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
       >
         <ImageBackground
           source={{
-            uri: "https://cdn.pixabay.com/photo/2016/10/29/10/16/abstract-1780386_1280.png",
+            uri: "https://www.teahub.io/photos/full/220-2208960_dark-blue-lines-4k-material-design-creative-geometric.jpg",
           }}
           style={{ paddingHorizontal: 15, paddingVertical: 10 }}
         >
           <Image
-            source={{ uri: "https://i.redd.it/v0caqchbtn741.jpg" }}
+            source={{ uri: "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png" }}
             style={{
               height: 80,
               width: 80,
