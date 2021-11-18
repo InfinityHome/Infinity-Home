@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Text from "../customs/CustomText";
-//import { ContractorNavProps } from "../Navigation/Params";
 
 const Bid: React.FC = () => {
   return (

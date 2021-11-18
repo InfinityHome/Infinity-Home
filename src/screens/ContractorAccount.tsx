@@ -51,13 +51,13 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ( { navigatio
         </View>
         <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 25, color: "white" }}>First Last</Text>
-          <Text style={{ fontSize: 18, color: "#555659" }}>
-            abcd1234@gmail.com
+          <Text style={{ fontSize: 18, color: "#34a4f7", paddingBottom: 4 }}>
+            infinityhome16@gmail.com
           </Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-          <Text style={{ fontSize: 18, color: "white" }}>Id: 12345</Text>
-          <Text style={{ fontSize: 18, color: "white" }}>Date Joined:</Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>     Id: 12345{"\n"}License: 12345</Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>   Date Joined:{"\n"}January 1st 2021</Text>
         </View>
       </View>
 
@@ -84,7 +84,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ( { navigatio
           width: "50%",
           backgroundColor: "#292c31",
           paddingVertical: 5,
-          marginVertical: 30,
+          marginVertical: 25,
           alignSelf: "center",
         }}
       >
@@ -104,7 +104,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ( { navigatio
           Services
         </Touchable>
       </View>
-      <View style={{ paddingTop: 5 }}>
+      <View>
         <Button title="Sign Out" onPress={handleSignOut} />
       </View>
     </SafeAreaView>
