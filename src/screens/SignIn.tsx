@@ -20,7 +20,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   const [hidePass, setHidePass] = useState(true);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <>
         <Text style={{ fontSize: 30, color: "white" }}>
           Welcome Back,{"\n"}Sign In
@@ -79,7 +79,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
           )}
         </Formik>
       </>
-    </SafeAreaView>
+    </View>
   );
 };
 

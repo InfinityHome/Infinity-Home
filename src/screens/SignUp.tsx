@@ -33,7 +33,7 @@ const SignUp: React.FC = () => {
   const [hideConfPass, setHideConfPass] = useState(true);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <>
         <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 35, color: "white" }}>New Account</Text>
@@ -131,7 +131,7 @@ const SignUp: React.FC = () => {
           )}
         </Formik>
       </>
-    </SafeAreaView>
+    </View>
   );
 };
 
