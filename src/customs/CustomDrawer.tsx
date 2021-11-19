@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  View,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
+import { View, Image, ImageBackground, TouchableOpacity } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from "react-native-vector-icons/Feather";
 import { handleSignOut } from "../firebase/firebaseMethods";
 import Text from "../customs/CustomText";
 
@@ -21,7 +16,7 @@ interface DrawerProp {
 
 const CustomDrawer: React.FC<DrawerProp> = (props) => {
   return (
-    <View style={{ flex: 1, backgroundColor:'black' }}>
+    <View style={{ flex: 1, backgroundColor: "black" }}>
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{ backgroundColor: "black" }}
@@ -33,7 +28,9 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
           style={{ paddingHorizontal: 15, paddingVertical: 10 }}
         >
           <Image
-            source={{ uri: "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png" }}
+            source={{
+              uri: "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png",
+            }}
             style={{
               height: 80,
               width: 80,
@@ -52,8 +49,15 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
-      <View style={{ paddingHorizontal: 10, paddingVertical: 5, borderTopWidth: 1, borderTopColor: "#ccc" }}>
-      <TouchableOpacity
+      <View
+        style={{
+          paddingHorizontal: 10,
+          paddingVertical: 5,
+          borderTopWidth: 1,
+          borderTopColor: "#ccc",
+        }}
+      >
+        <TouchableOpacity
           onPress={() => {
             ("");
           }}
@@ -61,7 +65,7 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Icon name="info" color="white" size={20} />
-            <Text style={{ fontSize: 16, marginLeft: 5, color:"white" }}>
+            <Text style={{ fontSize: 16, marginLeft: 5, color: "white" }}>
               About Us
             </Text>
           </View>
@@ -74,7 +78,7 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Icon name="share" color="white" size={20} />
-            <Text style={{ fontSize: 16, marginLeft: 5, color:"white" }}>
+            <Text style={{ fontSize: 16, marginLeft: 5, color: "white" }}>
               Share with others
             </Text>
           </View>
@@ -85,7 +89,9 @@ const CustomDrawer: React.FC<DrawerProp> = (props) => {
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Icon name="power" color="white" size={20} />
-            <Text style={{ fontSize: 16, marginLeft: 5, color:"white" }}>Sign Out</Text>
+            <Text style={{ fontSize: 16, marginLeft: 5, color: "white" }}>
+              Sign Out
+            </Text>
           </View>
         </TouchableOpacity>
       </View>

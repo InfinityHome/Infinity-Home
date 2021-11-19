@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { LoginParamList, BottomNavParamList, AccountParamList, ContractorParamList } from "./Params";
+import {
+  LoginParamList,
+  BottomNavParamList,
+  AccountParamList,
+  ContractorParamList,
+} from "./Params";
 import { authMethod, firebase } from "../firebase/config";
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from "react-native-vector-icons/Feather";
 import SignUp from "../screens/SignUp";
 import Login from "../screens/Login";
 import SignIn from "../screens/SignIn";
@@ -47,7 +52,7 @@ const ContractorNavigation: React.FC = () => {
         component={ContractorAccount}
         options={{
           drawerIcon: () => <Icon name="home" color="white" size={20} />,
-          headerTitle:"Contractor Portal"
+          headerTitle: "Contractor Portal",
         }}
       />
       <Drawer.Screen
@@ -55,17 +60,15 @@ const ContractorNavigation: React.FC = () => {
         component={Bid}
         options={{
           drawerIcon: () => <Icon name="clipboard" color="white" size={20} />,
-          headerTitle:"Contractor Portal"
+          headerTitle: "Contractor Portal",
         }}
       />
       <Drawer.Screen
         name="Payments"
         component={Payments}
         options={{
-          drawerIcon: () => (
-            <Icon name="dollar-sign" color="white" size={20} />
-          ),
-          headerTitle:"Contractor Portal"
+          drawerIcon: () => <Icon name="dollar-sign" color="white" size={20} />,
+          headerTitle: "Contractor Portal",
         }}
       />
       <Drawer.Screen
@@ -73,7 +76,7 @@ const ContractorNavigation: React.FC = () => {
         component={Messages}
         options={{
           drawerIcon: () => <Icon name="send" color="white" size={20} />,
-          headerTitle:"Contractor Portal"
+          headerTitle: "Contractor Portal",
         }}
       />
       <Drawer.Screen
@@ -81,7 +84,7 @@ const ContractorNavigation: React.FC = () => {
         component={ContractorDetails}
         options={{
           drawerIcon: () => <Icon name="edit" color="white" size={20} />,
-          headerTitle:"Contractor Portal"
+          headerTitle: "Contractor Portal",
         }}
       />
     </Drawer.Navigator>
@@ -155,7 +158,7 @@ const BottomNavigation: React.FC = () => {
         component={Home}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <Icon name="house" color="white" size={30} />,
+          tabBarIcon: () => <Icon name="home" color="white" size={25} />,
         }}
       />
       <Tab.Screen
@@ -164,7 +167,7 @@ const BottomNavigation: React.FC = () => {
         options={{
           tabBarLabel: "Orders",
           tabBarIcon: () => (
-            <Icon name="shopping-cart" color="white" size={30} />
+            <Icon name="box" color="white" size={25} />
           ),
         }}
       />
@@ -173,7 +176,7 @@ const BottomNavigation: React.FC = () => {
         component={AccountNavigation}
         options={{
           tabBarLabel: "Account",
-          tabBarIcon: () => <Icon name="person" color="white" size={30} />,
+          tabBarIcon: () => <Icon name="user" color="white" size={25} />,
         }}
       />
     </Tab.Navigator>
@@ -189,8 +192,8 @@ const Navigation: React.FC = () => {
   }, []);
   return (
     <NavigationContainer>
-      {/* {userLoggin ? <BottomNavigation /> : <LoginNavigation />} */}
-      <ContractorNavigation />
+      {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
+      {/* <ContractorNavigation /> */}
     </NavigationContainer>
   );
 };

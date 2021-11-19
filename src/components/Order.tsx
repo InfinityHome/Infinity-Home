@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, Dimensions } from 'react-native';
-import { Icon } from 'react-native-elements';
-import Text from '../customs/CustomText';
-import * as Progress from 'react-native-progress';
+import React from "react";
+import { View, Dimensions } from "react-native";
+import { Icon } from "react-native-elements";
+import Text from "../customs/CustomText";
+import * as Progress from "react-native-progress";
 
 interface OrderProps {
   item: {
@@ -12,16 +12,16 @@ interface OrderProps {
   };
 }
 const Order: React.FC<OrderProps> = (props) => {
-  const width = Dimensions.get('window').width;
+  const width = Dimensions.get("window").width;
   const progress = (status: string) => {
     switch (status) {
-      case 'In-Progress':
+      case "In-Progress":
         return 0.3;
-      case 'In-Transit':
+      case "In-Transit":
         return 0.5;
-      case 'Completing Work':
+      case "Completing Work":
         return 0.8;
-      case 'Completed':
+      case "Completed":
         return 1;
       default:
         return 0.1;
@@ -30,24 +30,26 @@ const Order: React.FC<OrderProps> = (props) => {
   return (
     <View
       style={{
-        display: 'flex',
+        display: "flex",
         borderRadius: 20,
         borderWidth: 2,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#b2b4b9',
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#b2b4b9",
         minHeight: 100,
         marginHorizontal: 20,
         marginVertical: 10,
-      }}>
+      }}
+    >
       <ServiceIcon ServiceIcon={props.item.ServiceIcon} />
       <View
         style={{
-          display: 'flex',
-          justifyContent: 'space-around',
+          display: "flex",
+          justifyContent: "space-around",
           minHeight: 100,
           marginLeft: 15,
-        }}>
+        }}
+      >
         <Service_Status
           type="Electrolize"
           style={{ fontSize: 23 }}

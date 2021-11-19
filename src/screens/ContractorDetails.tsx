@@ -57,7 +57,7 @@ const ContractorDetails: React.FC = () => {
               height: 90,
               width: 90,
               borderRadius: 100,
-              left: 20
+              left: 20,
             }}
           />
         )}
@@ -66,7 +66,7 @@ const ContractorDetails: React.FC = () => {
             source={{
               uri: "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
             }}
-            style={{ height: 35, width: 35, borderRadius: 100, marginTop: 55, }}
+            style={{ height: 35, width: 35, borderRadius: 100, marginTop: 55 }}
           />
         </TouchableOpacity>
       </View>
