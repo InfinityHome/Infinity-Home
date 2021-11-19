@@ -81,13 +81,19 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
           </Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-          <Text style={{ fontSize: 16, color: "#eeeeee" }}>
-            {" "}
-            Id: 12345{"\n"}License: 12345
+          <Text style={{ fontSize: 16, color: "#eeeeee", paddingRight: 15 }}>
+            Id: 12345
           </Text>
           <Text style={{ fontSize: 16, color: "#eeeeee" }}>
-            {" "}
-            Date Joined:{"\n"}January 1st 2021
+            Date Joined:
+          </Text>
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>
+            License: 12345
+          </Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>
+            January 1st 2021
           </Text>
         </View>
       </View>

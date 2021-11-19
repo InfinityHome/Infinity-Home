@@ -223,8 +223,8 @@ const Navigation: React.FC = () => {
   }, []);
   return (
     <NavigationContainer>
-      {/* {userLoggin ? <BottomNavigation /> : <LoginNavigation />} */}
-      <ContractorNavigation />
+      {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
+      {/* <ContractorNavigation /> */}
     </NavigationContainer>
   );
 };
