@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView, StatusBar, ScrollView } from "react-native";
-import Header from "../components/Header";
-import Services from "../components/Services";
-import Search from "../components/Search";
-import { database, ServiceListType } from "../firebase/firebaseDB";
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, StatusBar, ScrollView } from 'react-native';
+import Header from '../components/Header';
+import Services from '../components/Services';
+import Search from '../components/Search';
+import { database, ServiceListType } from '../firebase/firebaseDB';
+import { HomeNavProps } from '../Navigation/Params';
 
-const Home: React.FC = () => {
+const Home: React.FC<HomeNavProps<'HomeScreen'>> = ({ navigation }) => {
   const [serviceList, setServiceList] = useState<ServiceListType>([]);
   const [finalFilteredList, setFinalFilteredList] = useState<ServiceListType>(
     []
@@ -23,16 +24,18 @@ const Home: React.FC = () => {
       style={{
         paddingTop: StatusBar.currentHeight,
         flex: 1,
-        backgroundColor: "#3e4350",
-      }}
-    >
+        backgroundColor: '#3e4350',
+      }}>
       <Header name="Infinity Home" size={40} />
       <Search
         setFinalFilteredList={setFinalFilteredList}
         serviceList={serviceList}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Services finalFilteredList={finalFilteredList} />
+        <Services
+          finalFilteredList={finalFilteredList}
+          navigation={navigation}
+        />
       </ScrollView>
     </SafeAreaView>
   );

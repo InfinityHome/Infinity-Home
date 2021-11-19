@@ -7,7 +7,10 @@ import {
   BottomNavParamList,
   AccountParamList,
   ContractorParamList,
+  HomeParamList,
 } from "./Params";
+import Questions from "../screens/Questions";
+import { Platform } from "react-native";
 import { authMethod, firebase } from "../firebase/config";
 import Icon from "react-native-vector-icons/Feather";
 import SignUp from "../screens/SignUp";
@@ -136,6 +139,33 @@ const AccountNavigation: React.FC = () => {
   );
 };
 
+const HomeStack = createNativeStackNavigator<HomeParamList>();
+const HomeNavigation: React.FC = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeScreen"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <HomeStack.Screen
+        name="Questions"
+        component={Questions}
+        options={({
+          route: {
+            params: { title },
+          },
+        }) => ({
+          title: title,
+          headerStyle: { backgroundColor: "#444956" },
+          headerShadowVisible: false,
+          headerTintColor: "white",
+        })}
+      />
+    </HomeStack.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator<BottomNavParamList>();
 const BottomNavigation: React.FC = () => {
   return (
@@ -143,19 +173,22 @@ const BottomNavigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: { fontSize: 10, bottom: 8 },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          bottom: Platform.OS === "ios" ? 0 : 8,
+        },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: "#21242c",
           borderTopWidth: 0,
-          height: 55,
-          elevation: 5,
+          minHeight: 55,
+          paddingTop: Platform.OS === "ios" ? 10 : 0,
         },
       }}
     >
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeNavigation}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: () => <Icon name="home" color="white" size={25} />,
@@ -166,9 +199,7 @@ const BottomNavigation: React.FC = () => {
         component={Orders}
         options={{
           tabBarLabel: "Orders",
-          tabBarIcon: () => (
-            <Icon name="box" color="white" size={25} />
-          ),
+          tabBarIcon: () => <Icon name="box" color="white" size={25} />,
         }}
       />
       <Tab.Screen
