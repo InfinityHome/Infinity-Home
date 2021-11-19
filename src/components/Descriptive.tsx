@@ -1,5 +1,5 @@
-import React from 'react';
-import { Dimensions, TextInput, View } from 'react-native';
+import React from "react";
+import { Dimensions, TextInput, View } from "react-native";
 
 interface DescriptiveQuestionProps {
   question: string;
@@ -22,20 +22,21 @@ const DescriptionQuestion: React.FC<DescriptiveQuestionProps> = (props) => {
   return (
     <View
       style={{
-        alignItems: 'center',
+        alignItems: "center",
         height: 100,
         borderWidth: 1,
         borderRadius: 7,
         marginTop: 10,
         marginBottom: 30,
-      }}>
+      }}
+    >
       <TextInput
         style={{
-          width: Dimensions.get('window').width - 50,
+          width: Dimensions.get("window").width - 50,
           padding: 10,
           fontSize: 16,
           letterSpacing: 1,
-          color: 'white',
+          color: "white",
         }}
         multiline
         textAlignVertical="top"
