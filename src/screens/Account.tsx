@@ -9,7 +9,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
   navigation,
 }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={{ flexDirection: "row", paddingBottom: 20 }}>
         <TouchableOpacity
           style={{ borderWidth: 5, padding: 40 }}
@@ -20,8 +20,8 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           </Text>
         </TouchableOpacity>
         <View style={{ justifyContent: "flex-end" }}>
-          <Text style={{ fontSize: 25, color: "white" }}>
-            First Name{"\n"} Last Name
+          <Text style={{ fontSize: 25, color: "white", padding: 5 }}>
+            First Name{"\n"}Last Name
           </Text>
         </View>
       </View>
@@ -45,7 +45,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
       <View style={{ paddingTop: 15 }}>
         <Button title="Sign Out" onPress={handleSignOut} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

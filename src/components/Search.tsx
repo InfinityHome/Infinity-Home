@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Icon, SearchBar } from 'react-native-elements';
-import { ServiceListType } from '../firebase/firebaseDB';
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { Icon, SearchBar } from "react-native-elements";
+import { ServiceListType } from "../firebase/firebaseDB";
 
 interface SearchProps {
   serviceList: ServiceListType;
@@ -8,12 +8,13 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = (props) => {
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState<string>("");
 
   const onSearch = (desiredService: string) => {
     //Get a new list if service name includes user input
     const filteredArrayOnInput: ServiceListType = props.serviceList.filter(
-      (sl) => sl.serviceName?.toLowerCase().includes(desiredService.toLowerCase())
+      (sl) =>
+        sl.serviceName?.toLowerCase().includes(desiredService.toLowerCase())
     );
 
     props.setFinalFilteredList(filteredArrayOnInput);
@@ -23,11 +24,11 @@ const Search: React.FC<SearchProps> = (props) => {
     <SearchBar
       lightTheme
       containerStyle={{
-        backgroundColor: '#3e4350',
+        backgroundColor: "#3e4350",
         borderTopWidth: 0,
         borderBottomWidth: 0,
       }}
-      inputStyle={{ fontWeight: '600', color: '#000' }}
+      inputStyle={{ fontWeight: "600", color: "#000" }}
       inputContainerStyle={{
         borderRadius: 19,
         height: 40,

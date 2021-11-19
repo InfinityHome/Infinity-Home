@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -11,24 +11,73 @@ import {
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import Icon from "react-native-vector-icons/Ionicons";
-//import { ContractorNavProps } from "../Navigation/Params";
+import * as ImagePicker from "expo-image-picker";
 
 const ContractorDetails: React.FC = () => {
+  const [picture, setPicture] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Permission to access camera roll needed");
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setPicture(result.uri);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{ fontSize: 30, color: "white", textAlign: "center" }}>
+      <Text
+        style={{
+          fontSize: 30,
+          color: "white",
+          textAlign: "center",
+        }}
+      >
         Edit Information
       </Text>
-      <TouchableOpacity style={{ alignItems: "center" }} onPress={() => ""}>
-        <Image
-          source={{ uri: "https://i.redd.it/v0caqchbtn741.jpg" }}
-          style={{
-            height: 90,
-            width: 90,
-            borderRadius: 100,
-          }}
-        />
-      </TouchableOpacity>
+      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+        {picture && (
+          <Image
+            source={{ uri: picture }}
+            style={{
+              alignItems: "center",
+              height: 90,
+              width: 90,
+              borderRadius: 100,
+              left: 20,
+            }}
+          />
+        )}
+        <TouchableOpacity onPress={pickImage}>
+          <Image
+            source={{
+              uri:
+                "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
+            }}
+            style={{ height: 35, width: 35, borderRadius: 100, marginTop: 55 }}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={{ padding: Platform.OS === "ios" ? 10 : 0 }}>
         <TextBox
           placeholder={"Email"}
