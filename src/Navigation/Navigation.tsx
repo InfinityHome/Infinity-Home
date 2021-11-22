@@ -8,6 +8,7 @@ import {
   AccountParamList,
   ContractorParamList,
   HomeParamList,
+  TopNavParamList
 } from "./Params";
 import Questions from "../screens/Questions";
 import { Platform } from "react-native";
@@ -26,8 +27,26 @@ import Payments from "../screens/Payments";
 import Messages from "../screens/Messages";
 import CustomDrawer from "../customs/CustomDrawer";
 import ContractorDetails from "../screens/ContractorDetails";
-
+import ContractorLogin from "../screens/ContractorLogin";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Toptab = createMaterialTopTabNavigator<TopNavParamList>();
+const TopNavigation: React.FC = () => {
+  return (
+    <Toptab.Navigator 
+    screenOptions={{
+      tabBarStyle: {
+        //backgroundColor: "black",
+        marginTop: 30,
+      },
+    }}>
+        <Toptab.Screen name="User" component={Login} />
+        <Toptab.Screen name="Contractor" component={ContractorLogin} />
+    </Toptab.Navigator>
+  );
+};
+
 const Drawer = createDrawerNavigator<ContractorParamList>();
 const ContractorNavigation: React.FC = () => {
   return (
@@ -107,7 +126,7 @@ const LoginNavigation: React.FC = () => {
     >
       <Stack.Screen
         name="Login"
-        component={Login}
+        component={TopNavigation}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="SignUp" component={SignUp} />
@@ -225,6 +244,7 @@ const Navigation: React.FC = () => {
     <NavigationContainer>
       {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
       {/* <ContractorNavigation /> */}
+      {/* <TopNavigation /> */}
     </NavigationContainer>
   );
 };

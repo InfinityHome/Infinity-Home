@@ -45,3 +45,8 @@ export type BottomNavParamList = {
   Orders: undefined;
   Account: undefined;
 };
+
+export type TopNavParamList = {
+  User: undefined;
+  Contractor: undefined;
+};
