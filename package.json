@@ -31,7 +31,8 @@
     "react-native-screens": "^3.8.0",
     "react-native-svg": "^12.1.1",
     "react-native-web": "^0.17.1",
-    "yup": "^0.32.10"
+    "yup": "^0.32.10",
+    "@stripe/stripe-react-native": "0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
