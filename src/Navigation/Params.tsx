@@ -1,3 +1,4 @@
+import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type LoginParamList = {
@@ -14,6 +15,13 @@ export type AccountParamList = {
 export type HomeParamList = {
   HomeScreen: undefined;
   Questions: { title: string };
+  Stripe: {
+    title: string;
+    data: {
+      question: string;
+      answer: string;
+    }[];
+  };
 };
 
 export type LoginNavProps<T extends keyof LoginParamList> = {
@@ -26,6 +34,7 @@ export type AccountNavProps<T extends keyof AccountParamList> = {
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
   navigation: NativeStackNavigationProp<HomeParamList, T>;
+  route?: RouteProp<{ params: HomeParamList['Stripe'] }, 'params'>;
 };
 
 export type BottomNavParamList = {

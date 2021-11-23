@@ -18,6 +18,7 @@ import Orders from '../screens/Orders';
 import Account from '../screens/Account';
 import AccountDetails from '../screens/AccountDetails';
 import Questions from '../screens/Questions';
+import Stripe from '../screens/Stripe';
 import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator<LoginParamList>();
@@ -76,6 +77,20 @@ const HomeNavigation: React.FC = () => {
       <HomeStack.Screen
         name="Questions"
         component={Questions}
+        options={({
+          route: {
+            params: { title },
+          },
+        }) => ({
+          title: title,
+          headerStyle: { backgroundColor: '#444956' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        })}
+      />
+      <HomeStack.Screen
+        name="Stripe"
+        component={Stripe}
         options={({
           route: {
             params: { title },
