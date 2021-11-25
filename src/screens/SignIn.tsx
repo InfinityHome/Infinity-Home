@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, TouchableOpacity, Image } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import TextField from "../components/TextField";
@@ -22,8 +22,21 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
   return (
     <View style={styles.container}>
       <>
-        <Text style={{ fontSize: 30, color: "white" }}>
-          Welcome Back,{"\n"}Sign In
+      <View style={{
+          borderRadius: 15,
+          width: "100%",
+          //backgroundColor: "#292c31",
+          paddingVertical: 5,
+          alignItems: "center"
+        }}>
+        <Image
+            source={require('../../assets/check.png')}
+            style={{ width: 220, height: 200 }}
+        />
+      </View>
+        
+        <Text style={{ fontSize: 30, color: "#bad0ff" }}>
+          Sign In
         </Text>
 
         <Formik
@@ -43,7 +56,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
           }: FormikProps<{ email: string; password: string }>) => (
             <>
               <TextField
-                leftIconName="email"
+                leftIconName="mail"
                 placeholder="Email"
                 name="email"
                 handleChange={handleChange}
@@ -57,7 +70,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
               <TextField
                 setHidePass={() => setHidePass(!hidePass)}
                 leftIconName="lock"
-                rightIconName={hidePass ? "visibility-off" : "visibility"}
+                rightIconName={hidePass ? "eye-off" : "eye"}
                 placeholder="Password"
                 name="password"
                 handleBlur={handleBlur}
@@ -75,6 +88,20 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
                   onPress={handleSubmit}
                 />
               </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  paddingTop: 10,
+                }}
+              >
+                <Text style={{ fontSize: 16, color: "#8cb0ff" }}>
+                  Don&apos;t have an account?
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                  <Text style={{ fontSize: 16, color: "#407bff" }}> Sign Up</Text>
+                </TouchableOpacity>
+              </View>
             </>
           )}
         </Formik>
@@ -86,10 +113,10 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: -50,
+    //marginTop: -50,
     paddingHorizontal: 20,
-    backgroundColor: "#444956",
-    justifyContent: "center",
+    backgroundColor: "#16181d",
+    //justifyContent: "center",
   },
 });
 

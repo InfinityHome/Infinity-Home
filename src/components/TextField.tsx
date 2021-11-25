@@ -1,6 +1,6 @@
 import React from "react";
 import { KeyboardTypeOptions, TextInput, View } from "react-native";
-import { Icon } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 type handleChange = {
   (e: React.ChangeEvent<any>): void;
@@ -38,22 +38,25 @@ const TextField: React.FC<TextFieldProps> = (props) => {
         flexDirection: "row",
         paddingHorizontal: 5,
         alignItems: "center",
-        borderBottomWidth: 3,
-        borderBottomColor: props.validate ? "#f8ad1c" : "red",
+        borderWidth: 1,
+        borderColor: props.validate ? "#8cb0ff" : "#F50057",
         marginVertical: 10,
+        backgroundColor: "#21242c",
+        borderRadius: 15,
+        paddingLeft: 10,
       }}
     >
-      <Icon name={props.leftIconName} color="#d3d4d7" size={18} />
+      <Icon name={props.leftIconName} color="#407bff" size={18} />
       <TextInput
         style={{
           flex: 1,
           width: "100%",
           padding: 10,
           fontSize: 16,
-          color: "#f8ad1c",
+          color: "#bad0ff",
         }}
         placeholder={props.placeholder}
-        placeholderTextColor="#93969e"
+        placeholderTextColor="#bad0ff"
         keyboardType={props.keyboardType}
         onChangeText={props.handleChange(props.name)}
         onBlur={props.handleBlur(props.name)}
@@ -64,7 +67,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
       {props.rightIconName && (
         <Icon
           name={props.rightIconName}
-          color="#d3d4d7"
+          color="#F50057"
           size={18}
           onPress={props.setHidePass}
         />

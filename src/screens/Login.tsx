@@ -15,22 +15,28 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
           }}
           style={{ width: 180, height: 135 }}
         />
+        <Text style={{ fontSize: 30, color: "white", alignSelf:'center' }}>Welcome To</Text>
         <Text style={{ fontSize: 40, color: "white" }}>Infinity Home</Text>
       </View>
 
-      <View>
-        <Text style={styles.motto}>
-          We aim to deliver a mobile application which can provide a list of
-          home services according to the needs of the customer. The motivation
-          comes from making sure that finding home services is not tedious and
-          stressful for the customer.
+      {/* <View>
+        <Text style={{ fontSize: 16, color: "white" }}>
+          Skip the tedious process and leave it to us!
         </Text>
-      </View>
+      </View> */}
 
-      <View>
+      <View
+        // style={{
+        //   borderRadius: 15,
+        //   width: "85%",
+        //   backgroundColor: "#1a3166",
+        //   paddingVertical: 8,
+        // }}
+      >
         <Button title="Continue with Google" onPress={signInWithGoogleAsync} />
+        
         <Text
-          style={{ fontSize: 16, textAlign: "center", paddingVertical: 20 }}
+          style={{ fontSize: 16, textAlign: "center", paddingVertical: 10, color:"#8cb0ff" }}
         >
           - OR -
         </Text>
@@ -42,11 +48,11 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
             paddingTop: 10,
           }}
         >
-          <Text style={{ fontSize: 16, color: "black" }}>
+          <Text style={{ fontSize: 16, color: "#8cb0ff" }}>
             Don&apos;t have an account?
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-            <Text style={{ fontSize: 16, color: "white" }}> Sign Up</Text>
+            <Text style={{ fontSize: 16, color: "#407bff" }}> Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -57,15 +63,10 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#444956",
+    backgroundColor: "#1a3166",
     padding: 7,
     justifyContent: "space-evenly",
     alignItems: "center",
-  },
-  motto: {
-    fontSize: 16,
-    color: "white",
-    paddingHorizontal: 25,
   },
 });
 

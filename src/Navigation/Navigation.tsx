@@ -100,7 +100,7 @@ const LoginNavigation: React.FC = () => {
     <Stack.Navigator
       screenOptions={{
         title: "",
-        headerStyle: { backgroundColor: "#444956" },
+        headerStyle: { backgroundColor: "#16181d" },
         headerShadowVisible: false,
         headerTintColor: "white",
       }}
