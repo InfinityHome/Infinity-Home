@@ -1,73 +1,117 @@
-import React, { useState, useEffect } from 'react';
-import { Alert, Button, TextInput, View } from 'react-native';
-import { HomeNavProps } from '../Navigation/Params';
-import { CardField, useConfirmPayment } from '@stripe/stripe-react-native';
-import { stripePaymentIntent } from '../stripe/stripePaymentIntent';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import {
+  CardField,
+  CardFieldInput,
+  useConfirmPayment,
+} from '@stripe/stripe-react-native';
 
-const Stripe: React.FC<HomeNavProps<'HomeScreen'>> = ({ route }) => {
+//ADD localhost address of your server
+const API_URL = 'http://192.168.0.12:3000';
+
+const Stripe: React.FC = () => {
   const [email, setEmail] = useState<string>();
   const [cardDetails, setCardDetails] = useState<any>();
   const { confirmPayment, loading } = useConfirmPayment();
 
-  const handlePayPress = () => {
-    if (!cardDetails?.complete || !email) {
-      Alert.alert('Please fill in all fields');
+  const fetchPaymentIntentClientSecret = (): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/create-payment-intent`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          resolve(data.clientSecret);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+
+    // const { clientSecret, error } = await response.json();
+    // return { clientSecret, error };
+  };
+
+  const handlePayPress = async () => {
+    //1.Gather the customer's billing information (e.g., email)
+    if (!cardDetails?.complete) {
+      Alert.alert('Please enter Complete card details and Email');
       return;
     }
+    console.log('cardDetails', cardDetails);
 
-    stripePaymentIntent()
+    //2.Fetch the intent client secret from the backend
+    fetchPaymentIntentClientSecret()
       .then((clientSecret) => {
         confirmPayment(clientSecret, {
           type: 'Card',
-          billingDetails: {email},
+          billingDetails: { email: 'user@stripe.com' },
         })
           .then((paymentIntent) => {
-            console.log('Payment confirmed', paymentIntent);
+            console.log('paymentIntent', paymentIntent);
+            if(paymentIntent.error) {
+              throw new Error(paymentIntent.error.message);
+            }
+            Alert.alert('Payment successful');
           })
-          .catch((error) => {
-            console.log('Payment failed', error);
+          .catch((err) => {
+            Alert.alert(`Payment Confirmation Error ${err}`);
           });
       })
-      .catch((error) => {
-        console.log('Payment unable to process', error);
+      .catch((err) => {
+        console.log('Unable to process payment');
       });
+    //3.Confirm the payment with the card details
   };
 
-  useEffect(() => {
-    console.log(route?.params);
-  }, []);
   return (
-    <View style={{ flex: 1, justifyContent: 'center', margin: 20 }}>
+    <View style={styles.container}>
       <TextInput
         autoCapitalize="none"
         placeholder="E-mail"
         keyboardType="email-address"
-        onChange={(e) => {
-          console.log(e.nativeEvent.text);
-          setEmail(e.nativeEvent.text);
-        }}
-        style={{
-          backgroundColor: '#efefefef',
-          borderColor: '#000',
-          borderRadius: 8,
-          fontSize: 20,
-          height: 50,
-          padding: 10,
-        }}
+        onChange={(value) => setEmail(value.nativeEvent.text)}
+        style={styles.input}
       />
       <CardField
-        postalCodeEnabled
-        placeholder={{ number: '4242 4242 4242 4242' }}
-        cardStyle={{ backgroundColor: '#efefefef' }}
-        style={{ height: 50, marginVertical: 30 }}
-        onCardChange={(e) => {
-          console.log(e);
-          setCardDetails(e);
+        postalCodeEnabled={true}
+        placeholder={{
+          number: '4242 4242 4242 4242',
+        }}
+        cardStyle={styles.card}
+        style={styles.cardContainer}
+        onCardChange={(cardDetails) => {
+          setCardDetails(cardDetails);
         }}
       />
-      <Button title="Pay" onPress={handlePayPress} disabled={loading} />
+      <Button onPress={handlePayPress} title="Pay" disabled={loading} />
     </View>
   );
 };
-
 export default Stripe;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    margin: 20,
+  },
+  input: {
+    backgroundColor: '#efefefef',
+
+    borderRadius: 8,
+    fontSize: 20,
+    height: 50,
+    padding: 10,
+  },
+  card: {
+    backgroundColor: '#efefefef',
+  },
+  cardContainer: {
+    height: 50,
+    marginVertical: 30,
+  },
+});
