@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
-import {
-  CardField,
-  CardFieldInput,
-  useConfirmPayment,
-} from '@stripe/stripe-react-native';
+import { View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { CardField, useConfirmPayment } from '@stripe/stripe-react-native';
 
 //ADD localhost address of your server
 const API_URL = 'http://192.168.0.12:3000';
@@ -49,7 +45,7 @@ const Stripe: React.FC = () => {
         })
           .then((paymentIntent) => {
             console.log('paymentIntent', paymentIntent);
-            if(paymentIntent.error) {
+            if (paymentIntent.error) {
               throw new Error(paymentIntent.error.message);
             }
             Alert.alert('Payment successful');
