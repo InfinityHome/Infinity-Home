@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  Platform,
+} from 'react-native';
 import { CardField, useConfirmPayment } from '@stripe/stripe-react-native';
-
 //ADD localhost address of your server
-const API_URL = 'http://192.168.0.12:3000';
+const API_URL =
+  Platform.OS == 'android'
+    ? 'http://192.168.0.12:3000'
+    : 'http://localhost:3000';
 
 const Stripe: React.FC = () => {
   const [email, setEmail] = useState<string>();

@@ -1,10 +1,11 @@
 import express from 'express';
+import Stripe from 'stripe';
 
 const app = express();
 const port = 3000; //add your port here
 const SECRET_KEY =
   'sk_test_51Jz4ZuFq2wD94Na9IsZ9M6Zm1JeCH3gBk9a2nSO4RrJi9O0hT70mP9wdJQdbyBGjQq4B7dRiEtJPa2JI2fBuFx7D00HI73SumM';
-import Stripe from 'stripe';
+
 
 //Confirm the API version from your stripe dashboard
 const stripe = new Stripe(SECRET_KEY, { apiVersion: '2020-08-27' });
