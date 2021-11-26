@@ -36,19 +36,16 @@ const Stripe: React.FC = () => {
   };
 
   const handlePayPress = async () => {
-    //1.Gather the customer's billing information (e.g., email)
     if (!cardDetails?.complete) {
       Alert.alert('Please enter Complete card details and Email');
       return;
     }
-    console.log('cardDetails', cardDetails);
 
-    //2.Fetch the intent client secret from the backend
     fetchPaymentIntentClientSecret()
       .then((clientSecret) => {
         confirmPayment(clientSecret, {
           type: 'Card',
-          billingDetails: { email: 'user@stripe.com' },
+          billingDetails: { email },
         })
           .then((paymentIntent) => {
             console.log('paymentIntent', paymentIntent);
@@ -64,7 +61,6 @@ const Stripe: React.FC = () => {
       .catch((err) => {
         console.log('Unable to process payment');
       });
-    //3.Confirm the payment with the card details
   };
 
   return (
