@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import Question from '../components/Question';
@@ -61,7 +61,7 @@ const questions = [
   ],
 ];
 
-const Questions: React.FC<HomeNavProps<'HomeScreen'>> = ({
+const Questions: React.FC<HomeNavProps<'Questions'>> = ({
   navigation,
   route,
 }) => {
@@ -88,13 +88,18 @@ const Questions: React.FC<HomeNavProps<'HomeScreen'>> = ({
         });
       }
     });
-    navigation.navigate('Stripe', { title: route?.params.title || '', data: acc });
+    navigation.navigate('Stripe', {
+      title: route?.params.title || '',
+      data: acc,
+    });
   };
 
   return (
     <View
       style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#444956' }}>
-      <ProgressSteps marginBottom={30} activeStepIconColor="#4bb543">
+      <ProgressSteps
+        marginBottom={30}
+        activeStepIconColor="#4bb543">
         {questions.map((question, index) => (
           <ProgressStep
             key={index}

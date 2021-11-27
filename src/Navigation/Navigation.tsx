@@ -91,16 +91,12 @@ const HomeNavigation: React.FC = () => {
       <HomeStack.Screen
         name="Stripe"
         component={Stripe}
-        options={({
-          route: {
-            params: { title },
-          },
-        }) => ({
-          title: title,
+        options={{
+          title: 'Review & Pay',
           headerStyle: { backgroundColor: '#444956' },
           headerShadowVisible: false,
           headerTintColor: 'white',
-        })}
+        }}
       />
     </HomeStack.Navigator>
   );

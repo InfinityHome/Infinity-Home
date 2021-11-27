@@ -34,7 +34,7 @@ export type AccountNavProps<T extends keyof AccountParamList> = {
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
   navigation: NativeStackNavigationProp<HomeParamList, T>;
-  route?: RouteProp<{ params: HomeParamList['Stripe'] }, 'params'>;
+  route?: RouteProp<HomeParamList, T>;
 };
 
 export type BottomNavParamList = {
