@@ -13,7 +13,6 @@ import Review from '../components/Review';
 import { HomeNavProps } from '../Navigation/Params';
 import Text from '../customs/CustomText';
 
-
 //ADD localhost address of your server
 const API_URL =
   Platform.OS == 'android'
@@ -62,7 +61,10 @@ const Stripe: React.FC<HomeNavProps<'Stripe'>> = ({ route, navigation }) => {
               throw new Error(paymentIntent.error.message);
             }
             Alert.alert('Payment successful');
-            navigation.navigate('HomeScreen');
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'HomeScreen' }],
+            });
           })
           .catch((err) => {
             Alert.alert(`Payment Confirmation ${err}`);
@@ -119,8 +121,8 @@ const Stripe: React.FC<HomeNavProps<'Stripe'>> = ({ route, navigation }) => {
 };
 
 const DefinedText: React.FC = (props) => (
-  <Text style={{color: 'white', fontSize: 20}}>{props.children}</Text>
-)
+  <Text style={{ color: 'white', fontSize: 20 }}>{props.children}</Text>
+);
 export default Stripe;
 
 const styles = StyleSheet.create({

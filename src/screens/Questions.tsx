@@ -97,9 +97,7 @@ const Questions: React.FC<HomeNavProps<'Questions'>> = ({
   return (
     <View
       style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#444956' }}>
-      <ProgressSteps
-        marginBottom={30}
-        activeStepIconColor="#4bb543">
+      <ProgressSteps marginBottom={30} activeStepIconColor="#4bb543">
         {questions.map((question, index) => (
           <ProgressStep
             key={index}
