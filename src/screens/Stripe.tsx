@@ -62,6 +62,7 @@ const Stripe: React.FC<HomeNavProps<'Stripe'>> = ({ route, navigation }) => {
               throw new Error(paymentIntent.error.message);
             }
             Alert.alert('Payment successful');
+            navigation.navigate('HomeScreen');
           })
           .catch((err) => {
             Alert.alert(`Payment Confirmation ${err}`);
