@@ -1,9 +1,21 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type LoginParamList = {
   SignUp: undefined;
   Login: undefined;
   SignIn: undefined;
+};
+
+export type ContractorParamList = {
+  Profile: undefined;
+  Bids: undefined;
+  Payments: undefined;
+  Messages: undefined;
+  Details: undefined;
+};
+
+export type ContractorNavProps<T extends keyof ContractorParamList> = {
+  navigation: NativeStackNavigationProp<ContractorParamList, T>;
 };
 
 export type AccountParamList = {

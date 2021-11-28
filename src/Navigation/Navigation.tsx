@@ -1,35 +1,110 @@
-import React, { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   LoginParamList,
   BottomNavParamList,
   AccountParamList,
+  ContractorParamList,
   HomeParamList,
-} from './Params';
-import { authMethod, firebase } from '../firebase/config';
-import { Icon } from 'react-native-elements';
-import SignUp from '../screens/SignUp';
-import Login from '../screens/Login';
-import SignIn from '../screens/SignIn';
-import Home from '../screens/Home';
-import Orders from '../screens/Orders';
-import Account from '../screens/Account';
-import AccountDetails from '../screens/AccountDetails';
-import Questions from '../screens/Questions';
-import { Platform } from 'react-native';
+} from "./Params";
+import Questions from "../screens/Questions";
+import { Platform } from "react-native";
+import { authMethod, firebase } from "../firebase/config";
+import Icon from "react-native-vector-icons/Feather";
+import SignUp from "../screens/SignUp";
+import Login from "../screens/Login";
+import SignIn from "../screens/SignIn";
+import Home from "../screens/Home";
+import Orders from "../screens/Orders";
+import Account from "../screens/Account";
+import AccountDetails from "../screens/AccountDetails";
+import ContractorAccount from "../screens/ContractorAccount";
+import Bid from "../screens/Bid";
+import Payments from "../screens/Payments";
+import Messages from "../screens/Messages";
+import CustomDrawer from "../customs/CustomDrawer";
+import ContractorDetails from "../screens/ContractorDetails";
+
+import { createDrawerNavigator } from "@react-navigation/drawer";
+const Drawer = createDrawerNavigator<ContractorParamList>();
+const ContractorNavigation: React.FC = () => {
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawer {...props} />}
+      screenOptions={{
+        headerStyle: { backgroundColor: "#292c31" },
+        headerShadowVisible: false,
+        headerTintColor: "white",
+
+        drawerActiveBackgroundColor: "#0e90e0",
+        drawerActiveTintColor: "white",
+        drawerInactiveTintColor: "grey",
+        drawerStyle: {
+          width: 240,
+        },
+        drawerLabelStyle: {
+          marginLeft: -25,
+          fontSize: 16,
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="Profile"
+        component={ContractorAccount}
+        options={{
+          drawerIcon: () => <Icon name="home" color="white" size={20} />,
+          headerTitle: "Contractor Portal",
+        }}
+      />
+      <Drawer.Screen
+        name="Bids"
+        component={Bid}
+        options={{
+          drawerIcon: () => <Icon name="clipboard" color="white" size={20} />,
+          headerTitle: "Contractor Portal",
+        }}
+      />
+      <Drawer.Screen
+        name="Payments"
+        component={Payments}
+        options={{
+          drawerIcon: () => <Icon name="dollar-sign" color="white" size={20} />,
+          headerTitle: "Contractor Portal",
+        }}
+      />
+      <Drawer.Screen
+        name="Messages"
+        component={Messages}
+        options={{
+          drawerIcon: () => <Icon name="send" color="white" size={20} />,
+          headerTitle: "Contractor Portal",
+        }}
+      />
+      <Drawer.Screen
+        name="Details"
+        component={ContractorDetails}
+        options={{
+          drawerIcon: () => <Icon name="edit" color="white" size={20} />,
+          headerTitle: "Contractor Portal",
+        }}
+      />
+    </Drawer.Navigator>
+  );
+};
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 const LoginNavigation: React.FC = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        title: '',
-        headerStyle: { backgroundColor: '#444956' },
+        title: "",
+        headerStyle: { backgroundColor: "#444956" },
         headerShadowVisible: false,
-        headerTintColor: 'white',
-      }}>
+        headerTintColor: "white",
+      }}
+    >
       <Stack.Screen
         name="Login"
         component={Login}
@@ -54,10 +129,10 @@ const AccountNavigation: React.FC = () => {
         name="AccountDetails"
         component={AccountDetails}
         options={{
-          title: '',
-          headerStyle: { backgroundColor: '#444956' },
+          title: "",
+          headerStyle: { backgroundColor: "#444956" },
           headerShadowVisible: false,
-          headerTintColor: 'white',
+          headerTintColor: "white",
         }}
       />
     </AccStack.Navigator>
@@ -82,9 +157,9 @@ const HomeNavigation: React.FC = () => {
           },
         }) => ({
           title: title,
-          headerStyle: { backgroundColor: '#444956' },
+          headerStyle: { backgroundColor: "#444956" },
           headerShadowVisible: false,
-          headerTintColor: 'white',
+          headerTintColor: "white",
         })}
       />
     </HomeStack.Navigator>
@@ -97,43 +172,42 @@ const BottomNavigation: React.FC = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: 'white',
+        tabBarActiveTintColor: "white",
         tabBarLabelStyle: {
           fontSize: 12,
-          bottom: Platform.OS === 'ios' ? 0 : 8,
+          bottom: Platform.OS === "ios" ? 0 : 8,
         },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          backgroundColor: '#21242c',
+          backgroundColor: "#21242c",
           borderTopWidth: 0,
           minHeight: 55,
-          paddingTop: Platform.OS === 'ios' ? 10 : 0,
+          paddingTop: Platform.OS === "ios" ? 10 : 0,
         },
-      }}>
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeNavigation}
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: () => <Icon name="house" color="white" size={25} />,
+          tabBarLabel: "Home",
+          tabBarIcon: () => <Icon name="home" color="white" size={25} />,
         }}
       />
       <Tab.Screen
         name="Orders"
         component={Orders}
         options={{
-          tabBarLabel: 'Orders',
-          tabBarIcon: () => (
-            <Icon name="shopping-cart" color="white" size={25} />
-          ),
+          tabBarLabel: "Orders",
+          tabBarIcon: () => <Icon name="box" color="white" size={25} />,
         }}
       />
       <Tab.Screen
         name="Account"
         component={AccountNavigation}
         options={{
-          tabBarLabel: 'Account',
-          tabBarIcon: () => <Icon name="person" color="white" size={25} />,
+          tabBarLabel: "Account",
+          tabBarIcon: () => <Icon name="user" color="white" size={25} />,
         }}
       />
     </Tab.Navigator>
@@ -150,6 +224,7 @@ const Navigation: React.FC = () => {
   return (
     <NavigationContainer>
       {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
+      {/* <ContractorNavigation /> */}
     </NavigationContainer>
   );
 };
