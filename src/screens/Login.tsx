@@ -4,6 +4,7 @@ import { LoginNavProps } from "../Navigation/Params";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import { signInWithGoogleAsync } from "../firebase/firebaseMethods";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
   return (
@@ -11,32 +12,63 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
       <View>
         <Image
           source={{
-            uri: "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/49812/house-with-garden-emoji-clipart-xl.png",
+            uri: "https://www.designfreelogoonline.com/wp-content/uploads/2017/04/000826-free-house-logo-design-logomaker-free-04.png",
           }}
-          style={{ width: 180, height: 135 }}
+          style={{ width: 300, height: 75 }}
         />
-        <Text style={{ fontSize: 30, color: "white", alignSelf:'center' }}>Welcome To</Text>
-        <Text style={{ fontSize: 40, color: "white" }}>Infinity Home</Text>
+        <Text style={{ fontSize: 30, color: "white", alignSelf: "center" }}>
+          Welcome To
+        </Text>
+        <Text style={{ fontSize: 40, color: "white", alignSelf: "center" }}>
+          Infinity Home
+        </Text>
       </View>
 
-      {/* <View>
-        <Text style={{ fontSize: 16, color: "white" }}>
-          Skip the tedious process and leave it to us!
-        </Text>
-      </View> */}
-
       <View
-        // style={{
-        //   borderRadius: 15,
-        //   width: "85%",
-        //   backgroundColor: "#1a3166",
-        //   paddingVertical: 8,
-        // }}
+        style={{
+          marginTop: 30,
+          paddingVertical: 8,
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
       >
+        <Icon name="wifi-outline" color="#dddddd" size={40} />
+        <Icon name="thermometer-outline" color="#e57621" size={40} />
+        <Icon name="hammer-outline" color="#FF4949" size={40} />
+      </View>
+      <View
+        style={{
+          paddingVertical: 8,
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Icon name="water-outline" color="#3CAEA3" size={40} />
+        <Icon name="flash-outline" color="#FFCC3D" size={40} />
+        <Icon name="leaf-outline" color="#13CE66" size={40} />
+      </View>
+      <View
+        style={{
+          marginBottom: 50,
+          paddingVertical: 8,
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Icon name="hardware-chip-outline" color="#8067B7" size={40} />
+        <Icon name="chatbubbles-outline" color="#D894D4" size={40} />
+        <Icon name="desktop-outline" color="#2D8EFF" size={40} />
+      </View>
+
+      <View>
         <Button title="Continue with Google" onPress={signInWithGoogleAsync} />
-        
         <Text
-          style={{ fontSize: 16, textAlign: "center", paddingVertical: 10, color:"#8cb0ff" }}
+          style={{
+            fontSize: 16,
+            textAlign: "center",
+            paddingVertical: 10,
+            color: "#8cb0ff",
+          }}
         >
           - OR -
         </Text>
@@ -63,9 +95,10 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1a3166",
+    backgroundColor: "#1c47ab",
+    //backgroundColor: "#19409a",
     padding: 7,
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "center",
   },
 });
