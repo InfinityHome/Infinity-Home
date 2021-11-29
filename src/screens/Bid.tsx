@@ -13,7 +13,7 @@ const Bid: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#444956",
+    backgroundColor: "#16181d",
     padding: 7,
     justifyContent: "space-evenly",
     alignItems: "center",

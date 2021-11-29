@@ -93,7 +93,7 @@ const Questions: React.FC = () => {
 
   return (
     <View
-      style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#444956' }}>
+      style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#16181d' }}>
       <ProgressSteps marginBottom={30} activeStepIconColor="#4bb543">
         {questions.map((question, index) => (
           <ProgressStep

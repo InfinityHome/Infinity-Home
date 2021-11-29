@@ -29,7 +29,6 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
           marginTop: 30,
           paddingVertical: 8,
           flexDirection: "row",
-          justifyContent: "center",
         }}
       >
         <Icon name="wifi-outline" color="#dddddd" size={40} />
@@ -40,7 +39,6 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
         style={{
           paddingVertical: 8,
           flexDirection: "row",
-          justifyContent: "center",
         }}
       >
         <Icon name="water-outline" color="#3CAEA3" size={40} />
@@ -52,7 +50,6 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
           marginBottom: 50,
           paddingVertical: 8,
           flexDirection: "row",
-          justifyContent: "center",
         }}
       >
         <Icon name="hardware-chip-outline" color="#8067B7" size={40} />
