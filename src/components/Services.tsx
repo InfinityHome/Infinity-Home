@@ -19,7 +19,7 @@ const Services: React.FC<ServicesProps> = (props) => {
           paddingHorizontal: 20,
           paddingVertical: 5,
           fontSize: 20,
-          color: 'white',
+          color: "#bad0ff",
         }}>
         Categories
       </Text>
@@ -44,7 +44,7 @@ const Services: React.FC<ServicesProps> = (props) => {
               style={{
                 justifyContent: 'space-around',
                 padding: 10,
-                backgroundColor: '#9da0a7',
+                backgroundColor: '#407bff',
                 borderRadius: 15,
                 marginBottom: 30,
                 marginHorizontal: 10,
@@ -62,14 +62,14 @@ const Services: React.FC<ServicesProps> = (props) => {
 };
 
 const ServiceIcon: React.FC<{ ServiceIcon: string | null }> = (props) => (
-  <Icon type="material" name={props.ServiceIcon || 'build'} size={45} />
+  <Icon type="material" name={props.ServiceIcon || 'build'} size={45} color={"#122d6c"} />
 );
 
 const Service: React.FC<{ service: string | null }> = (props) => (
   <Text
     style={{
       fontSize: 15,
-      color: 'white',
+      color: '#0f265c',
       textAlign: 'center',
       fontWeight: '600',
       letterSpacing: 1,
