@@ -5,7 +5,7 @@ import Text from "../customs/CustomText";
 const Bid: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>BID</Text>
+      <Text style={{color:"white"}}>BID</Text>
     </View>
   );
 };

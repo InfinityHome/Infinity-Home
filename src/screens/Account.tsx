@@ -117,7 +117,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         }}
       >
         <Touchable
-          onPress={() => ""}
+          onPress={() => navigation.navigate("Saved")}
           leftIconName={"heart"}
           iconColor={"#Ee2e28"}
         >
@@ -125,7 +125,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </Touchable>
         <Divider color={"#47494d"} />
         <Touchable
-          onPress={() => ""}
+          onPress={() => navigation.navigate("Bid")}
           leftIconName={"clipboard"}
           iconColor={"#8067B7"}
         >
@@ -133,7 +133,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </Touchable>
         <Divider color={"#47494d"} />
         <Touchable
-          onPress={() => ""}
+          onPress={() => navigation.navigate("Payments")}
           leftIconName={"card"}
           iconColor={"#28ee74"}
         >
@@ -149,7 +149,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </Touchable>
         <Divider color={"#47494d"} />
         <Touchable
-          onPress={() => ""}
+          onPress={() => navigation.navigate("Password")}
           leftIconName={"create"}
           iconColor={"#F4eb4d"}
         >

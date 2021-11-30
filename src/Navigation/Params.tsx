@@ -23,6 +23,10 @@ export type AccountParamList = {
   AccountScreen: undefined;
   AccountDetails: undefined;
   Messages: undefined;
+  Payments: undefined;
+  Bid: undefined;
+  Saved: undefined;
+  Password: undefined;
 };
 
 export type HomeParamList = {

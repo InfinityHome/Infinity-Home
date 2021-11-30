@@ -25,6 +25,8 @@ import ContractorAccount from "../screens/ContractorAccount";
 import Bid from "../screens/Bid";
 import Payments from "../screens/Payments";
 import Messages from "../screens/Messages";
+import Saved from "../screens/Saved";
+import Password from "../screens/Password";
 import CustomDrawer from "../customs/CustomDrawer";
 import ContractorDetails from "../screens/ContractorDetails";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -141,6 +143,46 @@ const AccountNavigation: React.FC = () => {
         component={Messages}
         options={{
           title: "Messages",
+          headerStyle: { backgroundColor: "#16181d" },
+          headerShadowVisible: false,
+          headerTintColor: "white",
+        }}
+      />
+      <AccStack.Screen
+        name="Payments"
+        component={Payments}
+        options={{
+          title: "Payments",
+          headerStyle: { backgroundColor: "#16181d" },
+          headerShadowVisible: false,
+          headerTintColor: "white",
+        }}
+      />
+      <AccStack.Screen
+        name="Bid"
+        component={Bid}
+        options={{
+          title: "Bidding",
+          headerStyle: { backgroundColor: "#16181d" },
+          headerShadowVisible: false,
+          headerTintColor: "white",
+        }}
+      />
+      <AccStack.Screen
+        name="Saved"
+        component={Saved}
+        options={{
+          title: "Saved",
+          headerStyle: { backgroundColor: "#16181d" },
+          headerShadowVisible: false,
+          headerTintColor: "white",
+        }}
+      />
+      <AccStack.Screen
+        name="Password"
+        component={Password}
+        options={{
+          title: "Password",
           headerStyle: { backgroundColor: "#16181d" },
           headerShadowVisible: false,
           headerTintColor: "white",
