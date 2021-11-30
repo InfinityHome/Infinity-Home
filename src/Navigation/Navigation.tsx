@@ -220,7 +220,7 @@ const HomeNavigation: React.FC = () => {
         component={Stripe}
         options={{
           title: 'Review & Pay',
-          headerStyle: { backgroundColor: '#444956' },
+          headerStyle: { backgroundColor: '#16181d' },
           headerShadowVisible: false,
           headerTintColor: 'white',
         }}

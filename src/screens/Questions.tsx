@@ -97,7 +97,14 @@ const Questions: React.FC<HomeNavProps<'Questions'>> = ({
   return (
     <View
       style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#16181d' }}>
-      <ProgressSteps marginBottom={30} activeStepIconColor="#4bb543">
+      <ProgressSteps
+        marginBottom={30}
+        activeStepIconColor="#407bff"
+        activeStepIconBorderColor="#8cb0ff"
+        borderWidth={1}
+        completedProgressBarColor="#8cb0ff"
+        completedStepIconColor="#407bff"
+        disabledStepNumColor="black">
         {questions.map((question, index) => (
           <ProgressStep
             key={index}
@@ -106,11 +113,11 @@ const Questions: React.FC<HomeNavProps<'Questions'>> = ({
             nextBtnTextStyle={{
               fontSize: 20,
               opacity: error ? 0.2 : 1,
-              color: 'white',
+              color: '#bad0ff',
             }}
             nextBtnStyle={{ padding: 0 }}
             previousBtnStyle={{ padding: 0 }}
-            previousBtnTextStyle={{ fontSize: 20, color: 'white' }}>
+            previousBtnTextStyle={{ fontSize: 20, color: '#bad0ff' }}>
             <Question
               setError={setError}
               questions={question}
