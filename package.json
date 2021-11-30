@@ -41,7 +41,7 @@
     "stripe": "^8.191.0",
     "yup": "^0.32.10",
     "react-native-vector-icons": "^9.0.0",
-    "expo-image-picker": "~10.1.4"
+    "expo-image-picker": "~11.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

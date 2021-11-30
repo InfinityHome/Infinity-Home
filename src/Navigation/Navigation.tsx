@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Platform } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Icon } from 'react-native-elements';
 import {
   LoginParamList,
   BottomNavParamList,
@@ -10,7 +13,6 @@ import {
   HomeParamList,
 } from './Params';
 import { authMethod, firebase } from '../firebase/config';
-import { Icon } from 'react-native-elements';
 import SignUp from '../screens/SignUp';
 import Login from '../screens/Login';
 import SignIn from '../screens/SignIn';
@@ -20,14 +22,12 @@ import Account from '../screens/Account';
 import AccountDetails from '../screens/AccountDetails';
 import Questions from '../screens/Questions';
 import Stripe from '../screens/Stripe';
-import { Platform } from 'react-native';
 import ContractorAccount from "../screens/ContractorAccount";
 import Bid from "../screens/Bid";
 import Payments from "../screens/Payments";
 import Messages from "../screens/Messages";
 import CustomDrawer from "../customs/CustomDrawer";
 import ContractorDetails from "../screens/ContractorDetails";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 
 
 const Drawer = createDrawerNavigator<ContractorParamList>();
