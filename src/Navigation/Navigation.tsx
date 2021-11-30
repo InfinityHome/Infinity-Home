@@ -135,6 +135,16 @@ const AccountNavigation: React.FC = () => {
           headerTintColor: "white",
         }}
       />
+      <AccStack.Screen
+        name="Messages"
+        component={Messages}
+        options={{
+          title: "Messages",
+          headerStyle: { backgroundColor: "#16181d" },
+          headerShadowVisible: false,
+          headerTintColor: "white",
+        }}
+      />
     </AccStack.Navigator>
   );
 };
@@ -223,8 +233,8 @@ const Navigation: React.FC = () => {
   }, []);
   return (
     <NavigationContainer>
-      {userLoggin ? <BottomNavigation /> : <LoginNavigation />}
-      {/* <ContractorNavigation /> */}
+      {/* {userLoggin ? <BottomNavigation /> : <LoginNavigation />} */}
+      <ContractorNavigation />
     </NavigationContainer>
   );
 };

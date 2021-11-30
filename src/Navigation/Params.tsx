@@ -21,6 +21,7 @@ export type ContractorNavProps<T extends keyof ContractorParamList> = {
 export type AccountParamList = {
   AccountScreen: undefined;
   AccountDetails: undefined;
+  Messages: undefined;
 };
 
 export type HomeParamList = {

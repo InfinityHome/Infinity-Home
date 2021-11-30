@@ -141,7 +141,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </Touchable>
         <Divider color={"#47494d"} />
         <Touchable
-          onPress={() => ""}
+          onPress={() => navigation.navigate("Messages")}
           leftIconName={"chatbubbles"}
           iconColor={"#28b9ee"}
         >
