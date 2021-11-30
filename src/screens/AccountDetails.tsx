@@ -79,7 +79,7 @@ const AccountDetails: React.FC = () => {
         <TextBox placeholder={"State"} leftIconName={"pin"} width={"40%"} />
         <TextBox placeholder={"Zip"} leftIconName={"compass"} width={"40%"} />
       </View>
-      <Button title="Change Details" onPress={() => ""} />
+      <Button title="Change Details" onPress={() => ""} backgroundColor={"#407bff"}/>
     </SafeAreaView>
   );
 };

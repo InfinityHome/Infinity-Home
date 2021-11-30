@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TextInput, SafeAreaView, Platform, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TextInput, SafeAreaView, Platform } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import Icon from "react-native-vector-icons/Octicons";
@@ -7,7 +7,7 @@ import Icon from "react-native-vector-icons/Octicons";
 const Password: React.FC = () => {
     return (
         <SafeAreaView style={styles.container}>
-          <Text style={{ fontSize: 30, color: "#ff3365", textAlign: "center" }}>
+          <Text style={{ fontSize: 30, color: "#dd4141", textAlign: "center" }}>
             Change Password
           </Text>
           <TextBox placeholder={"Current Password"} leftIconName={"lock"} width={"100%"} />
@@ -22,7 +22,7 @@ const Password: React.FC = () => {
             }}
           >
           </View>
-          <Button title="Change Details" onPress={() => ""} />
+          <Button title="Change Details" onPress={() => ""} backgroundColor={"#dd4141"} />
         </SafeAreaView>
   );
 };
@@ -39,23 +39,23 @@ const TextBox: React.FC<{
           paddingHorizontal: 5,
           alignItems: "center",
           borderWidth: 1,
-          borderColor: "#F50057",
+          borderColor: "#dd4141",
           marginVertical: 10,
           backgroundColor: "#21242c",
           borderRadius: 15,
           paddingLeft: 10,
         }}
       >
-        <Icon name={props.leftIconName} color="#F50057" size={20} />
+        <Icon name={props.leftIconName} color="#dd4141" size={20} />
         <TextInput
           style={{
             width: props.width,
             padding: 10,
             fontSize: 16,
-            color: "#ff99b2",
+            color: "#ea8989",
           }}
           placeholder={props.placeholder}
-          placeholderTextColor="#ff99b2"
+          placeholderTextColor="#ea8989"
           autoCapitalize="none"
         />
       </View>

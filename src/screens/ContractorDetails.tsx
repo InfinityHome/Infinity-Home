@@ -19,9 +19,8 @@ const ContractorDetails: React.FC = () => {
   useEffect(() => {
     (async () => {
       if (Platform.OS !== "web") {
-        const {
-          status,
-        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        const { status } =
+          await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== "granted") {
           alert("Permission to access camera roll needed");
         }
@@ -71,8 +70,7 @@ const ContractorDetails: React.FC = () => {
         <TouchableOpacity onPress={pickImage}>
           <Image
             source={{
-              uri:
-                "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
+              uri: "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
             }}
             style={{ height: 35, width: 35, borderRadius: 100, marginTop: 55 }}
           />
@@ -106,7 +104,7 @@ const ContractorDetails: React.FC = () => {
         <TextBox placeholder={"State"} leftIconName={""} width={"45%"} />
         <TextBox placeholder={"Zip"} leftIconName={""} width={"45%"} />
       </View>
-      <Button title="Change Details" onPress={() => ""} />
+      <Button title="Change Details" onPress={() => ""} backgroundColor={"#0e90e0"}/>
     </SafeAreaView>
   );
 };
@@ -123,7 +121,7 @@ const TextBox: React.FC<{
         paddingHorizontal: 5,
         alignItems: "center",
         marginVertical: 10,
-        backgroundColor: "#292c31",
+        backgroundColor: "#21242c",
         borderRadius: 15,
         paddingLeft: 10,
       }}

@@ -58,7 +58,7 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
       </View>
 
       <View>
-        <Button title="Continue with Google" onPress={signInWithGoogleAsync} />
+        <Button title="Continue with Google" onPress={signInWithGoogleAsync} backgroundColor={"#407bff"} />
         <Text
           style={{
             fontSize: 16,
@@ -69,7 +69,7 @@ const Login: React.FC<LoginNavProps<"Login">> = ({ navigation }) => {
         >
           - OR -
         </Text>
-        <Button title="Sign In" onPress={() => navigation.navigate("SignIn")} />
+        <Button title="Sign In" onPress={() => navigation.navigate("SignIn")} backgroundColor={"#407bff"} />
         <View
           style={{
             flexDirection: "row",

@@ -147,7 +147,7 @@ const Stripe: React.FC<HomeNavProps<'Stripe'>> = ({ route, navigation }) => {
             setCardDetails(cardDetails);
           }}
         />
-        <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+        <Button color={"#407bff"} onPress={handlePayPress} title="Pay" disabled={loading} />
       </ScrollView>
     </View>
   );

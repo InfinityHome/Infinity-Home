@@ -125,6 +125,7 @@ const SignUp: React.FC<LoginNavProps<"SignUp">> = ({ navigation }) => {
                   title="Sign Up"
                   buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
                   onPress={handleSubmit}
+                  backgroundColor={"#407bff"}
                 />
               </View>
               <View

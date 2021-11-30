@@ -50,7 +50,7 @@ const Review: React.FC<ReviewProps> = (props) => {
         style={{
           alignSelf: 'flex-end',
           borderRadius: 10,
-          backgroundColor: '#0BB5ff',
+          backgroundColor: "#407bff",
           padding: 10,
           paddingHorizontal: 30,
           color: '#407bff'

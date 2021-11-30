@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, View, TouchableOpacity, Image } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import TextField from "../components/TextField";
@@ -22,22 +28,22 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <>
-      <View style={{
-          borderRadius: 15,
-          width: "100%",
-          //backgroundColor: "#292c31",
-          paddingVertical: 5,
-          alignItems: "center"
-        }}>
-        <Image
-            source={require('../../assets/check.png')}
+        <View
+          style={{
+            borderRadius: 15,
+            width: "100%",
+            //backgroundColor: "#21242c",
+            paddingVertical: 5,
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={require("../../assets/check.png")}
             style={{ width: 220, height: 200 }}
-        />
-      </View>
-        
-        <Text style={{ fontSize: 30, color: "#bad0ff" }}>
-          Sign In
-        </Text>
+          />
+        </View>
+
+        <Text style={{ fontSize: 30, color: "#bad0ff" }}>Sign In</Text>
 
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -86,6 +92,7 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = ({ navigation }) => {
                   title="Sign In"
                   buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
                   onPress={handleSubmit}
+                  backgroundColor={"#407bff"}
                 />
               </View>
               <View
@@ -99,7 +106,10 @@ const SignIn: React.FC<LoginNavProps<"SignIn">> = ({ navigation }) => {
                   Don&apos;t have an account?
                 </Text>
                 <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-                  <Text style={{ fontSize: 16, color: "#407bff" }}> Sign Up</Text>
+                  <Text style={{ fontSize: 16, color: "#407bff" }}>
+                    {" "}
+                    Sign Up
+                  </Text>
                 </TouchableOpacity>
               </View>
             </>

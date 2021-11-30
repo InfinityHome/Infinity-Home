@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Stripe from '../screens/Stripe';
+import Stripe from "../screens/Stripe";
 import {
   LoginParamList,
   BottomNavParamList,
@@ -37,7 +37,7 @@ const ContractorNavigation: React.FC = () => {
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={{
-        headerStyle: { backgroundColor: "#292c31" },
+        headerStyle: { backgroundColor: "#21242c" },
         headerShadowVisible: false,
         headerTintColor: "white",
 
@@ -185,7 +185,7 @@ const AccountNavigation: React.FC = () => {
           title: "Password",
           headerStyle: { backgroundColor: "#16181d" },
           headerShadowVisible: false,
-          headerTintColor: "white",
+          headerTintColor: "#ea8989",
         }}
       />
     </AccStack.Navigator>
@@ -219,10 +219,10 @@ const HomeNavigation: React.FC = () => {
         name="Stripe"
         component={Stripe}
         options={{
-          title: 'Review & Pay',
-          headerStyle: { backgroundColor: '#16181d' },
+          title: "Review & Pay",
+          headerStyle: { backgroundColor: "#16181d" },
           headerShadowVisible: false,
-          headerTintColor: 'white',
+          headerTintColor: "white",
         }}
       />
     </HomeStack.Navigator>
@@ -242,7 +242,7 @@ const BottomNavigation: React.FC = () => {
         },
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          backgroundColor: "#21242c",
+          backgroundColor: "#0f1114",
           borderTopWidth: 0,
           minHeight: 55,
           paddingTop: Platform.OS === "ios" ? 10 : 0,

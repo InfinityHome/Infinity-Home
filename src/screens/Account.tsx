@@ -79,7 +79,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </View>
         <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 25, color: "white" }}>First Last</Text>
-          <Text style={{ fontSize: 18, color: "#34a4f7", paddingBottom: 4 }}>
+          <Text style={{ fontSize: 18, color: "#28b9ee", paddingBottom: 4 }}>
             infinityhome16@gmail.com
           </Text>
         </View>
@@ -157,7 +157,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         </Touchable>
       </View>
       <View>
-        <Button title="Sign Out" onPress={handleSignOut} />
+        <Button title="Sign Out" onPress={handleSignOut} backgroundColor={"#21242c"}/>
       </View>
     </SafeAreaView>
   );

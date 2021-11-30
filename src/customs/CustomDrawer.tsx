@@ -22,10 +22,10 @@ interface DrawerProp {
 
 const CustomDrawer: React.FC<DrawerProp> = (props) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "black" }}>
+    <View style={{ flex: 1, backgroundColor: "#0f1114" }}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{ backgroundColor: "black" }}
+        contentContainerStyle={{ backgroundColor: "#0f1114" }}
       >
         <ImageBackground
           source={{
