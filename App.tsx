@@ -1,8 +1,10 @@
+import React, { useEffect, useState } from 'react';
+import * as Font from 'expo-font';
+import { ActivityIndicator, View } from 'react-native';
+import Navigation from './src/Navigation/Navigation';
+import { StripeProvider } from '@stripe/stripe-react-native';
+import { STRIPE_PUBLISHABLE_KEY } from '@env';
 import "react-native-gesture-handler";
-import React, { useEffect, useState } from "react";
-import * as Font from "expo-font";
-import { ActivityIndicator, View } from "react-native";
-import Navigation from "./src/Navigation/Navigation";
 
 const App: React.FC = () => {
   const [fontLoaded, setFontLoaded] = useState<boolean>(false);
@@ -24,7 +26,9 @@ const App: React.FC = () => {
   return (
     <>
       {fontLoaded ? (
-        <Navigation />
+        <StripeProvider publishableKey={STRIPE_PUBLISHABLE_KEY}>
+          <Navigation />
+        </StripeProvider>
       ) : (
         <View style={{ flex: 1, justifyContent: "center" }}>
           <ActivityIndicator size="large" color="gray" />
