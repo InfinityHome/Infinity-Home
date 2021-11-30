@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import Question from '../components/Question';
+import { HomeNavProps } from '../Navigation/Params';
 
 const questions = [
   [
@@ -57,14 +58,13 @@ const questions = [
       Question: 'Question8',
       Answer: 'Required',
     },
-    {
-      Question: 'Question9',
-      Answer: 'Optional',
-    },
   ],
 ];
 
-const Questions: React.FC = () => {
+const Questions: React.FC<HomeNavProps<'Questions'>> = ({
+  navigation,
+  route,
+}) => {
   const [usersSelections, setUsersSelections] = useState<
     Record<string, string>
   >({});
@@ -88,7 +88,10 @@ const Questions: React.FC = () => {
         });
       }
     });
-    console.log(acc);
+    navigation.navigate('Stripe', {
+      title: route?.params.title || '',
+      data: acc,
+    });
   };
 
   return (

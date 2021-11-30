@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Stripe from '../screens/Stripe';
 import {
   LoginParamList,
   BottomNavParamList,
@@ -26,8 +27,8 @@ import Payments from "../screens/Payments";
 import Messages from "../screens/Messages";
 import CustomDrawer from "../customs/CustomDrawer";
 import ContractorDetails from "../screens/ContractorDetails";
-
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
 const Drawer = createDrawerNavigator<ContractorParamList>();
 const ContractorNavigation: React.FC = () => {
   return (
@@ -171,6 +172,16 @@ const HomeNavigation: React.FC = () => {
           headerShadowVisible: false,
           headerTintColor: "white",
         })}
+      />
+      <HomeStack.Screen
+        name="Stripe"
+        component={Stripe}
+        options={{
+          title: 'Review & Pay',
+          headerStyle: { backgroundColor: '#444956' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        }}
       />
     </HomeStack.Navigator>
   );
