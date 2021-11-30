@@ -3,7 +3,7 @@ import { View, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import TextField from "../components/TextField";
-
+import { LoginNavProps } from "../Navigation/Params";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
@@ -16,7 +16,7 @@ type FromValidate = {
   phone: string;
   confirmPassword: string;
 };
-const SignUp: React.FC = () => {
+const SignUp: React.FC<LoginNavProps<"SignUp">> = ({ navigation }) => {
   const SignUpSchema = Yup.object().shape({
     name: Yup.string().required("A name is required"),
     email: Yup.string().email().required("An email is required"),
@@ -137,7 +137,7 @@ const SignUp: React.FC = () => {
                 <Text style={{ fontSize: 16, color: "#407bff" }}>
                   Already have an account?
                 </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
                   <Text style={{ fontSize: 16, color: "#8cb0ff" }}> Login</Text>
                 </TouchableOpacity>
               </View>

@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import Validator from "email-validator";
 import { onSignin } from "../firebase/firebaseMethods";
 
-const SignIn: React.FC<LoginNavProps<"SignIn">> = () => {
+const SignIn: React.FC<LoginNavProps<"SignIn">> = ({ navigation }) => {
   const SignInSchema = Yup.object().shape({
     email: Yup.string().email().required("An email is required"),
     password: Yup.string()
