@@ -62,14 +62,14 @@ const Services: React.FC<ServicesProps> = (props) => {
 };
 
 const ServiceIcon: React.FC<{ ServiceIcon: string | null }> = (props) => (
-  <Icon type="material" name={props.ServiceIcon || 'build'} size={45} color={"#122d6c"} />
+  <Icon type="material" name={props.ServiceIcon || 'build'} size={45} color={"black"} />
 );
 
 const Service: React.FC<{ service: string | null }> = (props) => (
   <Text
     style={{
       fontSize: 15,
-      color: '#0f265c',
+      color: 'black',
       textAlign: 'center',
       fontWeight: '600',
       letterSpacing: 1,
