@@ -33,7 +33,7 @@ const Search: React.FC<SearchProps> = (props) => {
         borderRadius: 19,
         height: 40,
         marginHorizontal: 20,
-        backgroundColor: "#407bff"
+        backgroundColor: "white"
       }}
       searchIcon={
         <Icon

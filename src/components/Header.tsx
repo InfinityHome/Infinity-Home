@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     <View style={{ paddingHorizontal: 32, paddingVertical: 10 }}>
       <Text
         type={props.font || ""}
-        style={{ fontSize: props.size, color: "#bad0ff" }}
+        style={{ fontSize: props.size, color: "white" }}
       >
         {props.name}
       </Text>
