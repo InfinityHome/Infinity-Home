@@ -1,59 +1,184 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  SafeAreaView,
+  Image,
+  Platform,
+} from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import { handleSignOut } from "../firebase/firebaseMethods";
 import { AccountNavProps } from "../Navigation/Params";
+import { Divider } from "react-native-elements";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
   navigation,
 }) => {
   return (
-    <View style={styles.container}>
-      <View style={{ flexDirection: "row", paddingBottom: 20 }}>
-        <TouchableOpacity
-          style={{ borderWidth: 5, padding: 40 }}
-          onPress={() => ""}
+    <SafeAreaView style={styles.container}>
+      <Text
+        style={{
+          fontSize: 35,
+          color: "white",
+          paddingLeft: Platform.OS === "ios" ? 15 : 0,
+        }}
+      >
+        My Profile
+      </Text>
+      <View
+        style={{
+          borderRadius: 15,
+          width: "100%",
+          backgroundColor: "#21242c",
+          paddingVertical: 5,
+          marginTop: 50,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            zIndex: 1,
+            alignSelf: "flex-end",
+          }}
         >
-          <Text style={{ fontSize: 20, color: "white" }}>
-            Click to change{"\n"}profile picture
-          </Text>
-        </TouchableOpacity>
-        <View style={{ justifyContent: "flex-end" }}>
-          <Text style={{ fontSize: 25, color: "white", padding: 5 }}>
-            First Name{"\n"}Last Name
+          <View
+            style={{
+              marginTop: -50,
+              right: Platform.OS === "android" ? 75 : 105,
+            }}
+          >
+            <Image
+              source={{
+                uri: "https://www.ghkcoe.com/wp-content/uploads/2020/07/coach.png",
+              }}
+              style={{
+                height: 100,
+                width: 100,
+                borderRadius: 100,
+              }}
+            />
+          </View>
+          <TouchableOpacity
+            style={{ right: 5 }}
+            onPress={() => navigation.navigate("AccountDetails")}
+          >
+            <Image
+              source={{
+                uri: "https://sriadz.lk/xp-content/uploads/2020/07/Multi-Edit-Click-Blurb-Icon-256x256-1.png",
+              }}
+              style={{
+                height: 35,
+                width: 35,
+                borderRadius: 100,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ fontSize: 25, color: "white" }}>First Last</Text>
+          <Text style={{ fontSize: 18, color: "#28b9ee", paddingBottom: 4 }}>
+            infinityhome16@gmail.com
           </Text>
         </View>
       </View>
+
       <View
         style={{
-          flex: 1,
-          borderTopWidth: 3,
-          borderBottomWidth: 3,
-          borderColor: "white",
-          justifyContent: "space-evenly",
+          borderRadius: 15,
+          width: "80%",
+          backgroundColor: "#21242c",
+          paddingVertical: 15,
+          alignSelf: "center",
+          marginVertical: 10,
         }}
       >
-        <Touchable onPress={() => ""}>Saved</Touchable>
-        <Touchable onPress={() => ""}>Billing</Touchable>
-        <Touchable onPress={() => ""}>Payment Methods</Touchable>
-        <Touchable onPress={() => ""}>Change Password</Touchable>
-        <Touchable onPress={() => navigation.navigate("AccountDetails")}>
-          Change Details
+        <View style={{ flexDirection: "row", justifyContent: "center" }}>
+          <Text style={{ fontSize: 18, color: "white", paddingRight: 30 }}>
+            Orders: 5
+          </Text>
+          <Divider orientation="vertical" />
+          <Text style={{ fontSize: 18, color: "white", paddingLeft: 25 }}>
+            Spent: $100
+          </Text>
+        </View>
+      </View>
+
+      <View
+        style={{
+          justifyContent: "space-evenly",
+          borderRadius: 15,
+          width: "50%",
+          backgroundColor: "#21242c",
+          alignSelf: "center",
+          marginBottom: 10,
+        }}
+      >
+        <Touchable
+          onPress={() => navigation.navigate("Saved")}
+          leftIconName={"heart"}
+          iconColor={"#Ee2e28"}
+        >
+          Saved
+        </Touchable>
+        <Divider color={"#47494d"} />
+        <Touchable
+          onPress={() => navigation.navigate("Bid")}
+          leftIconName={"clipboard"}
+          iconColor={"#8067B7"}
+        >
+          Bidding
+        </Touchable>
+        <Divider color={"#47494d"} />
+        <Touchable
+          onPress={() => navigation.navigate("Payments")}
+          leftIconName={"card"}
+          iconColor={"#28ee74"}
+        >
+          Payments
+        </Touchable>
+        <Divider color={"#47494d"} />
+        <Touchable
+          onPress={() => navigation.navigate("Messages")}
+          leftIconName={"chatbubbles"}
+          iconColor={"#28b9ee"}
+        >
+          Messages
+        </Touchable>
+        <Divider color={"#47494d"} />
+        <Touchable
+          onPress={() => navigation.navigate("Password")}
+          leftIconName={"create"}
+          iconColor={"#F4eb4d"}
+        >
+          Password
         </Touchable>
       </View>
-      <View style={{ paddingTop: 15 }}>
-        <Button title="Sign Out" onPress={handleSignOut} />
+      <View>
+        <Button title="Sign Out" onPress={handleSignOut} backgroundColor={"#21242c"}/>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
-const Touchable: React.FC<{ onPress: () => void }> = (props) => {
+const Touchable: React.FC<{
+  onPress: () => void;
+  leftIconName: string;
+  iconColor: string;
+}> = (props) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
-      <Text style={{ fontSize: 20, color: "white" }}>{props.children}</Text>
-    </TouchableOpacity>
+    <View
+      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 25 }}
+    >
+      <Icon name={props.leftIconName} color={props.iconColor} size={20} />
+      <TouchableOpacity onPress={props.onPress}>
+        <Text style={{ fontSize: 18, color: "white", padding: 10 }}>
+          {props.children}
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -66,7 +191,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 50,
     paddingHorizontal: 20,
-    backgroundColor: "#444956",
+    backgroundColor: "#16181d",
     justifyContent: "space-evenly",
   },
 });

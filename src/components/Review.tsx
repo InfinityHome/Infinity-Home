@@ -19,7 +19,7 @@ const Review: React.FC<ReviewProps> = (props) => {
           fontSize: 25,
           fontWeight: 'bold',
           marginBottom: 15,
-          color: 'white',
+          color: '#bad0ff',
         }}>
         Type: {props.title}
       </Text>
@@ -30,7 +30,7 @@ const Review: React.FC<ReviewProps> = (props) => {
               fontSize: 20,
               fontWeight: 'bold',
               marginBottom: 3,
-              color: 'white',
+              color: '#bad0ff',
             }}>
             {index + 1}. {selection.question}
           </Text>
@@ -39,7 +39,7 @@ const Review: React.FC<ReviewProps> = (props) => {
               fontSize: 18,
               marginBottom: 10,
               marginLeft: 20,
-              color: 'white',
+              color: '#bad0ff',
             }}>
             - {selection.answer}
           </Text>
@@ -50,9 +50,10 @@ const Review: React.FC<ReviewProps> = (props) => {
         style={{
           alignSelf: 'flex-end',
           borderRadius: 10,
-          backgroundColor: '#0BB5ff',
+          backgroundColor: "#407bff",
           padding: 10,
           paddingHorizontal: 30,
+          color: '#407bff'
         }}
         onPress={() =>
           props.navigation.navigate('Questions', {

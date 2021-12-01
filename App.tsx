@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import * as Font from 'expo-font';
-import { ActivityIndicator, View } from 'react-native';
-import Navigation from './src/Navigation/Navigation';
+import "react-native-gesture-handler";
+import React, { useEffect, useState } from "react";
+import * as Font from "expo-font";
+import { ActivityIndicator, View } from "react-native";
+import Navigation from "./src/Navigation/Navigation";
 import { StripeProvider } from '@stripe/stripe-react-native';
 import { STRIPE_PUBLISHABLE_KEY } from '@env';
 import "react-native-gesture-handler";

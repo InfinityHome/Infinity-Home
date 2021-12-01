@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
-  StyleSheet,
   TextInput,
   Button,
   Alert,
@@ -75,7 +74,13 @@ const Stripe: React.FC<HomeNavProps<'Stripe'>> = ({ route, navigation }) => {
       });
   };
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        padding: 20,
+        backgroundColor: '#16181d',
+      }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Review
           title={route?.params.title || ''}
@@ -87,65 +92,68 @@ const Stripe: React.FC<HomeNavProps<'Stripe'>> = ({ route, navigation }) => {
           <DefinedText>Address: 123 Main St</DefinedText>
           <DefinedText>City: NYC</DefinedText>
           <DefinedText>Country: USA</DefinedText>
-          <DefinedText>Zip Code: 00000</DefinedText>
         </View>
         <TextInput
           autoCapitalize="none"
           placeholder="E-mail"
+          placeholderTextColor="#bad0ff"
           keyboardType="email-address"
           onChange={(value) => setEmail(value.nativeEvent.text)}
-          style={styles.input}
+          style={{
+            backgroundColor: '#21242c',
+            marginVertical: 10,
+            borderRadius: 8,
+            borderColor: '#8cb0ff',
+            fontSize: 20,
+            height: 50,
+            padding: 10,
+            marginTop: 20,
+            color: '#bad0ff',
+          }}
         />
         <TextInput
           autoCapitalize="none"
           placeholder="Phone Number"
+          placeholderTextColor="#bad0ff"
           keyboardType="number-pad"
           onChange={(value) => setPhone(value.nativeEvent.text)}
-          style={styles.input}
+          style={{
+            backgroundColor: '#21242c',
+            marginVertical: 10,
+            borderRadius: 8,
+            borderColor: '#8cb0ff',
+            fontSize: 20,
+            height: 50,
+            padding: 10,
+            marginTop: 20,
+            color: '#bad0ff',
+          }}
         />
         <CardField
           postalCodeEnabled={true}
           placeholder={{
             number: '4242 4242 4242 4242',
           }}
-          cardStyle={styles.card}
-          style={styles.cardContainer}
+          cardStyle={{
+            backgroundColor: '#21242c',
+            placeholderColor: '#bad0ff',
+            textColor: '#bad0ff',
+          }}
+          style={{
+            height: 50,
+            marginVertical: 30,
+          }}
           onCardChange={(cardDetails) => {
             setCardDetails(cardDetails);
           }}
         />
-        <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+        <Button color={"#407bff"} onPress={handlePayPress} title="Pay" disabled={loading} />
       </ScrollView>
     </View>
   );
 };
 
 const DefinedText: React.FC = (props) => (
-  <Text style={{ color: 'white', fontSize: 20 }}>{props.children}</Text>
+  <Text style={{ color: '#407bff', fontSize: 20 }}>{props.children}</Text>
 );
 export default Stripe;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#444956',
-  },
-  input: {
-    backgroundColor: '#efefefef',
-    marginVertical: 10,
-    borderRadius: 8,
-    fontSize: 20,
-    height: 50,
-    padding: 10,
-    marginTop: 20,
-  },
-  card: {
-    backgroundColor: '#efefefef',
-  },
-  cardContainer: {
-    height: 50,
-    marginVertical: 30,
-  },
-});

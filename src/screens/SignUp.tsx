@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import TextField from "../components/TextField";
-
+import { LoginNavProps } from "../Navigation/Params";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
@@ -16,7 +16,7 @@ type FromValidate = {
   phone: string;
   confirmPassword: string;
 };
-const SignUp: React.FC = () => {
+const SignUp: React.FC<LoginNavProps<"SignUp">> = ({ navigation }) => {
   const SignUpSchema = Yup.object().shape({
     name: Yup.string().required("A name is required"),
     email: Yup.string().email().required("An email is required"),
@@ -36,7 +36,7 @@ const SignUp: React.FC = () => {
     <View style={styles.container}>
       <>
         <View style={{ alignItems: "center" }}>
-          <Text style={{ fontSize: 35, color: "white" }}>New Account</Text>
+          <Text style={{ fontSize: 35, color: "#bad0ff" }}>New Account</Text>
         </View>
         <Formik
           initialValues={{
@@ -61,7 +61,7 @@ const SignUp: React.FC = () => {
           }: FormikProps<FromValidate>) => (
             <>
               <TextField
-                leftIconName="person"
+                leftIconName="account-circle"
                 placeholder="Name"
                 name="name"
                 handleChange={handleChange}
@@ -70,7 +70,7 @@ const SignUp: React.FC = () => {
                 validate={true}
               />
               <TextField
-                leftIconName="email"
+                leftIconName="mail"
                 placeholder="Email"
                 name="email"
                 handleChange={handleChange}
@@ -82,7 +82,7 @@ const SignUp: React.FC = () => {
                 }
               />
               <TextField
-                leftIconName="phone"
+                leftIconName="phone-in-talk"
                 placeholder="Phone Number (0123456789)"
                 name="phone"
                 handleChange={handleChange}
@@ -94,7 +94,7 @@ const SignUp: React.FC = () => {
               <TextField
                 setHidePass={() => setHidePass(!hidePass)}
                 leftIconName="lock"
-                rightIconName={hidePass ? "visibility-off" : "visibility"}
+                rightIconName={hidePass ? "eye-off" : "eye"}
                 placeholder="Password"
                 name="password"
                 handleBlur={handleBlur}
@@ -108,7 +108,7 @@ const SignUp: React.FC = () => {
               <TextField
                 setHidePass={() => setHideConfPass(!hideConfPass)}
                 leftIconName="lock"
-                rightIconName={hideConfPass ? "visibility-off" : "visibility"}
+                rightIconName={hideConfPass ? "eye-off" : "eye"}
                 placeholder="Confirm Password"
                 name="confirmPassword"
                 handleBlur={handleBlur}
@@ -125,7 +125,22 @@ const SignUp: React.FC = () => {
                   title="Sign Up"
                   buttonOpacity={{ opacity: isValid ? 1 : 0.5 }}
                   onPress={handleSubmit}
+                  backgroundColor={"#407bff"}
                 />
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  paddingTop: 10,
+                }}
+              >
+                <Text style={{ fontSize: 16, color: "#407bff" }}>
+                  Already have an account?
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+                  <Text style={{ fontSize: 16, color: "#8cb0ff" }}> Login</Text>
+                </TouchableOpacity>
               </View>
             </>
           )}
@@ -139,7 +154,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: "#444956",
+    backgroundColor: "#16181d",
     justifyContent: "center",
     marginTop: -50,
   },

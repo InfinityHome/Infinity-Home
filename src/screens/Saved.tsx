@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import Text from "../customs/CustomText";
 
-const Payments: React.FC = () => {
+const Saved: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={{color:"white"}}>PAYMENTS</Text>
+      <Text style={{color:"white"}}>SAVED</Text>
     </View>
   );
 };
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Payments;
+export default Saved;

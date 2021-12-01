@@ -5,7 +5,7 @@ import Text from "../customs/CustomText";
 const Bid: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>BID</Text>
+      <Text style={{color:"white"}}>BID</Text>
     </View>
   );
 };
@@ -13,7 +13,7 @@ const Bid: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#444956",
+    backgroundColor: "#16181d",
     padding: 7,
     justifyContent: "space-evenly",
     alignItems: "center",

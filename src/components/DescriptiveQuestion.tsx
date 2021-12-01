@@ -11,7 +11,7 @@ interface DescriptiveQuestionProps {
   setError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DescriptionQuestion: React.FC<DescriptiveQuestionProps> = (props) => {
+const DescriptiveQuestion: React.FC<DescriptiveQuestionProps> = (props) => {
   const handleChange = (text: string) => {
     props.setUsersSelections((prev) => ({
       ...prev,
@@ -28,6 +28,7 @@ const DescriptionQuestion: React.FC<DescriptiveQuestionProps> = (props) => {
         borderRadius: 7,
         marginTop: 10,
         marginBottom: 30,
+        borderColor: '#8cb0ff'
       }}>
       <TextInput
         style={{
@@ -35,12 +36,12 @@ const DescriptionQuestion: React.FC<DescriptiveQuestionProps> = (props) => {
           padding: 10,
           fontSize: 16,
           letterSpacing: 1,
-          color: 'white',
+          color: '#bad0ff',
         }}
         multiline
         textAlignVertical="top"
         placeholder={props.placeholder}
-        placeholderTextColor="#93969e"
+        placeholderTextColor="#bad0ff"
         onChangeText={(text: string) => handleChange(text)}
         autoCapitalize="none"
         value={props.usersSelections[props.question]}
@@ -49,4 +50,4 @@ const DescriptionQuestion: React.FC<DescriptiveQuestionProps> = (props) => {
   );
 };
 
-export default DescriptionQuestion;
+export default DescriptiveQuestion;

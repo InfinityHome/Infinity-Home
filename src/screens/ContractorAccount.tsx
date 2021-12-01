@@ -26,7 +26,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
         style={{
           borderRadius: 15,
           width: "100%",
-          backgroundColor: "#292c31",
+          backgroundColor: "#21242c",
           paddingVertical: 5,
           marginTop: 50,
           marginBottom: 30,
@@ -47,8 +47,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
           >
             <Image
               source={{
-                uri:
-                  "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png",
+                uri: "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png",
               }}
               style={{
                 height: 100,
@@ -63,8 +62,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
           >
             <Image
               source={{
-                uri:
-                  "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
+                uri: "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
               }}
               style={{
                 height: 35,
@@ -76,7 +74,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
         </View>
         <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 25, color: "white" }}>First Last</Text>
-          <Text style={{ fontSize: 18, color: "#34a4f7", paddingBottom: 4 }}>
+          <Text style={{ fontSize: 18, color: "#28b9ee", paddingBottom: 4 }}>
             infinityhome16@gmail.com
           </Text>
         </View>
@@ -84,14 +82,10 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
           <Text style={{ fontSize: 16, color: "#eeeeee", paddingRight: 15 }}>
             Id: 12345
           </Text>
-          <Text style={{ fontSize: 16, color: "#eeeeee" }}>
-            Date Joined:
-          </Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>Date Joined:</Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-          <Text style={{ fontSize: 16, color: "#eeeeee" }}>
-            License: 12345
-          </Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>License: 12345</Text>
           <Text style={{ fontSize: 16, color: "#eeeeee" }}>
             January 1st 2021
           </Text>
@@ -102,15 +96,15 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
         style={{
           borderRadius: 15,
           width: "80%",
-          backgroundColor: "#292c31",
+          backgroundColor: "#21242c",
           paddingVertical: 15,
           alignSelf: "center",
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-          <Text style={{ fontSize: 18, color: "white" }}>Orders: 5</Text>
+        <View style={{ flexDirection: "row", justifyContent: "center" }}>
+          <Text style={{ fontSize: 18, color: "white", paddingRight: 25 }}>Orders: 5</Text>
           <Divider orientation="vertical" />
-          <Text style={{ fontSize: 18, color: "white" }}>Revenue: $100</Text>
+          <Text style={{ fontSize: 18, color: "white", paddingLeft: 20 }}>Revenue: $100</Text>
         </View>
       </View>
 
@@ -118,8 +112,8 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
         style={{
           justifyContent: "space-evenly",
           borderRadius: 15,
-          width: "50%",
-          backgroundColor: "#292c31",
+          width: "45%",
+          backgroundColor: "#21242c",
           paddingVertical: 5,
           marginVertical: 25,
           alignSelf: "center",
@@ -158,7 +152,7 @@ const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
         </Touchable>
       </View>
       <View>
-        <Button title="Sign Out" onPress={handleSignOut} />
+        <Button title="Sign Out" onPress={handleSignOut} backgroundColor={"#0e90e0"} />
       </View>
     </SafeAreaView>
   );
@@ -171,7 +165,7 @@ const Touchable: React.FC<{
 }> = (props) => {
   return (
     <View
-      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 20 }}
+      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 22 }}
     >
       <Icon name={props.leftIconName} color={props.iconColor} size={20} />
       <TouchableOpacity onPress={props.onPress}>
