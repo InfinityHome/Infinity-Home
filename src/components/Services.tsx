@@ -19,7 +19,7 @@ const Services: React.FC<ServicesProps> = (props) => {
           paddingHorizontal: 20,
           paddingVertical: 5,
           fontSize: 20,
-          color: "#bad0ff",
+          color: "white",
         }}>
         Categories
       </Text>
