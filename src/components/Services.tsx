@@ -44,7 +44,7 @@ const Services: React.FC<ServicesProps> = (props) => {
               style={{
                 justifyContent: 'space-around',
                 padding: 10,
-                backgroundColor: d.serviceColor || '#407bff',
+                backgroundColor: d.serviceColor || '',
                 borderRadius: 15,
                 marginBottom: 30,
                 marginHorizontal: 10,
