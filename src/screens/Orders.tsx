@@ -51,7 +51,7 @@ const Orders: React.FC = () => {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: "#3e4350",
+        backgroundColor: "#16181d",
         flex: 1,
         paddingTop: StatusBar.currentHeight,
       }}
@@ -74,11 +74,13 @@ const Title: React.FC<{ title: string }> = (props) => (
   <View style={{ paddingBottom: 10 }}>
     <Text
       style={{
-        paddingTop: 7,
+        paddingTop: 4,
         fontSize: 22,
-        backgroundColor: "#b2b4b9",
+        backgroundColor: "#8cb0ff",
         textAlign: "center",
         borderWidth: 2,
+        borderColor:"#122d6c",
+        color:"#122d6c"
       }}
     >
       {props.title}

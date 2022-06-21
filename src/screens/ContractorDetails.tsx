@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TextInput, SafeAreaView, Platform, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Platform,
+} from "react-native";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import Icon from "react-native-vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 
-const AccountDetails: React.FC = () => {
+const ContractorDetails: React.FC = () => {
   const [picture, setPicture] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       if (Platform.OS !== "web") {
-        const {
-          status,
-        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        const { status } =
+          await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== "granted") {
           alert("Permission to access camera roll needed");
         }
@@ -35,12 +42,18 @@ const AccountDetails: React.FC = () => {
       setPicture(result.uri);
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{ fontSize: 30, color: "#bad0ff", textAlign: "center" }}>
+      <Text
+        style={{
+          fontSize: 30,
+          color: "white",
+          textAlign: "center",
+        }}
+      >
         Edit Information
       </Text>
-
       <View style={{ flexDirection: "row", alignSelf: "center" }}>
         {picture && (
           <Image
@@ -57,17 +70,29 @@ const AccountDetails: React.FC = () => {
         <TouchableOpacity onPress={pickImage}>
           <Image
             source={{
-              uri:
-                "https://sriadz.lk/xp-content/uploads/2020/07/Multi-Edit-Click-Blurb-Icon-256x256-1.png",
+              uri: "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
             }}
             style={{ height: 35, width: 35, borderRadius: 100, marginTop: 55 }}
           />
         </TouchableOpacity>
       </View>
-
-      <TextBox placeholder={"Email"} leftIconName={"mail"} width={"100%"} />
-      <TextBox placeholder={"Address"} leftIconName={"location"} width={"100%"} />
-      <TextBox placeholder={"Country"} leftIconName={"globe"} width={"100%"} />
+      <View style={{ padding: Platform.OS === "ios" ? 10 : 0 }}>
+        <TextBox
+          placeholder={"Email"}
+          leftIconName={"mail-outline"}
+          width={"100%"}
+        />
+        <TextBox
+          placeholder={"Location"}
+          leftIconName={"location-outline"}
+          width={"100%"}
+        />
+        <TextBox
+          placeholder={"Country"}
+          leftIconName={"globe-outline"}
+          width={"100%"}
+        />
+      </View>
       <View
         style={{
           flexDirection: "row",
@@ -76,10 +101,10 @@ const AccountDetails: React.FC = () => {
           padding: Platform.OS === "ios" ? 5 : 0,
         }}
       >
-        <TextBox placeholder={"State"} leftIconName={"pin"} width={"40%"} />
-        <TextBox placeholder={"Zip"} leftIconName={"compass"} width={"40%"} />
+        <TextBox placeholder={"State"} leftIconName={""} width={"45%"} />
+        <TextBox placeholder={"Zip"} leftIconName={""} width={"45%"} />
       </View>
-      <Button title="Change Details" onPress={() => ""} backgroundColor={"#407bff"}/>
+      <Button title="Change Details" onPress={() => ""} backgroundColor={"#0e90e0"}/>
     </SafeAreaView>
   );
 };
@@ -95,24 +120,22 @@ const TextBox: React.FC<{
         flexDirection: "row",
         paddingHorizontal: 5,
         alignItems: "center",
-        borderWidth: 1,
-        borderColor: "#8cb0ff",
         marginVertical: 10,
         backgroundColor: "#21242c",
         borderRadius: 15,
         paddingLeft: 10,
       }}
     >
-      <Icon name={props.leftIconName} color="#407bff" size={20} />
+      <Icon name={props.leftIconName} color="white" size={20} />
       <TextInput
         style={{
           width: props.width,
           padding: 10,
           fontSize: 16,
-          color: "#bad0ff",
+          color: "white",
         }}
         placeholder={props.placeholder}
-        placeholderTextColor="#bad0ff"
+        placeholderTextColor="#93969e"
         autoCapitalize="none"
       />
     </View>
@@ -128,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountDetails;
+export default ContractorDetails;

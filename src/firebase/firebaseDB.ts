@@ -1,11 +1,16 @@
-import { Alert } from "react-native";
-import { firebase } from "./config";
+
+import { Alert } from 'react-native';
+import { firebase } from './config';
+
 
 type ServiceListType = {
   companyDetails: Record<string, { resourcesAllocated: number }>[];
   serviceId: string | null;
   serviceName: string | null;
   serviceIcon: string | null;
+
+  serviceColor: string | null;
+
 }[];
 
 type userInfoType = {
@@ -24,12 +29,11 @@ type userInfoType = {
 class DataBase {
   database: firebase.database.Database;
   serviceTable: ServiceListType;
-  surveyTable: any;
+
 
   constructor() {
     this.database = firebase.database();
     this.serviceTable = [];
-    this.surveyTable = [];
   }
 
   /**
@@ -37,54 +41,36 @@ class DataBase {
    * reference this function as such: database.readServices().then((data) => {setServices(data);})
    */
   async readServices(): Promise<ServiceListType> {
-    const serviceRef = this.database.ref("/services");
+    const serviceRef = this.database.ref('/services');
     this.serviceTable = [];
     await serviceRef.once(
-      "value",
+      'value',
       (snapshot) => {
         snapshot.forEach((child) => {
           const serviceId = child.key;
           const serviceName = child.val().serviceName;
           const serviceIcon = child.val().serviceIcon;
+          const serviceColor = child.val().serviceColor;
           const companyDetails = child.val().company;
           this.serviceTable.push({
             serviceId,
             serviceIcon,
             serviceName,
             companyDetails,
+            serviceColor,
           });
         });
       },
       (errorObject: { name: string }) => {
-        console.log("The read failed: " + errorObject.name);
+        console.log('The read failed: ' + errorObject.name);
       }
     );
     return this.serviceTable;
   }
 
-  /**
-   * @returns {Promise<void>} requests the data from the survey object in firebase
-   */
-  async getSurveyQuestions(): Promise<any> {
-    const surveyRef = this.database.ref("/consumerSurvey");
-    this.surveyTable = [];
-    await surveyRef.once(
-      "value",
-      (snapshot) => {
-        snapshot.forEach((child) => {
-          const question = child.val();
-          this.surveyTable.push({ question });
-        });
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    return this.surveyTable;
-  }
-
   async updateUserObject(userInfo: userInfoType) {
-    const userRef = this.database.ref("/users/" + userInfo?.userID);
+    const userRef = this.database.ref('/users/' + userInfo?.userID);
+
     await userRef
       .set({
         userEmail: userInfo?.userEmail,
@@ -98,35 +84,15 @@ class DataBase {
         },
       })
       .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          Alert.alert("Oops", "Email Taken", [{ text: "Try Again" }]);
+
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('Oops', 'Email Taken', [{ text: 'Try Again' }]);
         } else {
-          Alert.alert("Error", "Something Went Wrong", [{ text: "Try Again" }]);
+          Alert.alert('Error', 'Something Went Wrong', [{ text: 'Try Again' }]);
         }
       });
   }
 
-  /**
-   *
-   */
-  async updateSurvey(surveyAnswered: any) {
-    const surveyRef = this.database.ref(
-      "/transaction/" + this.generateUniqueId() + "/survey/"
-    );
-    surveyAnswered.array.forEach(async (survey: any) => {
-      await surveyRef.set({
-        question: survey.question,
-        answer: survey.answer,
-      });
-    });
-  }
-
-  /**
-   * Generates a 16 digit unique ID
-   */
-  generateUniqueId(): string {
-    return Math.random().toString(36).substr(2, 16);
-  }
 }
 
 export const database = new DataBase();

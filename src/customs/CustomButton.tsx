@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Text from "./CustomText";
 
 interface ButtonProp {
@@ -7,31 +7,29 @@ interface ButtonProp {
   onPress: () => void;
   isValid?: boolean;
   buttonOpacity?: Record<string, unknown>;
+  style?: Record<string, unknown>;
+  backgroundColor?: string;
 }
 
 const Button: React.FC<ButtonProp> = (props) => {
   return (
     <TouchableOpacity
-      style={[styles.button, props.buttonOpacity || { opacity: 1 }]}
+      style={[
+        props.style || {
+          alignItems: "center",
+          borderRadius: 30,
+          backgroundColor: props.backgroundColor,
+          marginHorizontal: 70,
+          padding: 10,
+        },
+        props.buttonOpacity || { opacity: 1 },
+      ]}
       onPress={props.onPress}
     >
-      <Text style={styles.text}>{props.title}</Text>
+      <Text style={{ fontSize: 16, color: "white" }}>{props.title}</Text>
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    borderRadius: 30,
-    backgroundColor: "#21242c",
-    marginHorizontal: 70,
-    padding: 10,
-  },
-  text: {
-    fontSize: 16,
-    color: "white",
-  },
-});
 
 export default Button;
