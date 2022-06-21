@@ -1,20 +1,14 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-  Image,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Image, SafeAreaView, Platform } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Text from "../customs/CustomText";
 import Button from "../customs/CustomButton";
 import { handleSignOut } from "../firebase/firebaseMethods";
-import { AccountNavProps } from "../Navigation/Params";
 import { Divider } from "react-native-elements";
 import Icon from "react-native-vector-icons/Ionicons";
+import { ContractorNavProps } from "../Navigation/Params";
 
-const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
+const ContractorAccount: React.FC<ContractorNavProps<"Profile">> = ({
   navigation,
 }) => {
   return (
@@ -35,6 +29,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           backgroundColor: "#21242c",
           paddingVertical: 5,
           marginTop: 50,
+          marginBottom: 30,
         }}
       >
         <View
@@ -52,7 +47,7 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           >
             <Image
               source={{
-                uri: "https://www.ghkcoe.com/wp-content/uploads/2020/07/coach.png",
+                uri: "https://www.pinclipart.com/picdir/big/164-1640714_user-symbol-interface-contact-phone-set-add-sign.png",
               }}
               style={{
                 height: 100,
@@ -63,11 +58,11 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           </View>
           <TouchableOpacity
             style={{ right: 5 }}
-            onPress={() => navigation.navigate("AccountDetails")}
+            onPress={() => navigation.navigate("Details")}
           >
             <Image
               source={{
-                uri: "https://sriadz.lk/xp-content/uploads/2020/07/Multi-Edit-Click-Blurb-Icon-256x256-1.png",
+                uri: "https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png",
               }}
               style={{
                 height: 35,
@@ -83,6 +78,18 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
             infinityhome16@gmail.com
           </Text>
         </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+          <Text style={{ fontSize: 16, color: "#eeeeee", paddingRight: 15 }}>
+            Id: 12345
+          </Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>Date Joined:</Text>
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>License: 12345</Text>
+          <Text style={{ fontSize: 16, color: "#eeeeee" }}>
+            January 1st 2021
+          </Text>
+        </View>
       </View>
 
       <View
@@ -92,17 +99,12 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
           backgroundColor: "#21242c",
           paddingVertical: 15,
           alignSelf: "center",
-          marginVertical: 10,
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <Text style={{ fontSize: 18, color: "white", paddingRight: 30 }}>
-            Orders: 5
-          </Text>
+          <Text style={{ fontSize: 18, color: "white", paddingRight: 25 }}>Orders: 5</Text>
           <Divider orientation="vertical" />
-          <Text style={{ fontSize: 18, color: "white", paddingLeft: 25 }}>
-            Spent: $100
-          </Text>
+          <Text style={{ fontSize: 18, color: "white", paddingLeft: 20 }}>Revenue: $100</Text>
         </View>
       </View>
 
@@ -110,31 +112,24 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         style={{
           justifyContent: "space-evenly",
           borderRadius: 15,
-          width: "50%",
+          width: "45%",
           backgroundColor: "#21242c",
+          paddingVertical: 5,
+          marginVertical: 25,
           alignSelf: "center",
-          marginBottom: 10,
         }}
       >
         <Touchable
-          onPress={() => navigation.navigate("Saved")}
-          leftIconName={"heart"}
+          onPress={() => navigation.navigate("Bids")}
+          leftIconName={"clipboard-outline"}
           iconColor={"#Ee2e28"}
         >
-          Saved
-        </Touchable>
-        <Divider color={"#47494d"} />
-        <Touchable
-          onPress={() => navigation.navigate("Bid")}
-          leftIconName={"clipboard"}
-          iconColor={"#8067B7"}
-        >
-          Bidding
+          Bids
         </Touchable>
         <Divider color={"#47494d"} />
         <Touchable
           onPress={() => navigation.navigate("Payments")}
-          leftIconName={"card"}
+          leftIconName={"cash-outline"}
           iconColor={"#28ee74"}
         >
           Payments
@@ -142,22 +137,22 @@ const Account: React.FC<AccountNavProps<"AccountScreen">> = ({
         <Divider color={"#47494d"} />
         <Touchable
           onPress={() => navigation.navigate("Messages")}
-          leftIconName={"chatbubbles"}
+          leftIconName={"chatbox-ellipses-outline"}
           iconColor={"#28b9ee"}
         >
           Messages
         </Touchable>
         <Divider color={"#47494d"} />
         <Touchable
-          onPress={() => navigation.navigate("Password")}
-          leftIconName={"create"}
+          onPress={() => ""}
+          leftIconName={"construct-outline"}
           iconColor={"#F4eb4d"}
         >
-          Password
+          Services
         </Touchable>
       </View>
       <View>
-        <Button title="Sign Out" onPress={handleSignOut} backgroundColor={"#21242c"}/>
+        <Button title="Sign Out" onPress={handleSignOut} backgroundColor={"#0e90e0"} />
       </View>
     </SafeAreaView>
   );
@@ -170,7 +165,7 @@ const Touchable: React.FC<{
 }> = (props) => {
   return (
     <View
-      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 25 }}
+      style={{ flexDirection: "row", alignItems: "center", paddingLeft: 22 }}
     >
       <Icon name={props.leftIconName} color={props.iconColor} size={20} />
       <TouchableOpacity onPress={props.onPress}>
@@ -183,17 +178,11 @@ const Touchable: React.FC<{
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    paddingBottom: 20,
-  },
   container: {
     flex: 1,
-    paddingVertical: 50,
-    paddingHorizontal: 20,
     backgroundColor: "#16181d",
-    justifyContent: "space-evenly",
+    padding: 20,
   },
 });
 
-export default Account;
+export default ContractorAccount;
