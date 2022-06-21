@@ -20,7 +20,6 @@ const Question: React.FC<QuestionProps> = ({
   setUsersSelections,
   usersSelections,
 }) => {
-
   useEffect(() => {
     setError(checkError(questions, usersSelections));
   }, [usersSelections]);
@@ -33,7 +32,7 @@ const Question: React.FC<QuestionProps> = ({
             Q. {q.Question}
           </Text>
           <View>
-            {typeof q.Answer === 'string' ? (
+            {typeof q.Answer === "string" ? (
               <DescriptiveQuestion
                 setError={setError}
                 question={q.Question}

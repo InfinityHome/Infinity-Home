@@ -1,14 +1,14 @@
-import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import Text from '../customs/CustomText';
-import { Icon } from 'react-native-elements';
-import { ServiceListType } from '../firebase/firebaseDB';
-import { HomeParamList } from '../Navigation/Params';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React from "react";
+import { TouchableOpacity, View } from "react-native";
+import Text from "../customs/CustomText";
+import { Icon } from "react-native-elements";
+import { ServiceListType } from "../firebase/firebaseDB";
+import { HomeParamList } from "../Navigation/Params";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface ServicesProps {
   finalFilteredList: ServiceListType;
-  navigation: NativeStackNavigationProp<HomeParamList, 'HomeScreen'>;
+  navigation: NativeStackNavigationProp<HomeParamList, "HomeScreen">;
 }
 
 const Services: React.FC<ServicesProps> = (props) => {
@@ -25,24 +25,26 @@ const Services: React.FC<ServicesProps> = (props) => {
       </Text>
       <View
         style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-        }}>
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {props.finalFilteredList.map((d, index) => (
           <TouchableOpacity
             key={index}
             onPress={() => {
-              props.navigation.navigate('Questions', {
-                title: d.serviceName || '',
+              props.navigation.navigate("Questions", {
+                title: d.serviceName || "",
               });
-            }}>
+            }}
+          >
             <View
               key={index}
               style={{
-                justifyContent: 'space-around',
+                justifyContent: "space-around",
                 padding: 10,
                 backgroundColor: d.serviceColor || '',
                 borderRadius: 15,
@@ -50,7 +52,8 @@ const Services: React.FC<ServicesProps> = (props) => {
                 marginHorizontal: 10,
                 width: 90,
                 height: 100,
-              }}>
+              }}
+            >
               <ServiceIcon ServiceIcon={d.serviceIcon} />
               <Service service={d.serviceName} />
             </View>
@@ -73,7 +76,8 @@ const Service: React.FC<{ service: string | null }> = (props) => (
       textAlign: 'center',
       fontWeight: '600',
       letterSpacing: 1,
-    }}>
+    }}
+  >
     {props.service}
   </Text>
 );
