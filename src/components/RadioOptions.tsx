@@ -1,7 +1,7 @@
-import React from 'react';
-import { Dimensions, TextInput, View } from 'react-native';
-import RadioButtonRN from 'radio-buttons-react-native';
-import { Icon } from 'react-native-elements';
+import React from "react";
+import { Dimensions, TextInput, View } from "react-native";
+import RadioButtonRN from "radio-buttons-react-native";
+import { Icon } from "react-native-elements";
 
 interface RadioOptionsQuestionProps {
   question: string;
@@ -21,9 +21,9 @@ const RadioOptionsQuestion: React.FC<RadioOptionsQuestionProps> = (props) => {
 
   const handleChange = (e: Record<string, string> | string) => {
     if (e) {
-      if (typeof e === 'object') {
-        if (e.label !== 'Other') {
-          delete props.usersSelections[props.question + 'Other'];
+      if (typeof e === "object") {
+        if (e.label !== "Other") {
+          delete props.usersSelections[props.question + "Other"];
         }
 
         props.setUsersSelections((prev) => ({
@@ -33,7 +33,7 @@ const RadioOptionsQuestion: React.FC<RadioOptionsQuestionProps> = (props) => {
       } else {
         props.setUsersSelections((prev) => ({
           ...prev,
-          [props.question + 'Other']: e,
+          [props.question + "Other"]: e,
         }));
       }
     }
@@ -44,7 +44,7 @@ const RadioOptionsQuestion: React.FC<RadioOptionsQuestionProps> = (props) => {
       <RadioButtonRN
         style={{
           marginBottom:
-            props.usersSelections[props.question] !== 'Other' ? 30 : 0,
+            props.usersSelections[props.question] !== "Other" ? 30 : 0,
         }}
         boxStyle={{ width: Dimensions.get('window').width - 50, backgroundColor: '#21242c', }}
         icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
@@ -54,10 +54,10 @@ const RadioOptionsQuestion: React.FC<RadioOptionsQuestionProps> = (props) => {
         initial={getPerviousSelection}
         selectedBtn={(e: Record<string, string>) => handleChange(e)}
       />
-      {props.usersSelections[props.question] === 'Other' && (
+      {props.usersSelections[props.question] === "Other" && (
         <TextInput
           style={{
-            width: Dimensions.get('window').width - 50,
+            width: Dimensions.get("window").width - 50,
             padding: 10,
             fontSize: 16,
             color: '#bad0ff',

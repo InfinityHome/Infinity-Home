@@ -1,12 +1,16 @@
+
 import { Alert } from 'react-native';
 import { firebase } from './config';
+
 
 type ServiceListType = {
   companyDetails: Record<string, { resourcesAllocated: number }>[];
   serviceId: string | null;
   serviceName: string | null;
   serviceIcon: string | null;
+
   serviceColor: string | null;
+
 }[];
 
 type userInfoType = {
@@ -39,6 +43,7 @@ type contractorInfoType = {
 class DataBase {
   database: firebase.database.Database;
   serviceTable: ServiceListType;
+
 
   constructor() {
     this.database = firebase.database();
@@ -79,6 +84,7 @@ class DataBase {
 
   async updateUserObject(userInfo: userInfoType) {
     const userRef = this.database.ref('/users/' + userInfo?.userID);
+
     await userRef
       .set({
         userEmail: userInfo?.userEmail,
@@ -92,6 +98,7 @@ class DataBase {
         },
       })
       .catch((error) => {
+
         if (error.code === 'auth/email-already-in-use') {
           Alert.alert('Oops', 'Email Taken', [{ text: 'Try Again' }]);
         } else {
@@ -99,6 +106,7 @@ class DataBase {
         }
       });
   }
+
 }
 
 export const database = new DataBase();

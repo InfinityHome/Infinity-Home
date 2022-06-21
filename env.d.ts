@@ -13,5 +13,5 @@ declare module '@env' {
         export const STRIPE_SECRET_KEY: string;
 }
 
-declare module 'radio-buttons-react-native';
-declare module 'react-native-progress-steps';
+declare module "radio-buttons-react-native";
+declare module "react-native-progress-steps";

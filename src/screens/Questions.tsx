@@ -7,56 +7,56 @@ import { HomeNavProps } from '../Navigation/Params';
 const questions = [
   [
     {
-      Question: 'Question1',
+      Question: "Question1",
       Answer: [
-        { label: 'Option1' },
-        { label: 'Option2' },
-        { label: 'Option3' },
-        { label: 'Other' },
+        { label: "Option1" },
+        { label: "Option2" },
+        { label: "Option3" },
+        { label: "Other" },
       ],
     },
     {
-      Question: 'Question2',
-      Answer: [{ label: 'Option1' }, { label: 'Option2' }, { label: 'Other' }],
+      Question: "Question2",
+      Answer: [{ label: "Option1" }, { label: "Option2" }, { label: "Other" }],
     },
     {
-      Question: 'Question3',
+      Question: "Question3",
       Answer: [
-        { label: 'Option1' },
-        { label: 'Option2' },
-        { label: 'Option3' },
-        { label: 'Other' },
+        { label: "Option1" },
+        { label: "Option2" },
+        { label: "Option3" },
+        { label: "Other" },
       ],
     },
     {
-      Question: 'Question0',
-      Answer: 'Required',
+      Question: "Question0",
+      Answer: "Required",
     },
   ],
   [
     {
-      Question: 'Question4',
-      Answer: [{ label: 'Option1' }, { label: 'Option2' }, { label: 'Other' }],
+      Question: "Question4",
+      Answer: [{ label: "Option1" }, { label: "Option2" }, { label: "Other" }],
     },
 
     {
-      Question: 'Question5',
-      Answer: [{ label: 'Option1' }, { label: 'Option2' }, { label: 'Other' }],
+      Question: "Question5",
+      Answer: [{ label: "Option1" }, { label: "Option2" }, { label: "Other" }],
     },
     {
-      Question: 'Question7',
+      Question: "Question7",
       Answer: [
-        { label: 'Option1' },
-        { label: 'Option2' },
-        { label: 'Option3' },
-        { label: 'Other' },
+        { label: "Option1" },
+        { label: "Option2" },
+        { label: "Option3" },
+        { label: "Other" },
       ],
     },
   ],
   [
     {
-      Question: 'Question8',
-      Answer: 'Required',
+      Question: "Question8",
+      Answer: "Required",
     },
   ],
 ];
@@ -75,15 +75,15 @@ const Questions: React.FC<HomeNavProps<'Questions'>> = ({
     //Go over the object
     Object.keys(usersSelections).map((key) => {
       //If property is not textInput
-      if (!key.includes('Other')) {
+      if (!key.includes("Other")) {
         //If value is not Other Option
-        if (usersSelections[key] !== 'Other') {
+        if (usersSelections[key] !== "Other") {
           acc.push({ question: key, answer: usersSelections[key] });
         }
       } else {
         //Get the question name without the Other
         acc.push({
-          question: key.substring(0, key.lastIndexOf('Other')),
+          question: key.substring(0, key.lastIndexOf("Other")),
           answer: usersSelections[key],
         });
       }
