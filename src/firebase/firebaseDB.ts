@@ -26,6 +26,20 @@ type userInfoType = {
   };
 };
 
+type contractorInfoType = {
+    contractorID: string | undefined | null;
+    contractorEmail: string | undefined | null;
+    contractorName: string | undefined | null;
+    contractorPhone: string | undefined | null;
+    contractorLicense: string | undefined | null;
+    contractorAddress: {
+        street: string | undefined | null,
+        city: string | undefined | null,
+        state: string | undefined | null,
+        zip: string | undefined | null,
+    }; 
+}
+
 class DataBase {
   database: firebase.database.Database;
   serviceTable: ServiceListType;
