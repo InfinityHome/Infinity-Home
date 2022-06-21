@@ -33,9 +33,10 @@ const Order: React.FC<OrderProps> = (props) => {
         display: "flex",
         borderRadius: 20,
         borderWidth: 2,
+        borderColor: "#8cb0ff",
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#b2b4b9",
+        backgroundColor: '#407bff',
         minHeight: 100,
         marginHorizontal: 20,
         marginVertical: 10,
@@ -52,13 +53,13 @@ const Order: React.FC<OrderProps> = (props) => {
       >
         <Service_Status
           type="Electrolize"
-          style={{ fontSize: 23 }}
+          style={{ fontSize: 23, color: '#0f265c' }}
           Name={props.item.Service}
         />
         <View>
           <Service_Status
             type="ShareTechMono"
-            style={{ marginLeft: 10, fontSize: 17 }}
+            style={{  fontSize: 17, color: '#0f265c' }}
             Name={props.item.Status}
           />
           <Progress.Bar
@@ -66,7 +67,7 @@ const Order: React.FC<OrderProps> = (props) => {
             color="#51E839"
             unfilledColor="white"
             height={15}
-            borderColor="black"
+            borderColor="#8cb0ff"
             borderRadius={11}
             width={width - 170}
           />
@@ -82,6 +83,7 @@ const ServiceIcon: React.FC<{ ServiceIcon: string }> = (props) => (
     name={props.ServiceIcon}
     style={{ marginLeft: 15 }}
     size={70}
+    color={"#122d6c"}
   />
 );
 const Service_Status: React.FC<{

@@ -24,7 +24,7 @@ const Home: React.FC<HomeNavProps<"HomeScreen">> = ({ navigation }) => {
       style={{
         paddingTop: StatusBar.currentHeight,
         flex: 1,
-        backgroundColor: "#3e4350",
+        backgroundColor: "#16181d",
       }}
     >
       <Header name="Infinity Home" size={40} />

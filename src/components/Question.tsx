@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { View } from "react-native";
-import Text from "../customs/CustomText";
-import DescriptiveQuestion from "./Descriptive";
-import { checkError } from "./HelperErrorFunc";
-import RadioOptionsQuestion from "./RadioOptions";
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import Text from '../customs/CustomText';
+import DescriptiveQuestion from './DescriptiveQuestion';
+import { checkError } from './HelperErrorFunc';
+import RadioOptionsQuestion from './RadioOptions';
 
 interface QuestionProps {
   questions: { Question: string; Answer: string | { label: string }[] }[];
@@ -28,7 +28,7 @@ const Question: React.FC<QuestionProps> = ({
     <View>
       {questions.map((q, i) => (
         <View key={i}>
-          <Text style={{ fontSize: 22, marginHorizontal: 30, color: "white" }}>
+          <Text style={{ fontSize: 22, marginHorizontal: 30, color: '#bad0ff' }}>
             Q. {q.Question}
           </Text>
           <View>

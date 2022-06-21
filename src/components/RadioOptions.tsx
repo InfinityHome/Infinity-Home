@@ -46,10 +46,10 @@ const RadioOptionsQuestion: React.FC<RadioOptionsQuestionProps> = (props) => {
           marginBottom:
             props.usersSelections[props.question] !== "Other" ? 30 : 0,
         }}
-        boxStyle={{ width: Dimensions.get("window").width - 50 }}
+        boxStyle={{ width: Dimensions.get('window').width - 50, backgroundColor: '#21242c', }}
         icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
-        animationTypes={["shake"]}
-        textStyle={{ fontSize: 18 }}
+        animationTypes={['shake']}
+        textStyle={{ fontSize: 18, color: '#bad0ff', }}
         data={props.answer}
         initial={getPerviousSelection}
         selectedBtn={(e: Record<string, string>) => handleChange(e)}
@@ -60,15 +60,18 @@ const RadioOptionsQuestion: React.FC<RadioOptionsQuestionProps> = (props) => {
             width: Dimensions.get("window").width - 50,
             padding: 10,
             fontSize: 16,
-            color: "white",
+            color: '#bad0ff',
             letterSpacing: 1,
             borderWidth: 1,
+            borderColor: '#8cb0ff',
             borderRadius: 7,
             marginTop: 15,
             marginBottom: 30,
           }}
           onChangeText={(text) => handleChange(text)}
-          value={props.usersSelections[props.question + "Other"]}
+          placeholder="Required"
+          placeholderTextColor="#bad0ff"
+          value={props.usersSelections[props.question + 'Other']}
         />
       )}
     </View>

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
-import Question from "../components/Question";
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
+import Question from '../components/Question';
+import { HomeNavProps } from '../Navigation/Params';
 
 const questions = [
   [
@@ -57,14 +58,13 @@ const questions = [
       Question: "Question8",
       Answer: "Required",
     },
-    {
-      Question: "Question9",
-      Answer: "Optional",
-    },
   ],
 ];
 
-const Questions: React.FC = () => {
+const Questions: React.FC<HomeNavProps<'Questions'>> = ({
+  navigation,
+  route,
+}) => {
   const [usersSelections, setUsersSelections] = useState<
     Record<string, string>
   >({});
@@ -88,14 +88,23 @@ const Questions: React.FC = () => {
         });
       }
     });
-    console.log(acc);
+    navigation.navigate('Stripe', {
+      title: route?.params.title || '',
+      data: acc,
+    });
   };
 
   return (
     <View
-      style={{ flex: 1, paddingHorizontal: 15, backgroundColor: "#444956" }}
-    >
-      <ProgressSteps marginBottom={30} activeStepIconColor="#4bb543">
+      style={{ flex: 1, paddingHorizontal: 15, backgroundColor: '#16181d' }}>
+      <ProgressSteps
+        marginBottom={30}
+        activeStepIconColor="#407bff"
+        activeStepIconBorderColor="#8cb0ff"
+        borderWidth={1}
+        completedProgressBarColor="#8cb0ff"
+        completedStepIconColor="#407bff"
+        disabledStepNumColor="black">
         {questions.map((question, index) => (
           <ProgressStep
             key={index}
@@ -104,12 +113,11 @@ const Questions: React.FC = () => {
             nextBtnTextStyle={{
               fontSize: 20,
               opacity: error ? 0.2 : 1,
-              color: "white",
+              color: '#bad0ff',
             }}
             nextBtnStyle={{ padding: 0 }}
             previousBtnStyle={{ padding: 0 }}
-            previousBtnTextStyle={{ fontSize: 20, color: "white" }}
-          >
+            previousBtnTextStyle={{ fontSize: 20, color: '#bad0ff' }}>
             <Question
               setError={setError}
               questions={question}

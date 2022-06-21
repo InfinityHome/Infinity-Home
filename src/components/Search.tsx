@@ -24,7 +24,7 @@ const Search: React.FC<SearchProps> = (props) => {
     <SearchBar
       lightTheme
       containerStyle={{
-        backgroundColor: "#3e4350",
+        backgroundColor: "#16181d",
         borderTopWidth: 0,
         borderBottomWidth: 0,
       }}
@@ -33,6 +33,7 @@ const Search: React.FC<SearchProps> = (props) => {
         borderRadius: 19,
         height: 40,
         marginHorizontal: 20,
+        backgroundColor: "white"
       }}
       searchIcon={
         <Icon
@@ -40,8 +41,10 @@ const Search: React.FC<SearchProps> = (props) => {
           style={{ paddingLeft: 10 }}
           name="find-in-page"
           size={30}
+          color={"#122d6c"}
         />
       }
+      placeholderTextColor="#0f265c"
       placeholder="Search"
       onChangeText={onSearch}
       value={search}
